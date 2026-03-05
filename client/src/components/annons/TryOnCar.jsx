@@ -39,6 +39,23 @@ export default function TryOnCar({ listing }) {
     return parts.join(', ');
   };
 
+  // Convert a same-origin image URL to a data URL
+  const toDataUrl = (src) => {
+    return new Promise((resolve) => {
+      const img = new Image();
+      img.crossOrigin = 'anonymous';
+      img.onload = () => {
+        const canvas = document.createElement('canvas');
+        canvas.width = img.width;
+        canvas.height = img.height;
+        canvas.getContext('2d').drawImage(img, 0, 0);
+        resolve(canvas.toDataURL('image/jpeg', 0.85));
+      };
+      img.onerror = () => resolve(null);
+      img.src = src;
+    });
+  };
+
   const handleGenerate = async () => {
     if (!image) return;
     setLoading(true);
@@ -46,12 +63,16 @@ export default function TryOnCar({ listing }) {
     setResult(null);
 
     try {
+      const wheelSrc = listing.images?.[0] || listing.image;
+      const wheelDataUrl = await toDataUrl(wheelSrc);
+
       const res = await fetch('/api/visualize', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           image,
-          wheel_style: buildWheelDescription(),
+          wheel_image: wheelDataUrl || wheelSrc,
+          listing_title: listing.title,
         }),
       });
       const data = await res.json();
