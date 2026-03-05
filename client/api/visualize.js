@@ -33,15 +33,26 @@ export default async function handler(req, res) {
       const mime = mimeMatch ? mimeMatch[1] : 'image/jpeg';
       const ext = mime.split('/')[1] || 'jpg';
 
-      // Create upload URL
+      // Upload via multipart form
+      const fileBuffer = Buffer.from(base64Data, 'base64');
+      const boundary = '----ReplicateUpload' + Date.now();
+      const fileName = `car.${ext}`;
+      const bodyParts = [
+        `--${boundary}\r\n`,
+        `Content-Disposition: form-data; name="content"; filename="${fileName}"\r\n`,
+        `Content-Type: ${mime}\r\n\r\n`,
+      ];
+      const header = Buffer.from(bodyParts.join(''));
+      const footer = Buffer.from(`\r\n--${boundary}--\r\n`);
+      const multipartBody = Buffer.concat([header, fileBuffer, footer]);
+
       const uploadRes = await fetch('https://api.replicate.com/v1/files', {
         method: 'POST',
         headers: {
           'Authorization': `Bearer ${REPLICATE_API_TOKEN}`,
-          'Content-Type': mime,
-          'Content-Disposition': `attachment; filename="car.${ext}"`,
+          'Content-Type': `multipart/form-data; boundary=${boundary}`,
         },
-        body: Buffer.from(base64Data, 'base64'),
+        body: multipartBody,
       });
 
       if (!uploadRes.ok) {
