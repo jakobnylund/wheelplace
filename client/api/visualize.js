@@ -11,7 +11,7 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const { image, wheel_style } = req.body;
+  const { image, wheel_style, listing_title } = req.body;
 
   if (!image) {
     return res.status(400).json({ error: 'No image provided' });
@@ -22,7 +22,13 @@ export default async function handler(req, res) {
     return res.status(500).json({ error: 'Replicate API token not configured' });
   }
 
-  const prompt = `Replace only the wheels and rims on this car with ${wheel_style || 'sleek 19-inch gunmetal alloy sport rims with low-profile performance tires'}. Keep the rest of the car exactly the same. Photorealistic result.`;
+  let prompt;
+  if (wheel_style === '__composite__') {
+    // Composite image mode: left half is the reference wheel/rim, right half is the car
+    prompt = `This image has two halves. The LEFT half shows a set of wheels/rims/tires (${listing_title || 'from a listing'}). The RIGHT half shows a car. Take ONLY the right half (the car) and replace its wheels with the exact wheels/rims shown in the left half. Output ONLY the car (right half) with the new wheels applied. Keep everything else about the car identical. Photorealistic result, natural lighting.`;
+  } else {
+    prompt = `Replace only the wheels and rims on this car with ${wheel_style || 'sleek 19-inch gunmetal alloy sport rims with low-profile performance tires'}. Keep the rest of the car exactly the same. Photorealistic result.`;
+  }
 
   try {
     // If image is base64 data URL, upload to Replicate's file hosting first

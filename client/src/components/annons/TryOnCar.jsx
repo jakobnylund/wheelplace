@@ -25,17 +25,50 @@ export default function TryOnCar({ listing }) {
     handleFile(e.dataTransfer.files[0]);
   };
 
-  const buildWheelDescription = () => {
-    const parts = [];
-    if (listing.tireBrand) parts.push(listing.tireBrand);
-    if (listing.specs?.width && listing.specs?.profile && listing.specs?.diameter) {
-      parts.push(`${listing.specs.width}/${listing.specs.profile} R${listing.specs.diameter}`);
-    }
-    if (listing.tireType) parts.push(listing.tireType.toLowerCase());
-    if (listing.product) parts.push(listing.product.toLowerCase());
-    return parts.length > 0
-      ? parts.join(' ') + ' wheels and tires'
-      : 'the wheels shown in the listing';
+  // Create a composite image: listing wheel on the left, car on the right
+  const createComposite = (carDataUrl) => {
+    return new Promise((resolve) => {
+      const wheelImg = new Image();
+      const carImg = new Image();
+      let loaded = 0;
+
+      const onLoad = () => {
+        loaded++;
+        if (loaded < 2) return;
+
+        const size = 768;
+        const canvas = document.createElement('canvas');
+        canvas.width = size * 2;
+        canvas.height = size;
+        const ctx = canvas.getContext('2d');
+
+        // Draw wheel image on left half (cover)
+        const wRatio = Math.max(size / wheelImg.width, size / wheelImg.height);
+        const wW = wheelImg.width * wRatio;
+        const wH = wheelImg.height * wRatio;
+        ctx.drawImage(wheelImg, (size - wW) / 2, (size - wH) / 2, wW, wH);
+
+        // Draw car image on right half (cover)
+        const cRatio = Math.max(size / carImg.width, size / carImg.height);
+        const cW = carImg.width * cRatio;
+        const cH = carImg.height * cRatio;
+        ctx.save();
+        ctx.beginPath();
+        ctx.rect(size, 0, size, size);
+        ctx.clip();
+        ctx.drawImage(carImg, size + (size - cW) / 2, (size - cH) / 2, cW, cH);
+        ctx.restore();
+
+        resolve(canvas.toDataURL('image/jpeg', 0.85));
+      };
+
+      wheelImg.crossOrigin = 'anonymous';
+      wheelImg.onload = onLoad;
+      wheelImg.src = listing.images?.[0] || listing.image;
+
+      carImg.onload = onLoad;
+      carImg.src = carDataUrl;
+    });
   };
 
   const handleGenerate = async () => {
@@ -44,15 +77,16 @@ export default function TryOnCar({ listing }) {
     setError(null);
     setResult(null);
 
-    const wheelDesc = buildWheelDescription();
-
     try {
+      const composite = await createComposite(image);
+
       const res = await fetch('/api/visualize', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          image,
-          wheel_style: `${wheelDesc}, matching the style from a ${listing.brand || 'car'} fitment. Realistic alloy rims with proper tire sidewall proportions`,
+          image: composite,
+          wheel_style: '__composite__',
+          listing_title: listing.title,
         }),
       });
       const data = await res.json();
