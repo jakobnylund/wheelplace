@@ -142,39 +142,22 @@ export default function TryOnCar({ listing }) {
               <p className="text-[10px] font-semibold text-brand-dark/40 uppercase tracking-wider mb-2">Med nya hjul</p>
               <div className="rounded-xl overflow-hidden bg-brand-gray-light border border-brand-gray/30 aspect-[4/3] flex items-center justify-center">
                 {loading ? (
-                  <div className="relative w-full h-full overflow-hidden bg-white">
-                    {/* Animated glowing border */}
-                    <div
-                      className="absolute inset-0 rounded-xl"
-                      style={{
-                        padding: '2px',
-                        background: 'linear-gradient(var(--ai-angle, 0deg), #3b82f6, #8b5cf6, #a855f7, #6366f1, #3b82f6)',
-                        mask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
-                        maskComposite: 'exclude',
-                        WebkitMask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
-                        WebkitMaskComposite: 'xor',
-                        animation: 'aiBorderRotate 3s linear infinite',
-                      }}
-                    />
-                    {/* Soft glow behind border */}
-                    <div
-                      className="absolute inset-0 rounded-xl"
-                      style={{
-                        boxShadow: 'inset 0 0 30px rgba(99,102,241,0.12), inset 0 0 60px rgba(139,92,246,0.08)',
-                        animation: 'aiGlow 3s ease-in-out infinite',
-                      }}
-                    />
-                    {/* Corner glow accents */}
-                    <div className="absolute -top-8 -left-8 w-24 h-24 rounded-full opacity-20" style={{ background: 'radial-gradient(circle, #8b5cf6, transparent 70%)', animation: 'aiCorner 4s ease-in-out infinite' }} />
-                    <div className="absolute -bottom-8 -right-8 w-24 h-24 rounded-full opacity-20" style={{ background: 'radial-gradient(circle, #3b82f6, transparent 70%)', animation: 'aiCorner 4s ease-in-out infinite 2s' }} />
-                    <div className="absolute -top-6 -right-6 w-20 h-20 rounded-full opacity-15" style={{ background: 'radial-gradient(circle, #a855f7, transparent 70%)', animation: 'aiCorner 5s ease-in-out infinite 1s' }} />
+                  <div className="relative w-full h-full overflow-hidden bg-white/95">
+                    {/* Soft edge glows that travel around */}
+                    <div className="absolute inset-0">
+                      <div className="absolute -top-12 left-1/4 w-32 h-32 rounded-full" style={{ background: 'radial-gradient(circle, rgba(96,165,250,0.25), transparent 70%)', animation: 'aiFloat1 6s ease-in-out infinite' }} />
+                      <div className="absolute -right-12 top-1/3 w-28 h-28 rounded-full" style={{ background: 'radial-gradient(circle, rgba(167,139,250,0.2), transparent 70%)', animation: 'aiFloat2 7s ease-in-out infinite' }} />
+                      <div className="absolute -bottom-10 right-1/4 w-36 h-36 rounded-full" style={{ background: 'radial-gradient(circle, rgba(56,189,248,0.2), transparent 70%)', animation: 'aiFloat3 5s ease-in-out infinite' }} />
+                      <div className="absolute -left-10 bottom-1/3 w-24 h-24 rounded-full" style={{ background: 'radial-gradient(circle, rgba(129,140,248,0.22), transparent 70%)', animation: 'aiFloat1 8s ease-in-out infinite 1s' }} />
+                      <div className="absolute top-1/2 left-1/2 w-40 h-40 -translate-x-1/2 -translate-y-1/2 rounded-full" style={{ background: 'radial-gradient(circle, rgba(196,181,253,0.1), transparent 70%)', animation: 'aiFloat2 9s ease-in-out infinite 2s' }} />
+                    </div>
                     {/* Shimmer sweep */}
                     <div
                       className="absolute inset-0"
                       style={{
-                        background: 'linear-gradient(110deg, transparent 30%, rgba(139,92,246,0.06) 42%, rgba(99,102,241,0.1) 50%, rgba(139,92,246,0.06) 58%, transparent 70%)',
-                        backgroundSize: '200% 100%',
-                        animation: 'aiShimmer 3s ease-in-out infinite',
+                        background: 'linear-gradient(105deg, transparent 35%, rgba(255,255,255,0.6) 45%, rgba(255,255,255,0.8) 50%, rgba(255,255,255,0.6) 55%, transparent 65%)',
+                        backgroundSize: '250% 100%',
+                        animation: 'aiShimmer 3.5s ease-in-out infinite',
                       }}
                     />
                     {/* Center content */}
@@ -182,37 +165,36 @@ export default function TryOnCar({ listing }) {
                       <svg className="w-7 h-7" style={{ animation: 'aiPulse 2.5s ease-in-out infinite' }} fill="none" viewBox="0 0 24 24" strokeWidth="1.5">
                         <defs>
                           <linearGradient id="aiSparkle" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" stopColor="#8b5cf6" />
-                            <stop offset="100%" stopColor="#3b82f6" />
+                            <stop offset="0%" stopColor="#818cf8" />
+                            <stop offset="50%" stopColor="#60a5fa" />
+                            <stop offset="100%" stopColor="#a78bfa" />
                           </linearGradient>
                         </defs>
                         <path stroke="url(#aiSparkle)" strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.455 2.456L21.75 6l-1.036.259a3.375 3.375 0 00-2.455 2.456z" />
                       </svg>
-                      <p className="text-xs font-medium bg-gradient-to-r from-violet-500 to-blue-500 bg-clip-text text-transparent tracking-wide">AI genererar...</p>
+                      <p className="text-xs font-medium bg-gradient-to-r from-indigo-400 via-sky-400 to-violet-400 bg-clip-text text-transparent tracking-wide">AI genererar...</p>
                     </div>
                     <style>{`
-                      @property --ai-angle {
-                        syntax: '<angle>';
-                        initial-value: 0deg;
-                        inherits: false;
+                      @keyframes aiFloat1 {
+                        0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.18; }
+                        33% { transform: translate(15px, 10px) scale(1.15); opacity: 0.3; }
+                        66% { transform: translate(-10px, 5px) scale(0.95); opacity: 0.2; }
                       }
-                      @keyframes aiBorderRotate {
-                        to { --ai-angle: 360deg; }
+                      @keyframes aiFloat2 {
+                        0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.15; }
+                        50% { transform: translate(-12px, -8px) scale(1.2); opacity: 0.28; }
                       }
-                      @keyframes aiGlow {
-                        0%, 100% { box-shadow: inset 0 0 30px rgba(99,102,241,0.1), inset 0 0 60px rgba(139,92,246,0.06); }
-                        50% { box-shadow: inset 0 0 40px rgba(99,102,241,0.18), inset 0 0 80px rgba(139,92,246,0.12); }
-                      }
-                      @keyframes aiCorner {
-                        0%, 100% { opacity: 0.12; transform: scale(1); }
-                        50% { opacity: 0.25; transform: scale(1.2); }
+                      @keyframes aiFloat3 {
+                        0%, 100% { transform: translate(0, 0) scale(1.05); opacity: 0.2; }
+                        40% { transform: translate(10px, -12px) scale(1); opacity: 0.15; }
+                        70% { transform: translate(-8px, -5px) scale(1.15); opacity: 0.28; }
                       }
                       @keyframes aiShimmer {
-                        0% { background-position: 200% 0; }
-                        100% { background-position: -200% 0; }
+                        0% { background-position: 250% 0; }
+                        100% { background-position: -250% 0; }
                       }
                       @keyframes aiPulse {
-                        0%, 100% { transform: scale(1); opacity: 0.8; }
+                        0%, 100% { transform: scale(1); opacity: 0.7; }
                         50% { transform: scale(1.1); opacity: 1; }
                       }
                     `}</style>
