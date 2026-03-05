@@ -290,13 +290,13 @@ function HowItWorks() {
         <div className="grid md:grid-cols-3 gap-6">
           {cards.map((c) => (
             <div key={c.title} className="group rounded-2xl bg-brand-gray-light overflow-hidden flex flex-col hover:shadow-lg hover:bg-white transition-all duration-200">
-              <div className="aspect-[16/10] overflow-hidden">
+              <div className="relative aspect-[16/10] overflow-hidden">
                 <img src={c.image} alt={c.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" />
+                <div className="absolute top-4 left-4 w-12 h-12 rounded-full bg-white flex items-center justify-center text-[#8b95a8] shadow-md">
+                  {c.icon}
+                </div>
               </div>
               <div className="p-7 flex flex-col flex-1">
-              <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center mb-4 text-[#8b95a8]">
-                {c.icon}
-              </div>
               <h3 className="text-xl font-bold text-brand-dark mb-2">{c.title}</h3>
               <p className="text-[15px] text-brand-gray-medium leading-relaxed mb-6 flex-1">{c.desc}</p>
               {c.to ? (
