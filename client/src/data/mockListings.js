@@ -301,6 +301,43 @@ const mockListings = [
     },
     reference: 'WP-20250308-008',
   },
+  {
+    id: 9,
+    title: 'Vinterhjul E-tron Nokian Dubb 20"',
+    price: 31500,
+    image: '/listings/listing-etron-1.avif',
+    images: [
+      '/listings/listing-etron-1.avif',
+      '/listings/listing-etron-2.avif',
+    ],
+    location: 'Västra Götalands län',
+    condition: 'Nya',
+    seller: { name: 'Toveks Bil Borås', type: 'Företag' },
+    date: '1 vecka sedan',
+    product: 'Kompletta hjul',
+    tireType: 'Vinterdäck dubb',
+    brand: 'Audi',
+    specs: { width: '255', profile: '50', diameter: '20', depth: 'Nya' },
+    quantity: 4,
+    description: 'Nya kompletta vinterhjul för Audi E-tron. Nokian dubbdäck 255/50R20. Bultmönster 5/112, centrumhål 66.5 mm, ET38. DOT 2122. Ordinarie pris 40 500 kr.',
+    carModel: 'Audi E-tron',
+    tireBrand: 'Nokian',
+    dot: '2122',
+    deliveryOptions: ['Hämtas på plats'],
+    sellerDetails: {
+      avatar: null,
+      description: 'Välkommen till Toveks Bil i Borås! Hos oss finner du din nya Audi, SEAT, Skoda, CUPRA och Volkswagen.',
+      memberSince: 'jan 2025',
+      responseTime: 'Mån–Fre 8–17',
+      phone: true,
+      email: true,
+    },
+    locationDetails: {
+      city: 'Borås',
+      region: 'Västra Götalands län',
+    },
+    reference: 'WP-20250309-009',
+  },
 ];
 
 export default mockListings;
