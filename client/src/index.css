@@ -16,7 +16,7 @@
   --color-brand-white: #ffffff;
   --font-sans: 'Inter', 'Helvetica Neue', Helvetica, Arial, system-ui, sans-serif;
   --font-heading: 'Rubik', 'Helvetica Neue', Helvetica, Arial, system-ui, sans-serif;
-  --max-width-site: 1350px;
+  --max-width-site: 1400px;
 }
 
 @layer base {

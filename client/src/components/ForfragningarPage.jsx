@@ -68,7 +68,7 @@ export default function ForfragningarPage() {
                     Skapa en förfrågan med vad du söker så kontaktar säljare dig direkt.
                   </p>
                   <a
-                    href="https://www.wheelplace.com/sökannonser"
+                    href="/forfragningar"
                     className="inline-flex items-center gap-2 mt-3 px-5 py-2.5 rounded-full bg-brand-blue hover:bg-brand-blue-dark text-white text-sm font-medium transition-colors"
                   >
                     <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">

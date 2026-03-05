@@ -24,7 +24,7 @@ export default function BrandGrid() {
         {brands.map((brand) => (
           <a
             key={brand.slug}
-            href={`https://www.wheelplace.com/annonser?brand=${brand.slug}`}
+            href={`/annonser?brand=${brand.slug}`}
             className="
               group flex flex-col items-center justify-center gap-3
               aspect-square rounded-xl bg-brand-gray-light
@@ -41,7 +41,7 @@ export default function BrandGrid() {
       </div>
       <div className="text-center mt-8">
         <a
-          href="https://www.wheelplace.com/annonser"
+          href="/annonser"
           className="inline-flex items-center gap-1.5 text-sm font-medium text-brand-blue hover:text-brand-blue-dark transition-colors"
         >
           Alla märken

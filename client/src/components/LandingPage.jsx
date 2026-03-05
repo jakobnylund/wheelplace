@@ -247,7 +247,7 @@ function HowItWorks() {
       title: 'Sälj',
       desc: 'Skapa en annons med rätt uppgifter, sätt ditt pris och publicera — helt gratis.',
       cta: 'Lägg in annons',
-      href: 'https://www.wheelplace.com/annons/skapa',
+      to: '/logga-in',
     },
     {
       icon: (
@@ -273,7 +273,7 @@ function HowItWorks() {
       title: 'Efterlys',
       desc: 'Hittar du inte det du söker? Skapa en förfrågan så kontaktar säljare dig.',
       cta: 'Skapa förfrågan',
-      href: 'https://www.wheelplace.com/sökannonser',
+      to: '/forfragningar',
     },
   ];
 
@@ -572,7 +572,7 @@ function B2BSection() {
               ))}
             </ul>
             <a
-              href="https://www.wheelplace.com/kontakt"
+              href="/kontakt"
               className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-brand-dark hover:bg-brand-black text-white font-medium text-sm transition-colors"
             >
               Kontakta oss
@@ -644,7 +644,7 @@ function FAQSection() {
                 Kontakta oss
               </Link>
               <a
-                href="https://www.wheelplace.com/sökannonser"
+                href="/forfragningar"
                 className="flex items-center justify-center gap-2 w-full px-4 py-3 rounded-xl border border-brand-gray text-brand-dark font-medium text-sm transition-colors mt-3 hover:bg-white"
               >
                 <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">

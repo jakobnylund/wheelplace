@@ -39,28 +39,27 @@ export default function Footer() {
             <div>
               <h4 className="text-xs font-semibold text-brand-dark/40 uppercase tracking-wider mb-4">Wheelplace</h4>
               <ul className="space-y-3">
-                <li><a href="https://www.wheelplace.com/om-oss" className="text-sm text-brand-gray-medium hover:text-brand-blue transition-colors">Om Wheelplace</a></li>
+                <li><Link to="/kontakt" className="text-sm text-brand-gray-medium hover:text-brand-blue transition-colors">Om Wheelplace</Link></li>
                 <li><Link to="/annonser" className="text-sm text-brand-gray-medium hover:text-brand-blue transition-colors">Alla annonser</Link></li>
                 <li><Link to="/logga-in" className="text-sm text-brand-gray-medium hover:text-brand-blue transition-colors">Lägg in annons</Link></li>
-                <li><a href="https://www.wheelplace.com" className="text-sm text-brand-gray-medium hover:text-brand-blue transition-colors">Tips & guider</a></li>
-                <li><a href="https://www.wheelplace.com" className="text-sm text-brand-gray-medium hover:text-brand-blue transition-colors">Blogg</a></li>
+                <li><Link to="/forfragningar" className="text-sm text-brand-gray-medium hover:text-brand-blue transition-colors">Förfrågningar</Link></li>
               </ul>
             </div>
             <div>
               <h4 className="text-xs font-semibold text-brand-dark/40 uppercase tracking-wider mb-4">Köpare & säljare</h4>
               <ul className="space-y-3">
-                <li><a href="https://www.wheelplace.com" className="text-sm text-brand-gray-medium hover:text-brand-blue transition-colors">Privatpersoner</a></li>
-                <li><a href="https://www.wheelplace.com" className="text-sm text-brand-gray-medium hover:text-brand-blue transition-colors">Företag</a></li>
-                <li><a href="https://www.wheelplace.com" className="text-sm text-brand-gray-medium hover:text-brand-blue transition-colors">Begagnade däck</a></li>
-                <li><a href="https://www.wheelplace.com" className="text-sm text-brand-gray-medium hover:text-brand-blue transition-colors">Begagnade fälgar</a></li>
+                <li><Link to="/annonser" className="text-sm text-brand-gray-medium hover:text-brand-blue transition-colors">Privatpersoner</Link></li>
+                <li><Link to="/annonser" className="text-sm text-brand-gray-medium hover:text-brand-blue transition-colors">Företag</Link></li>
+                <li><Link to="/annonser?category=dack" className="text-sm text-brand-gray-medium hover:text-brand-blue transition-colors">Begagnade däck</Link></li>
+                <li><Link to="/annonser?category=falgar" className="text-sm text-brand-gray-medium hover:text-brand-blue transition-colors">Begagnade fälgar</Link></li>
               </ul>
             </div>
             <div>
               <h4 className="text-xs font-semibold text-brand-dark/40 uppercase tracking-wider mb-4">Juridiskt</h4>
               <ul className="space-y-3">
-                <li><a href="https://www.wheelplace.com/villkor" className="text-sm text-brand-gray-medium hover:text-brand-blue transition-colors">Allmänna villkor</a></li>
-                <li><a href="https://www.wheelplace.com/integritetspolicy" className="text-sm text-brand-gray-medium hover:text-brand-blue transition-colors">Integritetspolicy</a></li>
-                <li><a href="https://www.wheelplace.com/kontakt" className="text-sm text-brand-gray-medium hover:text-brand-blue transition-colors">Kontakt</a></li>
+                <li><Link to="/kontakt" className="text-sm text-brand-gray-medium hover:text-brand-blue transition-colors">Allmänna villkor</Link></li>
+                <li><Link to="/kontakt" className="text-sm text-brand-gray-medium hover:text-brand-blue transition-colors">Integritetspolicy</Link></li>
+                <li><Link to="/kontakt" className="text-sm text-brand-gray-medium hover:text-brand-blue transition-colors">Kontakt</Link></li>
               </ul>
             </div>
           </div>

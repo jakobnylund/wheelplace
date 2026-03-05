@@ -21,7 +21,7 @@ export default function PlateSearch({ size = 'large' }) {
     e.preventDefault();
     const clean = plate.replace(/\s/g, '');
     if (clean.length >= 4) {
-      window.location.href = `https://www.wheelplace.com/annonser?plate=${clean}`;
+      window.location.href = `/annonser?plate=${clean}`;
     }
   };
 
