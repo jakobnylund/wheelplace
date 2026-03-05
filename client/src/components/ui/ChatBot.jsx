@@ -1,10 +1,58 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function ChatBot() {
   const [open, setOpen] = useState(false);
+  const [showBubble, setShowBubble] = useState(false);
+  const [bubbleDismissed, setBubbleDismissed] = useState(false);
+
+  useEffect(() => {
+    if (bubbleDismissed || open) return;
+    const showTimer = setTimeout(() => setShowBubble(true), 3000);
+    return () => clearTimeout(showTimer);
+  }, [bubbleDismissed, open]);
+
+  useEffect(() => {
+    if (!showBubble) return;
+    const hideTimer = setTimeout(() => {
+      setShowBubble(false);
+      setBubbleDismissed(true);
+    }, 12000);
+    return () => clearTimeout(hideTimer);
+  }, [showBubble]);
+
+  useEffect(() => {
+    if (open) setShowBubble(false);
+  }, [open]);
 
   return (
     <div className="fixed bottom-6 right-6 z-50">
+      {/* Speech bubble */}
+      {showBubble && !open && (
+        <div
+          className="absolute bottom-20 right-0 w-[280px] bg-white rounded-2xl shadow-lg border border-brand-gray/30 p-4 animate-[aiBubbleIn_0.4s_ease-out]"
+        >
+          <button
+            onClick={() => { setShowBubble(false); setBubbleDismissed(true); }}
+            className="absolute top-2 right-2 w-6 h-6 flex items-center justify-center rounded-full hover:bg-brand-gray-light transition-colors cursor-pointer bg-transparent border-none text-brand-gray-medium"
+          >
+            <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+          </button>
+          <p className="text-sm text-brand-dark leading-relaxed pr-4">
+            Hej! Jag heter Christofer Hertel och är VD på Wheelplace. Har du några frågor? Prata med mig!
+          </p>
+          {/* Triangle pointer */}
+          <div className="absolute -bottom-2 right-8 w-4 h-4 bg-white border-r border-b border-brand-gray/30 rotate-45" />
+          <style>{`
+            @keyframes aiBubbleIn {
+              0% { opacity: 0; transform: translateY(8px) scale(0.95); }
+              100% { opacity: 1; transform: translateY(0) scale(1); }
+            }
+          `}</style>
+        </div>
+      )}
+
       {open && (
         <div className="absolute bottom-20 right-0 w-[380px] bg-[#f0f4fe] rounded-2xl shadow-2xl overflow-hidden flex flex-col" style={{ height: 520 }}>
           {/* Header */}
