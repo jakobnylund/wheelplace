@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import PlateSearch from './ui/PlateSearch';
 import mockListings from '../data/mockListings';
@@ -135,6 +135,81 @@ function SelectFilter({ value, onChange, options, placeholder }) {
         <option key={o} value={o}>{o}</option>
       ))}
     </select>
+  );
+}
+
+/* ─── Price Range Slider ─── */
+function PriceRangeSlider({ min, max, step, valueMin, valueMax, onChange }) {
+  const [dragging, setDragging] = useState(null);
+  const trackRef = useRef(null);
+
+  const pct = (v) => ((v - min) / (max - min)) * 100;
+  const fromPct = (p) => Math.round((p / 100) * (max - min) / step) * step + min;
+
+  const getValueFromEvent = (e) => {
+    const rect = trackRef.current.getBoundingClientRect();
+    const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+    const p = Math.max(0, Math.min(100, ((clientX - rect.left) / rect.width) * 100));
+    return Math.max(min, Math.min(max, fromPct(p)));
+  };
+
+  const handlePointerDown = (thumb) => (e) => {
+    e.preventDefault();
+    setDragging(thumb);
+  };
+
+  useEffect(() => {
+    if (!dragging) return;
+    const handleMove = (e) => {
+      const v = getValueFromEvent(e);
+      if (dragging === 'min') onChange(Math.min(v, valueMax - step), valueMax);
+      else onChange(valueMin, Math.max(v, valueMin + step));
+    };
+    const handleUp = () => setDragging(null);
+    window.addEventListener('mousemove', handleMove);
+    window.addEventListener('mouseup', handleUp);
+    window.addEventListener('touchmove', handleMove);
+    window.addEventListener('touchend', handleUp);
+    return () => {
+      window.removeEventListener('mousemove', handleMove);
+      window.removeEventListener('mouseup', handleUp);
+      window.removeEventListener('touchmove', handleMove);
+      window.removeEventListener('touchend', handleUp);
+    };
+  }, [dragging, valueMin, valueMax]);
+
+  const format = (v) => v === 0 ? '0' : v >= max ? `${(max / 1000).toFixed(0)}k+` : v.toLocaleString('sv-SE');
+
+  return (
+    <div>
+      <div className="flex items-center justify-between mb-3">
+        <span className="text-[13px] text-brand-dark font-medium">{format(valueMin)} kr</span>
+        <span className="text-[13px] text-brand-dark font-medium">{format(valueMax)} kr</span>
+      </div>
+      <div ref={trackRef} className="relative h-10 flex items-center select-none">
+        {/* Track background */}
+        <div className="absolute left-0 right-0 h-1.5 rounded-full bg-brand-gray/40" />
+        {/* Active range */}
+        <div
+          className="absolute h-1.5 rounded-full bg-brand-blue"
+          style={{ left: `${pct(valueMin)}%`, right: `${100 - pct(valueMax)}%` }}
+        />
+        {/* Min thumb */}
+        <div
+          onMouseDown={handlePointerDown('min')}
+          onTouchStart={handlePointerDown('min')}
+          className="absolute w-5 h-5 rounded-full bg-white border-2 border-brand-blue shadow-sm cursor-grab active:cursor-grabbing -translate-x-1/2 hover:scale-110 transition-transform"
+          style={{ left: `${pct(valueMin)}%` }}
+        />
+        {/* Max thumb */}
+        <div
+          onMouseDown={handlePointerDown('max')}
+          onTouchStart={handlePointerDown('max')}
+          className="absolute w-5 h-5 rounded-full bg-white border-2 border-brand-blue shadow-sm cursor-grab active:cursor-grabbing -translate-x-1/2 hover:scale-110 transition-transform"
+          style={{ left: `${pct(valueMax)}%` }}
+        />
+      </div>
+    </div>
   );
 }
 
@@ -276,23 +351,18 @@ function Sidebar({ filters, setFilters }) {
 
         {/* Pris */}
         <FilterSection title="Pris" defaultOpen={false}>
-          <div className="flex items-center gap-2">
-            <input
-              type="number"
-              placeholder="Min"
-              value={filters.priceMin}
-              onChange={(e) => setFilters((p) => ({ ...p, priceMin: e.target.value }))}
-              className="w-full border border-brand-gray/60 rounded-lg px-2.5 py-2 text-[13px] text-brand-dark bg-white outline-none"
-            />
-            <span className="text-brand-gray-medium text-xs">—</span>
-            <input
-              type="number"
-              placeholder="Max"
-              value={filters.priceMax}
-              onChange={(e) => setFilters((p) => ({ ...p, priceMax: e.target.value }))}
-              className="w-full border border-brand-gray/60 rounded-lg px-2.5 py-2 text-[13px] text-brand-dark bg-white outline-none"
-            />
-          </div>
+          <PriceRangeSlider
+            min={0}
+            max={50000}
+            step={500}
+            valueMin={filters.priceMin ? Number(filters.priceMin) : 0}
+            valueMax={filters.priceMax ? Number(filters.priceMax) : 50000}
+            onChange={(min, max) => setFilters((p) => ({
+              ...p,
+              priceMin: min === 0 ? '' : String(min),
+              priceMax: max === 50000 ? '' : String(max),
+            }))}
+          />
         </FilterSection>
 
         {/* Navhål */}
