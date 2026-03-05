@@ -109,16 +109,7 @@ function Hero() {
 }
 
 /* ─── Featured Listings ─── */
-const featuredListings = [
-  { id: 1, title: 'Continental VikingContact 7 205/55 R16', specs: '205/55R16 · 5.2 mm · Bra skick', seller: 'Marcus L.', sellerType: 'Privat', location: 'Stockholm', price: 4500, image: '/cat-vinterhjul-friktion.avif' },
-  { id: 2, title: 'Nokian Hakkapeliitta R5 225/45 R17', specs: '225/45R17 · 6.8 mm · Mycket bra skick', seller: 'Däckcenter AB', sellerType: 'Företag', location: 'Göteborg', price: 6200, image: '/cat-vinterdack.avif' },
-  { id: 3, title: 'Michelin X-Ice Snow 195/65 R15 på fälg', specs: '195/65R15 · 4.5 mm · Bra skick', seller: 'Anna K.', sellerType: 'Privat', location: 'Malmö', price: 3800, image: '/cat-vinterhjul-friktion.avif' },
-  { id: 4, title: 'Pirelli Ice Zero FR 205/60 R16', specs: '205/60R16 · 8.0 mm · Nya', seller: 'Hjulmagasinet', sellerType: 'Företag', location: 'Uppsala', price: 5900, image: '/cat-vinterdack.avif' },
-  { id: 5, title: 'Bridgestone Blizzak LM005 215/55 R17', specs: '215/55R17 · 6.1 mm · Mycket bra skick', seller: 'Erik S.', sellerType: 'Privat', location: 'Linköping', price: 7500, image: '/cat-vinterhjul-friktion.avif' },
-  { id: 6, title: 'Goodyear UltraGrip 9+ 225/50 R17', specs: '225/50R17 · 8.0 mm · Nya', seller: 'Wheelhouse AB', sellerType: 'Företag', location: 'Västerås', price: 4200, image: '/cat-vinterdack.avif' },
-  { id: 7, title: 'Hankook Winter i*cept 185/65 R15', specs: '185/65R15 · 3.8 mm · Ok skick', seller: 'Johan P.', sellerType: 'Privat', location: 'Örebro', price: 2800, image: '/cat-vinterhjul-friktion.avif' },
-  { id: 8, title: 'Continental WinterContact TS 870 205/55 R16', specs: '205/55R16 · 5.0 mm · Bra skick', seller: 'Sara M.', sellerType: 'Privat', location: 'Norrköping', price: 5100, image: '/cat-vinterdack.avif' },
-];
+import mockListings from '../data/mockListings';
 
 function FeaturedListings() {
   const ref = useScrollReveal();
@@ -169,7 +160,7 @@ function FeaturedListings() {
           className="flex gap-5 overflow-x-auto scroll-smooth pb-4 -mx-5 px-5 sm:-mx-0 sm:px-0"
           style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
         >
-          {featuredListings.map((listing) => (
+          {mockListings.map((listing) => (
             <Link
               key={listing.id}
               to={`/annons/${listing.id}`}
@@ -181,7 +172,7 @@ function FeaturedListings() {
                   alt={listing.title}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
-                {listing.specs.includes('Nya') && (
+                {listing.condition === 'Nya' && (
                   <span className="absolute top-3 left-3 text-[11px] font-bold px-2 py-0.5 rounded-md bg-brand-blue text-white">Nya</span>
                 )}
               </div>
@@ -189,11 +180,13 @@ function FeaturedListings() {
                 <h3 className="text-[15px] font-bold text-brand-dark leading-snug mb-1.5 line-clamp-2">
                   {listing.title}
                 </h3>
-                <p className="text-[13px] text-brand-gray-medium mb-3">{listing.specs}</p>
+                <p className="text-[13px] text-brand-gray-medium mb-3">
+                  {listing.specs.width}/{listing.specs.profile}R{listing.specs.diameter} · {listing.specs.depth} · {listing.condition}
+                </p>
                 <div className="flex items-center justify-between mb-3 pt-3 border-t border-brand-gray/30">
                   <div className="flex items-center gap-1.5">
-                    <span className="text-[13px] text-brand-dark">{listing.seller}</span>
-                    {listing.sellerType === 'Företag' && (
+                    <span className="text-[13px] text-brand-dark">{listing.seller.name}</span>
+                    {listing.seller.type === 'Företag' && (
                       <svg className="w-4 h-4 text-green-500 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
                         <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clipRule="evenodd" />
                       </svg>
@@ -204,7 +197,7 @@ function FeaturedListings() {
                       <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
                       <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
                     </svg>
-                    <span className="text-xs">{listing.location}</span>
+                    <span className="text-xs">{listing.locationDetails?.city || listing.location}</span>
                   </div>
                 </div>
                 <p className="text-lg font-bold text-brand-blue">
@@ -216,15 +209,15 @@ function FeaturedListings() {
         </div>
 
         <div className="text-center mt-8">
-          <a
-            href="/annonser"
+          <Link
+            to="/annonser"
             className="inline-flex items-center gap-1.5 text-sm font-medium text-brand-blue hover:text-brand-blue-dark transition-colors"
           >
             Visa alla annonser
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
               <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
             </svg>
-          </a>
+          </Link>
         </div>
       </div>
     </section>
