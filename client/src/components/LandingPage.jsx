@@ -213,7 +213,7 @@ function FeaturedListings() {
             to="/annonser"
             className="inline-flex items-center gap-1.5 text-sm font-medium text-brand-blue hover:text-brand-blue-dark transition-colors"
           >
-            Visa alla annonser
+            Visa alla 1 753 annonser
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
               <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
             </svg>
