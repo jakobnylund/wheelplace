@@ -142,9 +142,52 @@ export default function TryOnCar({ listing }) {
               <p className="text-[10px] font-semibold text-brand-dark/40 uppercase tracking-wider mb-2">Med nya hjul</p>
               <div className="rounded-xl overflow-hidden bg-brand-gray-light border border-brand-gray/30 aspect-[4/3] flex items-center justify-center">
                 {loading ? (
-                  <div className="text-center p-4">
-                    <div className="w-8 h-8 border-[3px] border-brand-gray border-t-brand-blue rounded-full animate-spin mx-auto mb-2" />
-                    <p className="text-xs text-brand-gray-medium">Genererar...</p>
+                  <div className="relative w-full h-full overflow-hidden">
+                    {/* Animated gradient background */}
+                    <div
+                      className="absolute inset-0"
+                      style={{
+                        background: 'linear-gradient(-45deg, #1a3a5c, #2563eb, #3b82f6, #60a5fa, #1e40af, #1a3a5c)',
+                        backgroundSize: '400% 400%',
+                        animation: 'aiGradient 6s ease infinite',
+                      }}
+                    />
+                    {/* Shimmer overlay */}
+                    <div
+                      className="absolute inset-0"
+                      style={{
+                        background: 'linear-gradient(110deg, transparent 25%, rgba(255,255,255,0.15) 37%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0.15) 63%, transparent 75%)',
+                        backgroundSize: '200% 100%',
+                        animation: 'aiShimmer 2s ease-in-out infinite',
+                      }}
+                    />
+                    {/* Floating sparkles */}
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <div className="relative">
+                        <svg className="w-8 h-8 text-white/90 drop-shadow-lg" style={{ animation: 'aiPulse 2s ease-in-out infinite' }} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.455 2.456L21.75 6l-1.036.259a3.375 3.375 0 00-2.455 2.456z" />
+                        </svg>
+                      </div>
+                    </div>
+                    {/* Label */}
+                    <div className="absolute inset-x-0 bottom-0 pb-4 text-center">
+                      <p className="text-xs font-medium text-white/80 tracking-wide">AI genererar...</p>
+                    </div>
+                    <style>{`
+                      @keyframes aiGradient {
+                        0% { background-position: 0% 50%; }
+                        50% { background-position: 100% 50%; }
+                        100% { background-position: 0% 50%; }
+                      }
+                      @keyframes aiShimmer {
+                        0% { background-position: 200% 0; }
+                        100% { background-position: -200% 0; }
+                      }
+                      @keyframes aiPulse {
+                        0%, 100% { transform: scale(1); opacity: 0.9; }
+                        50% { transform: scale(1.15); opacity: 1; }
+                      }
+                    `}</style>
                   </div>
                 ) : result ? (
                   <img src={typeof result === 'string' ? result : result[0]} alt="Resultat" className="w-full h-full object-cover" />
