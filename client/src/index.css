@@ -1,0 +1,66 @@
+@import "tailwindcss";
+
+@theme {
+  --color-brand-blue: #477bf4;
+  --color-brand-blue-dark: #3a66d4;
+  --color-brand-blue-light: #6b96f7;
+  --color-brand-blue-50: #f0f4fe;
+  --color-brand-blue-100: #dce5fd;
+  --color-brand-green: #22c55e;
+  --color-brand-green-dark: #16a34a;
+  --color-brand-dark: #232933;
+  --color-brand-black: #000000;
+  --color-brand-gray: #d5d5d5;
+  --color-brand-gray-light: #f5f5f7;
+  --color-brand-gray-medium: #8a8f98;
+  --color-brand-white: #ffffff;
+  --font-sans: 'Inter', 'Helvetica Neue', Helvetica, Arial, system-ui, sans-serif;
+  --font-heading: 'Rubik', 'Helvetica Neue', Helvetica, Arial, system-ui, sans-serif;
+  --max-width-site: 1350px;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    overflow-x: clip;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    color: #232933;
+    background-color: #ffffff;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: clip;
+  }
+
+  ul, ol {
+    list-style: none;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+}
+
+@layer utilities {
+  .fade-in {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+  }
+
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .group:hover .brand-logo-hover {
+    filter: brightness(0) saturate(100%) invert(44%) sepia(52%) saturate(2000%) hue-rotate(207deg) brightness(100%) contrast(92%);
+  }
+}
