@@ -142,50 +142,78 @@ export default function TryOnCar({ listing }) {
               <p className="text-[10px] font-semibold text-brand-dark/40 uppercase tracking-wider mb-2">Med nya hjul</p>
               <div className="rounded-xl overflow-hidden bg-brand-gray-light border border-brand-gray/30 aspect-[4/3] flex items-center justify-center">
                 {loading ? (
-                  <div className="relative w-full h-full overflow-hidden">
-                    {/* Animated gradient background */}
+                  <div className="relative w-full h-full overflow-hidden bg-white">
+                    {/* Animated glowing border */}
                     <div
-                      className="absolute inset-0"
+                      className="absolute inset-0 rounded-xl"
                       style={{
-                        background: 'linear-gradient(-45deg, #1a3a5c, #2563eb, #3b82f6, #60a5fa, #1e40af, #1a3a5c)',
-                        backgroundSize: '400% 400%',
-                        animation: 'aiGradient 6s ease infinite',
+                        padding: '2px',
+                        background: 'linear-gradient(var(--ai-angle, 0deg), #3b82f6, #8b5cf6, #a855f7, #6366f1, #3b82f6)',
+                        mask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
+                        maskComposite: 'exclude',
+                        WebkitMask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)',
+                        WebkitMaskComposite: 'xor',
+                        animation: 'aiBorderRotate 3s linear infinite',
                       }}
                     />
-                    {/* Shimmer overlay */}
+                    {/* Soft glow behind border */}
+                    <div
+                      className="absolute inset-0 rounded-xl"
+                      style={{
+                        boxShadow: 'inset 0 0 30px rgba(99,102,241,0.12), inset 0 0 60px rgba(139,92,246,0.08)',
+                        animation: 'aiGlow 3s ease-in-out infinite',
+                      }}
+                    />
+                    {/* Corner glow accents */}
+                    <div className="absolute -top-8 -left-8 w-24 h-24 rounded-full opacity-20" style={{ background: 'radial-gradient(circle, #8b5cf6, transparent 70%)', animation: 'aiCorner 4s ease-in-out infinite' }} />
+                    <div className="absolute -bottom-8 -right-8 w-24 h-24 rounded-full opacity-20" style={{ background: 'radial-gradient(circle, #3b82f6, transparent 70%)', animation: 'aiCorner 4s ease-in-out infinite 2s' }} />
+                    <div className="absolute -top-6 -right-6 w-20 h-20 rounded-full opacity-15" style={{ background: 'radial-gradient(circle, #a855f7, transparent 70%)', animation: 'aiCorner 5s ease-in-out infinite 1s' }} />
+                    {/* Shimmer sweep */}
                     <div
                       className="absolute inset-0"
                       style={{
-                        background: 'linear-gradient(110deg, transparent 25%, rgba(255,255,255,0.15) 37%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0.15) 63%, transparent 75%)',
+                        background: 'linear-gradient(110deg, transparent 30%, rgba(139,92,246,0.06) 42%, rgba(99,102,241,0.1) 50%, rgba(139,92,246,0.06) 58%, transparent 70%)',
                         backgroundSize: '200% 100%',
-                        animation: 'aiShimmer 2s ease-in-out infinite',
+                        animation: 'aiShimmer 3s ease-in-out infinite',
                       }}
                     />
-                    {/* Floating sparkles */}
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="relative">
-                        <svg className="w-8 h-8 text-white/90 drop-shadow-lg" style={{ animation: 'aiPulse 2s ease-in-out infinite' }} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.455 2.456L21.75 6l-1.036.259a3.375 3.375 0 00-2.455 2.456z" />
-                        </svg>
-                      </div>
-                    </div>
-                    {/* Label */}
-                    <div className="absolute inset-x-0 bottom-0 pb-4 text-center">
-                      <p className="text-xs font-medium text-white/80 tracking-wide">AI genererar...</p>
+                    {/* Center content */}
+                    <div className="absolute inset-0 flex flex-col items-center justify-center gap-3">
+                      <svg className="w-7 h-7" style={{ animation: 'aiPulse 2.5s ease-in-out infinite' }} fill="none" viewBox="0 0 24 24" strokeWidth="1.5">
+                        <defs>
+                          <linearGradient id="aiSparkle" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stopColor="#8b5cf6" />
+                            <stop offset="100%" stopColor="#3b82f6" />
+                          </linearGradient>
+                        </defs>
+                        <path stroke="url(#aiSparkle)" strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.455 2.456L21.75 6l-1.036.259a3.375 3.375 0 00-2.455 2.456z" />
+                      </svg>
+                      <p className="text-xs font-medium bg-gradient-to-r from-violet-500 to-blue-500 bg-clip-text text-transparent tracking-wide">AI genererar...</p>
                     </div>
                     <style>{`
-                      @keyframes aiGradient {
-                        0% { background-position: 0% 50%; }
-                        50% { background-position: 100% 50%; }
-                        100% { background-position: 0% 50%; }
+                      @property --ai-angle {
+                        syntax: '<angle>';
+                        initial-value: 0deg;
+                        inherits: false;
+                      }
+                      @keyframes aiBorderRotate {
+                        to { --ai-angle: 360deg; }
+                      }
+                      @keyframes aiGlow {
+                        0%, 100% { box-shadow: inset 0 0 30px rgba(99,102,241,0.1), inset 0 0 60px rgba(139,92,246,0.06); }
+                        50% { box-shadow: inset 0 0 40px rgba(99,102,241,0.18), inset 0 0 80px rgba(139,92,246,0.12); }
+                      }
+                      @keyframes aiCorner {
+                        0%, 100% { opacity: 0.12; transform: scale(1); }
+                        50% { opacity: 0.25; transform: scale(1.2); }
                       }
                       @keyframes aiShimmer {
                         0% { background-position: 200% 0; }
                         100% { background-position: -200% 0; }
                       }
                       @keyframes aiPulse {
-                        0%, 100% { transform: scale(1); opacity: 0.9; }
-                        50% { transform: scale(1.15); opacity: 1; }
+                        0%, 100% { transform: scale(1); opacity: 0.8; }
+                        50% { transform: scale(1.1); opacity: 1; }
                       }
                     `}</style>
                   </div>
