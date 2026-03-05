@@ -4,6 +4,7 @@ export default function TryOnCar({ listing }) {
   const [image, setImage] = useState(null);
   const [preview, setPreview] = useState(null);
   const [result, setResult] = useState(null);
+  const [compatibility, setCompatibility] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const fileRef = useRef();
@@ -73,6 +74,7 @@ export default function TryOnCar({ listing }) {
           image,
           wheel_image: wheelDataUrl || wheelSrc,
           listing_title: listing.title,
+          listing_brand: listing.brand || null,
         }),
       });
       const data = await res.json();
@@ -80,6 +82,7 @@ export default function TryOnCar({ listing }) {
         setError(data.error || 'Något gick fel');
       } else {
         setResult(data.output);
+        if (data.compatibility) setCompatibility(data.compatibility);
       }
     } catch {
       setError('Kunde inte ansluta till servern');
@@ -159,6 +162,29 @@ export default function TryOnCar({ listing }) {
             </div>
           </div>
 
+          {compatibility && !compatibility.fits && (
+            <div className="flex items-start gap-2.5 p-3 rounded-xl bg-amber-50 border border-amber-200 mb-4">
+              <svg className="w-5 h-5 text-amber-500 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
+              </svg>
+              <div>
+                <p className="text-sm font-medium text-amber-800">Passar troligtvis inte</p>
+                <p className="text-xs text-amber-700 mt-0.5">{compatibility.message}</p>
+              </div>
+            </div>
+          )}
+
+          {compatibility && compatibility.fits && (
+            <div className="flex items-center gap-2.5 p-3 rounded-xl bg-green-50 border border-green-200 mb-4">
+              <svg className="w-5 h-5 text-green-500 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <p className="text-sm text-green-800">
+                <span className="font-medium">Bra matchning!</span> Dessa hjul är avsedda för {compatibility.listing_brand} och bör passa din {compatibility.car}.
+              </p>
+            </div>
+          )}
+
           <div className="flex gap-2">
             <button
               onClick={handleGenerate}
@@ -171,7 +197,7 @@ export default function TryOnCar({ listing }) {
               {loading ? 'Genererar...' : 'Generera'}
             </button>
             <button
-              onClick={() => { setPreview(null); setImage(null); setResult(null); setError(null); }}
+              onClick={() => { setPreview(null); setImage(null); setResult(null); setError(null); setCompatibility(null); }}
               className="px-4 py-2.5 rounded-xl border border-brand-gray text-brand-dark text-sm font-medium hover:bg-brand-gray-light transition-colors cursor-pointer bg-white"
             >
               Ny bild
