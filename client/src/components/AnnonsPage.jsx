@@ -8,6 +8,7 @@ import SellerCard from './annons/SellerCard';
 import LocationSection from './annons/LocationSection';
 import CompareSection from './annons/CompareSection';
 import ReviewsSection from './annons/ReviewsSection';
+import TryOnCar from './annons/TryOnCar';
 import Navbar from './ui/Navbar';
 import Footer from './ui/Footer';
 
@@ -87,6 +88,7 @@ export default function AnnonsPage() {
                 </div>
               )}
 
+              <TryOnCar listing={listing} />
               <CompareSection listing={listing} />
               <LocationSection listing={listing} />
               <SellerCard listing={listing} />
