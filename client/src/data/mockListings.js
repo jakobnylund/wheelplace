@@ -111,6 +111,43 @@ const mockListings = [
     },
     reference: 'WP-20250303-003',
   },
+  {
+    id: 4,
+    title: 'Vinterhjul Kia Sportage 18" Nexen friktion',
+    price: 11995,
+    image: '/listings/listing-kia-1.avif',
+    images: [
+      '/listings/listing-kia-1.avif',
+      '/listings/listing-kia-2.avif',
+    ],
+    location: 'Västra Götalands län',
+    condition: 'Nya',
+    seller: { name: 'Bythjul AB', type: 'Företag' },
+    date: '4 dagar sedan',
+    product: 'Kompletta hjul',
+    tireType: 'Vinterdäck friktion',
+    brand: 'Kia',
+    specs: { width: '235', profile: '55', diameter: '18', depth: '8 mm (nya)' },
+    quantity: 4,
+    description: 'Nya kompletta hjul med aluminiumfälg och vinterdäck för Kia Sportage. Nexen friktionsdäck 235/55R18. Bultmönster 5/114.3, centrumhål 67.1 mm, ET48. Originalfälgar. DOT 2722.',
+    carModel: 'Kia Sportage',
+    tireBrand: 'Nexen',
+    dot: '2722',
+    deliveryOptions: ['Hämtas på plats', 'Kan skickas'],
+    sellerDetails: {
+      avatar: null,
+      description: 'Certifierad nätbutik sedan 2002. Vi säljer hjul, däck och fälgar.',
+      memberSince: 'jan 2025',
+      responseTime: 'Svarar vanligtvis inom 2 timmar',
+      phone: true,
+      email: true,
+    },
+    locationDetails: {
+      city: 'Göteborg',
+      region: 'Västra Götalands län',
+    },
+    reference: 'WP-20250304-004',
+  },
 ];
 
 export default mockListings;
