@@ -72,11 +72,11 @@ export default async function handler(req, res) {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        version: 'b19fae25b048bec503591a3457718c8ce755897c6215e13969c9a3db1e914645',
+        version: '897a70f5a7dbd8a0611413b3b98cf417b45f266bd595c571a22947619d9ae462',
         input: {
           prompt,
-          image_url: imageUrl,
-          aspect_ratio: 'match_input',
+          input_image: imageUrl,
+          aspect_ratio: 'match_input_image',
           safety_tolerance: 5,
         },
       }),
