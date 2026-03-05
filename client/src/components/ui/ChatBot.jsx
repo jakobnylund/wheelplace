@@ -52,7 +52,8 @@ export default function ChatBot() {
       {/* Toggle button */}
       <button
         onClick={() => setOpen(!open)}
-        className="w-16 h-16 rounded-full overflow-hidden shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-200 cursor-pointer border-2 border-white p-0 bg-brand-blue flex items-center justify-center"
+        className="w-16 h-16 rounded-full overflow-hidden shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-200 cursor-pointer border-2 border-white p-0 flex items-center justify-center"
+        style={{ backgroundColor: open ? '#477bf4' : '#8b95a8' }}
         aria-label="Chatta med oss"
       >
         {open ? (
