@@ -39,17 +39,7 @@ export default function PlateSearch({ size = 'large' }) {
       >
         {/* EU plate badge */}
         <div className={`flex-shrink-0 ${isLarge ? 'w-14 h-16' : 'w-12 h-14'} bg-[#003399] flex flex-col items-center justify-center gap-0.5`}>
-          <div className="w-5 h-3.5 rounded-[2px] flex items-center justify-center">
-            <svg viewBox="0 0 24 16" className="w-5 h-3.5">
-              <circle cx="12" cy="8" r="6" fill="none" stroke="#ffcc00" strokeWidth="0.8" />
-              {[...Array(12)].map((_, i) => {
-                const angle = (i * 30 - 90) * (Math.PI / 180);
-                const x = 12 + 5 * Math.cos(angle);
-                const y = 8 + 5 * Math.sin(angle);
-                return <polygon key={i} points={`${x},${y - 0.8} ${x + 0.5},${y - 0.2} ${x + 0.8},${y - 0.2} ${x + 0.55},${y + 0.15} ${x + 0.65},${y + 0.7} ${x},${y + 0.35} ${x - 0.65},${y + 0.7} ${x - 0.55},${y + 0.15} ${x - 0.8},${y - 0.2} ${x - 0.5},${y - 0.2}`} fill="#ffcc00" />;
-              })}
-            </svg>
-          </div>
+          <img src="/eu-stars.svg" alt="" className={`${isLarge ? 'w-7 h-7' : 'w-6 h-6'}`} />
           <span className="text-white text-[9px] font-bold leading-none">S</span>
         </div>
 
