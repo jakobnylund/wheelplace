@@ -80,8 +80,8 @@ const mockListings = [
     price: 15000,
     image: '/listings/listing-audi-2.avif',
     images: [
-      '/listings/listing-audi-1.avif',
       '/listings/listing-audi-2.avif',
+      '/listings/listing-audi-1.avif',
     ],
     location: 'Jönköpings län',
     condition: 'Nya',
@@ -117,8 +117,8 @@ const mockListings = [
     price: 11995,
     image: '/listings/listing-kia-2.avif',
     images: [
-      '/listings/listing-kia-1.avif',
       '/listings/listing-kia-2.avif',
+      '/listings/listing-kia-1.avif',
     ],
     location: 'Västra Götalands län',
     condition: 'Nya',
@@ -154,8 +154,8 @@ const mockListings = [
     price: 7000,
     image: '/listings/listing-bmw-2.avif',
     images: [
-      '/listings/listing-bmw-1.avif',
       '/listings/listing-bmw-2.avif',
+      '/listings/listing-bmw-1.avif',
       '/listings/listing-bmw-3.avif',
     ],
     location: 'Jönköpings län',
@@ -232,8 +232,8 @@ const mockListings = [
     price: 2800,
     image: '/listings/listing-audi2-2.avif',
     images: [
-      '/listings/listing-audi2-1.avif',
       '/listings/listing-audi2-2.avif',
+      '/listings/listing-audi2-1.avif',
       '/listings/listing-audi2-3.avif',
     ],
     location: 'Skåne län',
@@ -270,8 +270,8 @@ const mockListings = [
     price: 13500,
     image: '/listings/listing-seat-2.avif',
     images: [
-      '/listings/listing-seat-1.avif',
       '/listings/listing-seat-2.avif',
+      '/listings/listing-seat-1.avif',
     ],
     location: 'Västra Götalands län',
     condition: 'Nya',
@@ -307,8 +307,8 @@ const mockListings = [
     price: 31500,
     image: '/listings/listing-etron-2.avif',
     images: [
-      '/listings/listing-etron-1.avif',
       '/listings/listing-etron-2.avif',
+      '/listings/listing-etron-1.avif',
     ],
     location: 'Västra Götalands län',
     condition: 'Nya',
