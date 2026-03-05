@@ -78,7 +78,7 @@ const mockListings = [
     id: 3,
     title: 'Vinterhjul Audi Q3 17" Nya Goodyear friktion',
     price: 15000,
-    image: '/listings/listing-audi-1.avif',
+    image: '/listings/listing-audi-2.avif',
     images: [
       '/listings/listing-audi-1.avif',
       '/listings/listing-audi-2.avif',
@@ -115,7 +115,7 @@ const mockListings = [
     id: 4,
     title: 'Vinterhjul Kia Sportage 18" Nexen friktion',
     price: 11995,
-    image: '/listings/listing-kia-1.avif',
+    image: '/listings/listing-kia-2.avif',
     images: [
       '/listings/listing-kia-1.avif',
       '/listings/listing-kia-2.avif',
@@ -152,7 +152,7 @@ const mockListings = [
     id: 5,
     title: 'Vinterhjul BMW X2 17" Pirelli friktion',
     price: 7000,
-    image: '/listings/listing-bmw-1.avif',
+    image: '/listings/listing-bmw-2.avif',
     images: [
       '/listings/listing-bmw-1.avif',
       '/listings/listing-bmw-2.avif',
@@ -230,7 +230,7 @@ const mockListings = [
     id: 7,
     title: 'Audi A4 16" original vinterhjul Goodyear',
     price: 2800,
-    image: '/listings/listing-audi2-1.avif',
+    image: '/listings/listing-audi2-2.avif',
     images: [
       '/listings/listing-audi2-1.avif',
       '/listings/listing-audi2-2.avif',
@@ -268,7 +268,7 @@ const mockListings = [
     id: 8,
     title: 'Vinterhjul Seat Ateca 16" Pirelli friktion',
     price: 13500,
-    image: '/listings/listing-seat-1.avif',
+    image: '/listings/listing-seat-2.avif',
     images: [
       '/listings/listing-seat-1.avif',
       '/listings/listing-seat-2.avif',
@@ -305,7 +305,7 @@ const mockListings = [
     id: 9,
     title: 'Vinterhjul E-tron Nokian Dubb 20"',
     price: 31500,
-    image: '/listings/listing-etron-1.avif',
+    image: '/listings/listing-etron-2.avif',
     images: [
       '/listings/listing-etron-1.avif',
       '/listings/listing-etron-2.avif',
