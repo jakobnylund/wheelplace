@@ -1,3 +1,11 @@
+export const config = {
+  api: {
+    bodyParser: {
+      sizeLimit: '10mb',
+    },
+  },
+};
+
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
@@ -17,6 +25,34 @@ export default async function handler(req, res) {
   const prompt = `Replace only the wheels and rims on this car with ${wheel_style || 'sleek 19-inch gunmetal alloy sport rims with low-profile performance tires'}. Keep the rest of the car exactly the same. Photorealistic result.`;
 
   try {
+    // If image is base64 data URL, upload to Replicate's file hosting first
+    let imageUrl = image;
+    if (image.startsWith('data:')) {
+      const base64Data = image.split(',')[1];
+      const mimeMatch = image.match(/data:([^;]+);/);
+      const mime = mimeMatch ? mimeMatch[1] : 'image/jpeg';
+      const ext = mime.split('/')[1] || 'jpg';
+
+      // Create upload URL
+      const uploadRes = await fetch('https://api.replicate.com/v1/files', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${REPLICATE_API_TOKEN}`,
+          'Content-Type': mime,
+          'Content-Disposition': `attachment; filename="car.${ext}"`,
+        },
+        body: Buffer.from(base64Data, 'base64'),
+      });
+
+      if (!uploadRes.ok) {
+        const err = await uploadRes.text();
+        return res.status(500).json({ error: 'File upload failed', details: err });
+      }
+
+      const uploadData = await uploadRes.json();
+      imageUrl = uploadData.urls.get;
+    }
+
     // Create prediction using Replicate's flux-kontext-pro model
     const createRes = await fetch('https://api.replicate.com/v1/predictions', {
       method: 'POST',
@@ -28,7 +64,7 @@ export default async function handler(req, res) {
         version: 'b19fae25b048bec503591a3457718c8ce755897c6215e13969c9a3db1e914645',
         input: {
           prompt,
-          image_url: image,
+          image_url: imageUrl,
           aspect_ratio: 'match_input',
           safety_tolerance: 5,
         },
