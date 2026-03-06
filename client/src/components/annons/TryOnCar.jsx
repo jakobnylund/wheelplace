@@ -131,87 +131,73 @@ export default function TryOnCar({ listing }) {
         </div>
       ) : (
         <div>
-          <div className="grid grid-cols-2 gap-3 mb-4">
-            <div>
-              <p className="text-[10px] font-semibold text-brand-dark/40 uppercase tracking-wider mb-2">Din bil</p>
-              <div className="rounded-xl overflow-hidden bg-brand-gray-light border border-brand-gray/30 aspect-[4/3]">
-                <img src={preview} alt="Din bil" className="w-full h-full object-cover" />
-              </div>
-            </div>
-            <div>
-              <p className="text-[10px] font-semibold text-brand-dark/40 uppercase tracking-wider mb-2">Med nya hjul</p>
-              <div className="rounded-xl overflow-hidden bg-brand-gray-light border border-brand-gray/30 aspect-[4/3] flex items-center justify-center">
-                {loading ? (
-                  <div className="relative w-full h-full overflow-hidden" style={{ background: 'linear-gradient(135deg, #f0f4ff 0%, #f5f0ff 50%, #eef6ff 100%)' }}>
-                    {/* Large floating color blobs */}
-                    <div className="absolute inset-0">
-                      <div className="absolute top-[-20%] left-[-10%] w-[70%] h-[70%] rounded-full blur-2xl" style={{ background: 'radial-gradient(circle, rgba(96,165,250,0.4), transparent 65%)', animation: 'aiFloat1 6s ease-in-out infinite' }} />
-                      <div className="absolute bottom-[-15%] right-[-10%] w-[65%] h-[65%] rounded-full blur-2xl" style={{ background: 'radial-gradient(circle, rgba(167,139,250,0.35), transparent 65%)', animation: 'aiFloat2 7s ease-in-out infinite' }} />
-                      <div className="absolute top-[20%] right-[-15%] w-[55%] h-[55%] rounded-full blur-2xl" style={{ background: 'radial-gradient(circle, rgba(56,189,248,0.3), transparent 65%)', animation: 'aiFloat3 5s ease-in-out infinite' }} />
-                      <div className="absolute bottom-[10%] left-[-5%] w-[50%] h-[50%] rounded-full blur-2xl" style={{ background: 'radial-gradient(circle, rgba(192,132,252,0.3), transparent 65%)', animation: 'aiFloat2 8s ease-in-out infinite 1.5s' }} />
-                      <div className="absolute top-[30%] left-[20%] w-[45%] h-[45%] rounded-full blur-3xl" style={{ background: 'radial-gradient(circle, rgba(129,140,248,0.25), transparent 60%)', animation: 'aiFloat1 9s ease-in-out infinite 3s' }} />
-                    </div>
-                    {/* White shimmer sweep */}
-                    <div
-                      className="absolute inset-0"
-                      style={{
-                        background: 'linear-gradient(105deg, transparent 30%, rgba(255,255,255,0.5) 42%, rgba(255,255,255,0.7) 50%, rgba(255,255,255,0.5) 58%, transparent 70%)',
-                        backgroundSize: '250% 100%',
-                        animation: 'aiShimmer 3s ease-in-out infinite',
-                      }}
-                    />
-                    {/* Center content */}
-                    <div className="absolute inset-0 flex flex-col items-center justify-center gap-3">
-                      <svg className="w-7 h-7" style={{ animation: 'aiPulse 2.5s ease-in-out infinite' }} fill="none" viewBox="0 0 24 24" strokeWidth="1.5">
-                        <defs>
-                          <linearGradient id="aiSparkle" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" stopColor="#818cf8" />
-                            <stop offset="50%" stopColor="#60a5fa" />
-                            <stop offset="100%" stopColor="#c084fc" />
-                          </linearGradient>
-                        </defs>
-                        <path stroke="url(#aiSparkle)" strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.455 2.456L21.75 6l-1.036.259a3.375 3.375 0 00-2.455 2.456z" />
-                      </svg>
-                      <p className="text-xs font-medium bg-gradient-to-r from-indigo-400 via-sky-400 to-purple-400 bg-clip-text text-transparent tracking-wide">AI genererar...</p>
-                    </div>
-                    <style>{`
-                      @keyframes aiFloat1 {
-                        0%, 100% { transform: translate(0, 0) scale(1); }
-                        33% { transform: translate(20px, 15px) scale(1.1); }
-                        66% { transform: translate(-15px, 8px) scale(0.95); }
-                      }
-                      @keyframes aiFloat2 {
-                        0%, 100% { transform: translate(0, 0) scale(1); }
-                        50% { transform: translate(-18px, -12px) scale(1.15); }
-                      }
-                      @keyframes aiFloat3 {
-                        0%, 100% { transform: translate(0, 0) scale(1); }
-                        40% { transform: translate(12px, -18px) scale(1.1); }
-                        70% { transform: translate(-10px, -8px) scale(1.05); }
-                      }
-                      @keyframes aiShimmer {
-                        0% { background-position: 250% 0; }
-                        100% { background-position: -250% 0; }
-                      }
-                      @keyframes aiPulse {
-                        0%, 100% { transform: scale(1); opacity: 0.7; }
-                        50% { transform: scale(1.1); opacity: 1; }
-                      }
-                    `}</style>
+          <div className="mb-4">
+            <div className="rounded-xl overflow-hidden bg-brand-gray-light border border-brand-gray/30 aspect-[4/3] flex items-center justify-center">
+              {loading ? (
+                <div className="relative w-full h-full overflow-hidden" style={{ background: 'linear-gradient(135deg, #f0f4ff 0%, #f5f0ff 50%, #eef6ff 100%)' }}>
+                  <div className="absolute inset-0">
+                    <div className="absolute top-[-20%] left-[-10%] w-[70%] h-[70%] rounded-full blur-2xl" style={{ background: 'radial-gradient(circle, rgba(96,165,250,0.4), transparent 65%)', animation: 'aiFloat1 6s ease-in-out infinite' }} />
+                    <div className="absolute bottom-[-15%] right-[-10%] w-[65%] h-[65%] rounded-full blur-2xl" style={{ background: 'radial-gradient(circle, rgba(167,139,250,0.35), transparent 65%)', animation: 'aiFloat2 7s ease-in-out infinite' }} />
+                    <div className="absolute top-[20%] right-[-15%] w-[55%] h-[55%] rounded-full blur-2xl" style={{ background: 'radial-gradient(circle, rgba(56,189,248,0.3), transparent 65%)', animation: 'aiFloat3 5s ease-in-out infinite' }} />
+                    <div className="absolute bottom-[10%] left-[-5%] w-[50%] h-[50%] rounded-full blur-2xl" style={{ background: 'radial-gradient(circle, rgba(192,132,252,0.3), transparent 65%)', animation: 'aiFloat2 8s ease-in-out infinite 1.5s' }} />
+                    <div className="absolute top-[30%] left-[20%] w-[45%] h-[45%] rounded-full blur-3xl" style={{ background: 'radial-gradient(circle, rgba(129,140,248,0.25), transparent 60%)', animation: 'aiFloat1 9s ease-in-out infinite 3s' }} />
                   </div>
-                ) : result ? (
-                  <img src={typeof result === 'string' ? result : result[0]} alt="Resultat" className="w-full h-full object-cover" />
-                ) : error ? (
-                  <p className="text-xs text-red-500 p-4 text-center">{error}</p>
-                ) : (
-                  <div className="text-center p-4">
-                    <svg className="w-8 h-8 text-brand-gray-medium/30 mx-auto mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="1.5">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z" />
+                  <div
+                    className="absolute inset-0"
+                    style={{
+                      background: 'linear-gradient(105deg, transparent 30%, rgba(255,255,255,0.5) 42%, rgba(255,255,255,0.7) 50%, rgba(255,255,255,0.5) 58%, transparent 70%)',
+                      backgroundSize: '250% 100%',
+                      animation: 'aiShimmer 3s ease-in-out infinite',
+                    }}
+                  />
+                  <div className="absolute inset-0 flex flex-col items-center justify-center gap-3">
+                    <svg className="w-7 h-7" style={{ animation: 'aiPulse 2.5s ease-in-out infinite' }} fill="none" viewBox="0 0 24 24" strokeWidth="1.5">
+                      <defs>
+                        <linearGradient id="aiSparkle" x1="0%" y1="0%" x2="100%" y2="100%">
+                          <stop offset="0%" stopColor="#818cf8" />
+                          <stop offset="50%" stopColor="#60a5fa" />
+                          <stop offset="100%" stopColor="#c084fc" />
+                        </linearGradient>
+                      </defs>
+                      <path stroke="url(#aiSparkle)" strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.455 2.456L21.75 6l-1.036.259a3.375 3.375 0 00-2.455 2.456z" />
                     </svg>
-                    <p className="text-xs text-brand-gray-medium">Tryck generera</p>
+                    <p className="text-xs font-medium bg-gradient-to-r from-indigo-400 via-sky-400 to-purple-400 bg-clip-text text-transparent tracking-wide">AI genererar...</p>
                   </div>
-                )}
-              </div>
+                  <style>{`
+                    @keyframes aiFloat1 {
+                      0%, 100% { transform: translate(0, 0) scale(1); }
+                      33% { transform: translate(20px, 15px) scale(1.1); }
+                      66% { transform: translate(-15px, 8px) scale(0.95); }
+                    }
+                    @keyframes aiFloat2 {
+                      0%, 100% { transform: translate(0, 0) scale(1); }
+                      50% { transform: translate(-18px, -12px) scale(1.15); }
+                    }
+                    @keyframes aiFloat3 {
+                      0%, 100% { transform: translate(0, 0) scale(1); }
+                      40% { transform: translate(12px, -18px) scale(1.1); }
+                      70% { transform: translate(-10px, -8px) scale(1.05); }
+                    }
+                    @keyframes aiShimmer {
+                      0% { background-position: 250% 0; }
+                      100% { background-position: -250% 0; }
+                    }
+                    @keyframes aiPulse {
+                      0%, 100% { transform: scale(1); opacity: 0.7; }
+                      50% { transform: scale(1.1); opacity: 1; }
+                    }
+                  `}</style>
+                </div>
+              ) : result ? (
+                <img src={typeof result === 'string' ? result : result[0]} alt="Resultat" className="w-full h-full object-cover" />
+              ) : error ? (
+                <div className="text-center p-4">
+                  <p className="text-xs text-red-500 mb-1">{error}</p>
+                  <img src={preview} alt="Din bil" className="w-full h-full object-cover rounded-lg opacity-60" />
+                </div>
+              ) : (
+                <img src={preview} alt="Din bil" className="w-full h-full object-cover" />
+              )}
             </div>
           </div>
 
