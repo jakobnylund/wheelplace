@@ -77,15 +77,17 @@ export default function TryOnCar({ listing }) {
           listing_brand: listing.brand || null,
         }),
       });
-      const data = await res.json();
+      const text = await res.text();
+      let data;
+      try { data = JSON.parse(text); } catch { data = { error: text.slice(0, 200) }; }
       if (!res.ok) {
-        setError(data.error || 'Något gick fel');
+        setError(data.error || `Fel ${res.status}`);
       } else {
         setResult(data.output);
         if (data.compatibility) setCompatibility(data.compatibility);
       }
-    } catch {
-      setError('Kunde inte ansluta till servern');
+    } catch (err) {
+      setError('Kunde inte ansluta: ' + err.message);
     } finally {
       setLoading(false);
     }
