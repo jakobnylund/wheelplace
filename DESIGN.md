@@ -1,8 +1,6 @@
 # Wheelplace — UI Design Specification
 
-Use this document to understand and recreate the exact layout and visual design of the Wheelplace marketplace. This is a frontend/styling specification covering the design system, page layouts, component patterns, and responsive behavior.
-
-**Stack**: React + Vite, Tailwind CSS v4 (CSS variable-based theming), React Router for SPA routing. Deployed on Vercel.
+Use this document to recreate the exact visual design of the Wheelplace marketplace. This covers design tokens, component patterns, page layouts, animations, and responsive behavior. It is design-only — it does not prescribe data models, routing, file structure, or backend implementation.
 
 **Language**: Swedish. All UI copy is in Swedish.
 
@@ -19,11 +17,10 @@ brand-blue-light:   #6b96f7    — lighter accent
 brand-blue-50:      #f0f4fe    — very subtle tint (backgrounds)
 brand-blue-100:     #dce5fd    — light tint
 
-brand-green:        #22c55e    — success, "buy" actions, verified badges
+brand-green:        #22c55e    — success, "buy" actions, verified seller badges
 brand-green-dark:   #16a34a    — hover state for green
 
-brand-dark:         #232933    — primary text color
-brand-black:        #000000    — pure black (rare)
+brand-dark:         #232933    — primary text color, dark backgrounds (hero, footer)
 brand-white:        #ffffff    — white surfaces
 brand-gray:         #d5d5d5    — borders, dividers
 brand-gray-light:   #f5f5f7    — page background, subtle surfaces
@@ -33,97 +30,93 @@ eu-blue:            #003399    — license plate badge background
 eu-yellow:          #ffcc07    — EU stars color
 ```
 
-Additional Tailwind utilities used directly:
-- `amber-50`, `amber-200`, `amber-500`, `amber-700`, `amber-800` — compatibility warnings
-- `green-50`, `green-200`, `green-500`, `green-800` — compatibility success
-- `red-500` — error text
-- `indigo-400`, `sky-400`, `violet-400`, `purple-400` — AI loading gradients
+Semantic colors (used sparingly):
+- **Amber** tones (`amber-50` through `amber-800`) — compatibility warnings
+- **Green** tones (`green-50` through `green-800`) — compatibility success confirmations
+- **Red** (`red-500`) — error text
+- **Indigo/sky/violet/purple** (`indigo-400`, `sky-400`, `violet-400`, `purple-400`) — AI loading animation gradients
 
 ### Typography
 
-**Font families** (defined in `index.css` `@theme`):
-- `--font-sans`: Inter, "Helvetica Neue", system-ui, sans-serif
-- `--font-heading`: Rubik, "Helvetica Neue", system-ui, sans-serif
+**Font families**:
+- **Body**: Inter, "Helvetica Neue", system-ui, sans-serif
+- **Headings**: Rubik, "Helvetica Neue", system-ui, sans-serif
 
-**Font smoothing**: antialiased (`-webkit-font-smoothing: antialiased`)
+**Font smoothing**: antialiased
 
-| Size | Tailwind | Pixels | Usage |
-|------|----------|--------|-------|
-| xs | `text-xs` | 12px | Badges, metadata, labels, captions |
-| sm | `text-sm` | 14px | Secondary text, descriptions, nav items |
-| base | `text-base` | 16px | Body text |
-| lg | `text-lg` | 18px | Card headings (h2) |
-| xl | `text-xl` | 20px | Subheadings |
-| 2xl | `text-2xl` | 24px | Prices, section titles |
-| 3xl | `text-3xl` | 30px | Section headings |
-| 4xl/5xl | `text-4xl sm:text-5xl` | 36–48px | Hero headings |
-| Display | `lg:text-[56px]` | 56px | Hero title (large desktop) |
+| Size | Pixels | Usage |
+|------|--------|-------|
+| xs | 12px | Badges, metadata, labels, captions |
+| sm | 14px | Secondary text, descriptions, nav items |
+| base | 16px | Body text |
+| lg | 18px | Card headings (h2) |
+| xl | 20px | Subheadings |
+| 2xl | 24px | Prices, section titles |
+| 3xl | 30px | Section headings |
+| 4xl–5xl | 36–48px | Hero headings (responsive) |
+| 56px | 56px | Hero title on large desktop |
 
-| Weight | Tailwind | Value | Usage |
-|--------|----------|-------|-------|
-| normal | `font-normal` | 400 | Body text |
-| medium | `font-medium` | 500 | Emphasized text, labels |
-| semibold | `font-semibold` | 600 | Subheadings |
-| bold | `font-bold` | 700 | Headings, prices, CTAs |
+| Weight | Value | Usage |
+|--------|-------|-------|
+| normal | 400 | Body text |
+| medium | 500 | Emphasized text, labels |
+| semibold | 600 | Subheadings |
+| bold | 700 | Headings, prices, CTAs |
 
-Special: License plate input uses `fontFamily: "'Helvetica Neue', monospace"` with `tracking-[0.15em]`.
+Special: License plate input uses `'Helvetica Neue', monospace` with wide letter-spacing (0.15em), uppercase.
 
 ### Spacing
 
-4px grid (Tailwind default). Common spacing values:
+4px base grid. Common values:
 
-| Token | Value | Usage |
-|-------|-------|-------|
-| p-4 | 16px | Card inner padding (compact) |
-| p-5 | 20px | Standard card/panel padding |
-| p-7 | 28px | Large panel padding |
-| p-8 | 32px | Section padding |
-| gap-3 | 12px | Tight grid gap |
-| gap-4 | 16px | Standard grid gap |
-| gap-5 | 20px | Card grid gap |
-| gap-6 | 24px | Section content gap |
-| py-20 | 80px | Section vertical spacing |
-| py-24 | 96px | Large section spacing |
-| px-5 sm:px-8 | 20/32px | Container horizontal padding |
+| Value | Usage |
+|-------|-------|
+| 16px | Compact card padding |
+| 20px | Standard card/panel padding |
+| 28px | Large panel padding |
+| 32px | Section padding, container horizontal (desktop) |
+| 12px | Tight grid gap |
+| 16px | Standard grid gap |
+| 20px | Card grid gap |
+| 24px | Section content gap |
+| 80px | Section vertical spacing |
+| 96px | Large section vertical spacing |
+| 20px / 32px | Container horizontal padding (mobile / desktop) |
 
-**Container**: `max-w-site` = 1400px (`--max-width-site: 1400px` in CSS). Centered with `mx-auto`.
+**Max container width**: 1400px, centered.
 
-Standard page wrapper pattern:
-```html
-<div class="px-5 sm:px-8">
-  <div class="max-w-site mx-auto">
-    ...
-  </div>
-</div>
+Standard page wrapper:
+```
+Container → horizontal padding (20px mobile, 32px desktop)
+  └─ Inner → max-width 1400px, centered
 ```
 
 ### Border Radius
 
-| Token | Value | Usage |
-|-------|-------|-------|
-| rounded-md | 6px | Small badges |
-| rounded-lg | 8px | Inputs, thumbnails |
-| rounded-xl | 12px | Cards, buttons, panels |
-| rounded-2xl | 16px | Large cards, modals, plate search |
-| rounded-full | 50% | Avatars, circular buttons |
+| Value | Usage |
+|-------|-------|
+| 6px | Small badges |
+| 8px | Inputs, thumbnails |
+| 12px | Cards, buttons, panels (primary radius) |
+| 16px | Large cards, modals, license plate search |
+| 50% | Avatars, circular buttons |
 
 ### Shadows
 
-| Token | Usage |
+| Level | Usage |
 |-------|-------|
-| shadow-sm | Subtle (inputs, small cards) |
-| shadow-lg | Card hover state: `hover:shadow-lg` |
-| shadow-xl | Chat button hover |
-| shadow-2xl | Chat modal panel |
-| none | Default card state (border only, no shadow) |
+| Small | Subtle (inputs, small cards) |
+| Large | Card hover state |
+| Extra large | Chat button hover, chat modal |
+| None | Default card state — uses border instead |
 
-Cards use `border border-brand-gray/40` instead of shadow by default. Shadow appears on hover.
+**Key rule**: Cards use a thin border (`brand-gray` at 40% opacity) by default with no shadow. Shadow appears only on hover as an elevation effect.
 
 ---
 
 ## Global Layout
 
-### Navbar (fixed)
+### Navbar
 
 ```
 ┌─────────────────────────────────────────────────┐
@@ -131,14 +124,14 @@ Cards use `border border-brand-gray/40` instead of shadow by default. Shadow app
 └─────────────────────────────────────────────────┘
 ```
 
-- Fixed: `fixed top-0 left-0 right-0 z-50`
-- Background: `bg-white/95 backdrop-blur-md`
-- Height: `h-[72px]`
-- Border: `border-b border-brand-gray/40`
-- Logo: `h-9` (desktop), `h-8` (mobile)
-- Search bar: rounded-full, max-w-xl, hidden on mobile
-- Nav links: `hidden md:flex`, gap-1
-- Mobile: hamburger menu, full-width stacked links
+- Fixed to top, full width, z-index 50
+- Background: white at 95% opacity with backdrop blur
+- Height: 72px
+- Bottom border: `brand-gray` at 40% opacity
+- Logo: height ~36px (desktop), ~32px (mobile)
+- Search bar: rounded pill, max-width ~576px, hidden on mobile
+- Nav links: hidden below 768px, horizontal with small gap
+- Mobile: hamburger menu toggles full-width stacked links
 
 ### Page Structure
 
@@ -146,18 +139,18 @@ Cards use `border border-brand-gray/40` instead of shadow by default. Shadow app
 ┌─────────────────────────────────────┐
 │           Navbar (72px)             │  fixed
 ├─────────────────────────────────────┤
-│         pt-[72px] spacer            │
+│         72px top spacer             │
 ├─────────────────────────────────────┤
 │                                     │
 │          Page Content               │
-│     max-w-site (1400px) centered    │
-│        px-5 sm:px-8 padding         │
+│     1400px max, centered            │
+│     20/32px horizontal padding      │
 │                                     │
 ├─────────────────────────────────────┤
 │             Footer                  │
 └─────────────────────────────────────┘
 
-ChatBot widget — fixed bottom-6 right-6 z-50
+ChatBot widget — fixed bottom-right corner, z-index 50
 ```
 
 ---
@@ -167,407 +160,297 @@ ChatBot widget — fixed bottom-6 right-6 z-50
 ### Landing Page
 
 **Hero Section**:
-- Background: `bg-brand-dark` (dark navy), full-width
-- Padding: `pt-32 sm:pt-40 pb-20 sm:pb-28`
-- Title: `text-4xl sm:text-5xl lg:text-[56px] font-bold text-white tracking-tight leading-[1.1]`
-- Subtitle: `text-lg sm:text-xl text-white/70`
-- Contains: PlateSearch component (large variant) + CategoryGrid below
-- Trustpilot badge at bottom: stars image + score text
+- Full-width `brand-dark` background
+- Generous top padding (~128–160px) to clear navbar and create breathing room
+- Title: largest font size (36–56px responsive), bold, white, tight tracking and line-height (1.1)
+- Subtitle: large body text (18–20px), white at 70% opacity
+- Contains: license plate search (large variant) and category grid below
+- Trustpilot badge at bottom: star rating image + score text in muted white
 
 **Featured Listings ("Senaste annonserna")**:
-- Section: `py-20`
-- Heading: `text-3xl sm:text-4xl font-bold text-brand-dark tracking-tight`
-- Horizontal scroll carousel with left/right arrow buttons
-- Cards: `w-[280px] sm:w-[300px]`, fixed width, `flex-shrink-0`
-- Card structure: image (aspect-[4/3]) → title → specs → seller + location → price
-- Scroll buttons: `w-10 h-10 rounded-full border border-brand-gray/60 bg-white`
-- "Visa alla 1 753 annonser" link: `text-brand-blue` with arrow icon
-- Uses shared `mockListings` data from `src/data/mockListings.js`
+- Section spacing: 80px vertical
+- Heading: large (30–36px responsive), bold, dark, tight tracking
+- Horizontal scroll carousel
+- Cards: fixed width (~280–300px), non-shrinking, spaced with 20px gap
+- Card structure: image (4:3 ratio) → title → specs line → seller + location → price
+- Left/right scroll arrows: 40px circular buttons with border, white background
+- "Visa alla X annonser" link below in brand-blue with right arrow
 
 **How It Works ("Tre sätt att hitta rätt hjul")**:
-- 3-column grid (desktop), 1-column stack (mobile)
-- Cards: image with overlay icon (top-left), title, description
-- Overlay icon: `w-12 h-12 rounded-full bg-white/90 backdrop-blur-sm`
+- 3-column grid (desktop), single column (mobile)
+- Cards with image, overlay icon in top-left (48px white circle with backdrop blur)
+- Title + description text below each image
 
 **Testimonials**:
-- Horizontal scroll, `w-[340px]` fixed-width cards
-- Star rating (yellow SVG stars), quote text, author avatar + name
+- Horizontal scroll carousel, fixed-width cards (~340px)
+- Yellow star rating SVGs, italic quote text, author avatar circle + name
 
 **FAQ Section**:
-- Accordion pattern: click to expand/collapse
-- Chevron rotates on open
-- Answer text with `leading-relaxed`
+- Accordion: clickable rows that expand/collapse
+- Chevron icon rotates on open state
+- Relaxed line-height on answer text
 
-**Scroll Reveal Animation** (`useScrollReveal` hook):
-```css
-.fade-in {
-  opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 0.7s ease-out, transform 0.7s ease-out;
-}
-.fade-in.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-```
-Uses IntersectionObserver with `threshold: 0.15`.
+**Scroll Reveal**: All sections fade in from below (24px offset) with 0.7s ease-out transition, triggered at 15% viewport intersection.
 
 ### Listings Page (Annonser)
 
 **Layout**:
-- Desktop: sidebar (filters) + main content, flex row
-- Mobile: filters in collapsible panel, full-width grid
-
 ```
 Desktop:
 ┌──────────┬────────────────────────────────┐
 │ Filters  │  Header + Sort + Grid          │
 │ ~260px   │  flex-1                        │
 │ sticky   │                                │
-│ top-24   │  grid-cols-1/2/3 responsive    │
+│ top-96px │  1/2/3-column responsive grid  │
 └──────────┴────────────────────────────────┘
+
+Mobile: Filters collapse into toggleable panel above single-column grid
 ```
 
 **Filter Sidebar**:
-- Sections: FilterSection component with title, chevron toggle, optional clear button
-- Filter types: CheckboxGroup, SelectFilter, PriceRangeSlider
-- Price slider: dual-thumb range (0–50,000 kr, 500 kr steps)
-  - Track: `h-1.5 rounded-full bg-brand-gray/40`
-  - Active range: `bg-brand-blue`
-  - Thumbs: `w-5 h-5 rounded-full bg-white border-2 border-brand-blue shadow-sm`
+- Collapsible sections: title + chevron toggle + optional "Rensa" (clear) link
+- Filter types: checkbox groups, select dropdowns, price range slider
+- **Price range slider**: dual-thumb, 0–50,000 kr range in 500 kr steps
+  - Track: thin (6px) rounded bar, gray background
+  - Active range: `brand-blue` fill between thumbs
+  - Thumbs: 20px white circles with 2px blue border and subtle shadow
+  - Labels above: formatted price values
 
 **Listing Cards**:
-- Grid: `grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5`
-- Card: `bg-white rounded-xl border border-brand-gray/40 overflow-hidden`
-- Image: `aspect-[4/3]` with hover zoom (`group-hover:scale-105 transition-transform duration-500`)
-- Image carousel: dot indicators + left/right arrows (visible on hover)
-- Heart/favorite button: top-right overlay
-- "Nya" badge: `bg-brand-blue text-white text-[11px] font-bold rounded-md`
-- Price: `text-lg font-bold text-brand-blue`
-- Seller verified badge: green checkmark SVG for "Företag" type
+- Grid: 1 column (mobile) → 2 columns (tablet) → 3 columns (desktop), 20px gap
+- Card: white, 12px radius, thin border, no shadow (shadow on hover)
+- Image: 4:3 aspect ratio, zoom on hover (scale 1.05, 500ms transition)
+- Image carousel: dot indicators at bottom, left/right arrow buttons on hover
+- Heart/favorite icon: top-right overlay on image
+- "Nya" badge: blue with white text, 11px bold, top-left on image
+- Content: title (15px bold, 2-line clamp) → specs string → seller name + verified badge → location with pin icon → price in brand-blue (18px bold)
+- Verified seller: green checkmark circle icon next to "Företag" seller names
 
 ### Detail Page (Annons)
 
 **Layout**:
-- Desktop: 2-column (content left, sticky info panel right)
-- Mobile: single column, info panel between gallery and details
-
 ```
 Desktop:
 ┌─────────────────────────┬──────────┐
 │ Breadcrumb (full width)            │
 ├─────────────────────────┬──────────┤
 │ Image Gallery           │ InfoPanel│
-│ Details Grid            │ w-[340px]│
+│ Details Grid            │ 340px    │
 │ Description             │ sticky   │
-│ Try On Car (AI)         │ top-88px │
+│ AI Try-On               │ top-88px │
 │ Compare Section         │          │
-│ Location                │          │
+│ Location Map            │          │
 │ Seller Card             │          │
 │ Reviews                 │          │
 └─────────────────────────┴──────────┘
+
+Mobile: Single column. Info panel appears between gallery and details grid.
 ```
 
-**Image Gallery**:
-- Main image: `aspect-[4/3] rounded-xl`
-- Thumbnails: `w-16 h-16 rounded-lg`, active has `border-2 border-brand-blue`
-- Navigation arrows: `w-9 h-9 rounded-full bg-white/80 backdrop-blur-sm`
-- Lightbox overlay on click
+**Breadcrumb**: White bar with bottom border. Hem → Annonser → [listing title]. Chevron separators.
 
-**Info Panel** (sticky sidebar):
-- Price: `text-2xl font-bold text-brand-blue`
-- Contact buttons: `bg-brand-blue` (primary), `border border-brand-gray` (secondary)
-- Specs summary: rows with label + value, `text-sm`
+**Image Gallery**:
+- Main image: 4:3 aspect ratio, 12px radius
+- Thumbnail strip: 64×64px thumbnails, 8px radius, active highlighted with 2px blue border
+- Navigation arrows: 36px circles, white at 80% opacity with backdrop blur
+- Click main image to open lightbox overlay
+
+**Info Panel** (sticky sidebar on desktop):
+- Price: 24px bold in brand-blue
+- Contact buttons: primary (blue) and secondary (bordered)
+- Specs summary rows: label + value, 14px text
+- Standard card styling (white, bordered, 20px padding)
 
 **Details Grid**:
-- `grid-cols-2 sm:grid-cols-3`, gap-3
-- Each cell: `bg-white rounded-xl border border-brand-gray/40 p-4`
-- Label: `text-[11px] font-semibold text-brand-dark/40 uppercase tracking-wider`
-- Value: `text-sm font-semibold text-brand-dark`
+- 2 columns (mobile) → 3 columns (desktop), 12px gap
+- Each cell: white card with 16px padding
+- Label: 11px semibold, dark at 40% opacity, uppercase, wide letter-spacing
+- Value: 14px semibold, dark
+
+**Description**: White card, heading + body text with `whitespace-pre-line` and relaxed line-height.
 
 ---
 
 ## Feature: AI Try-On ("Prova på din bil")
 
-**Container**: `bg-white rounded-xl border border-brand-gray/40 p-5`
+Allows users to upload a car photo and see the listing's wheels visualized on their car.
 
-**Header**: Sparkle icon in blue circle + title "Prova på din bil" + subtitle
+**Container**: Standard white card (bordered, 20px padding)
 
-**Upload State**:
-- Dashed border dropzone: `border-2 border-dashed border-brand-gray hover:border-brand-blue rounded-xl p-8`
-- Camera icon, "Ta en bild eller ladda upp" text
-- Accepts file input with `capture="environment"` for mobile camera
+**Header**: Blue circle with sparkle icon + "Prova på din bil" title + subtitle "Ladda upp en bild och se hur hjulen ser ut med AI"
 
-**Image Display** (single view):
-- `rounded-xl overflow-hidden bg-brand-gray-light border border-brand-gray/30 aspect-[4/3]`
-- Shows: uploaded photo → AI loading animation → generated result
+**States**:
 
-**AI Loading Animation**:
-- Background: `linear-gradient(135deg, #f0f4ff 0%, #f5f0ff 50%, #eef6ff 100%)`
-- 5 floating color blobs (blue, violet, sky, purple, indigo) with `blur-2xl`
-- Each blob uses different `aiFloat` keyframe animation (5–9s cycle, various offsets)
-- White shimmer sweep: `linear-gradient(105deg, ...)` moving left-to-right, 3s cycle
-- Center: gradient sparkle SVG icon (pulsing) + "AI genererar..." gradient text
-- Colors: `from-indigo-400 via-sky-400 to-purple-400`
+1. **Upload**: Dashed border dropzone (2px dashed, gray → blue on hover, 12px radius, 32px padding). Camera icon, "Ta en bild eller ladda upp" text. Supports drag-and-drop and file picker with mobile camera capture.
 
-**Compatibility Banners**:
-- Warning (doesn't fit): `bg-amber-50 border border-amber-200`, amber icon + text
-- Success (fits): `bg-green-50 border border-green-200`, green checkmark + text
+2. **Preview**: Shows the uploaded photo in a single 4:3 image area. "Generera" (blue) and "Ny bild" (bordered) buttons below.
 
-**Action Buttons**:
-- "Generera": `bg-brand-blue hover:bg-brand-blue-dark text-white rounded-xl`
-- "Ny bild": `border border-brand-gray bg-white text-brand-dark rounded-xl`
+3. **Loading**: Full 4:3 area replaced with AI animation:
+   - Soft tinted gradient background (blue-white to lavender-white)
+   - 5 large blurred color blobs (blue, violet, sky, purple, indigo) floating with different animation speeds (5–9 second cycles)
+   - White shimmer sweep passing left-to-right (3s cycle)
+   - Centered: gradient sparkle icon (indigo→sky→purple) gently pulsing + "AI genererar..." text in matching gradient
+
+4. **Result**: Generated image fills the 4:3 area.
+
+5. **Compatibility banners** (shown after result):
+   - Warning (wheels don't fit): amber background, amber border, warning triangle icon, "Passar troligtvis inte" heading + explanation
+   - Success (wheels fit): green background, green border, checkmark icon, "Bra matchning!" text
 
 ---
 
 ## Feature: ChatBot Widget
 
-**Toggle Button**:
-- `w-16 h-16 rounded-full shadow-lg border-2 border-white`
-- Closed: avatar image, `background-color: #8b95a8` (muted grey-blue)
-- Open: X icon, `background-color: #477bf4` (brand blue)
-- Hover: `shadow-xl hover:scale-105`
+**Position**: Fixed, bottom-right corner (24px inset), z-index 50.
 
-**Speech Bubble** (greeting):
-- Appears after 3 seconds, auto-dismisses after 12 seconds
-- `w-[280px] bg-white rounded-2xl shadow-lg border border-brand-gray/30 p-4`
-- Triangle pointer: rotated square at bottom-right
-- Entrance animation: `aiBubbleIn 0.4s ease-out` (fade + slide up + scale)
-- Dismiss: X button top-right, or auto after 12s, or when chat opens
+**Toggle Button**:
+- 64×64px circle with shadow and 2px white border
+- Closed state: shows avatar image, muted grey-blue background (#8b95a8)
+- Open state: shows X icon, brand-blue background (#477bf4)
+- Hover: larger shadow, slight scale-up (1.05)
+
+**Speech Bubble** (auto-greeting):
+- Appears 3 seconds after page load
+- White rounded card (280px wide, 16px radius, shadow, thin border, 16px padding)
+- Message: greeting from the CEO inviting questions
+- Small triangle pointer at bottom-right pointing toward avatar
+- Entrance: fade in + slide up + slight scale (0.4s ease-out)
+- Auto-dismisses after 12 seconds
+- Dismissible via X button, or by opening chat, or navigating away
 - Does not reappear once dismissed during session
 
-**Chat Panel**:
-- `w-[380px]`, height 520px, `bg-[#f0f4fe] rounded-2xl shadow-2xl`
-- Header: white, centered logo
-- Message area: avatar + "Wheelbot" name, white bubble with rounded corners
-- Input: rounded-full border, send arrow button
+**Chat Panel** (when open):
+- 380px wide, 520px tall, soft blue background (#f0f4fe), 16px radius, heavy shadow
+- Header: white bar with centered logo
+- Messages: avatar + bot name, white speech bubbles with rounded corners
+- Input bar: rounded pill input with send arrow button, white background, bottom of panel
 
 ---
 
 ## Feature: License Plate Search
 
-**Structure**: Form with EU badge + text input + search button
+Swedish-style registration number input with EU badge.
 
-**EU Badge**:
-- Large: `w-14 h-16`, Small: `w-12 h-14`
-- Background: `#003399` (EU blue)
-- Stars: `/eu-stars.svg` (real EU flag stars in `#ffcc07`)
-- Letter "S" below stars: `text-white text-[9px] font-bold`
+**Structure**: Horizontal form — EU badge | text input | search button
 
-**Input**:
-- Large: `h-16 rounded-2xl text-2xl`
-- Small: `h-14 rounded-xl text-xl`
-- Font: `'Helvetica Neue', monospace`, `tracking-[0.15em] uppercase`
-- Auto-formats: "ABC 123" pattern (space after 3 chars)
-- Focus: `border-brand-blue`
+**EU Badge** (left side):
+- EU blue background (#003399)
+- EU flag stars from SVG asset (yellow #ffcc07, circle of 12 stars)
+- Letter "S" below in white, 9px bold
+- Large variant: 56×64px, Small variant: 48×56px
 
-**Search Button**:
-- Large: `w-12 h-12 mr-2`, Small: `w-10 h-10 mr-2`
-- `bg-brand-blue hover:bg-brand-blue-dark rounded-xl`
-- Magnifying glass icon
+**Text Input**:
+- Large: 64px tall, 16px radius, 24px monospace font
+- Small: 56px tall, 12px radius, 20px monospace font
+- Monospace font with wide letter-spacing (0.15em), uppercase
+- Auto-formats as "ABC 123" (space inserted after 3rd character)
+- Focus state: border turns brand-blue
+
+**Search Button** (right side, inside input):
+- Large: 48×48px, Small: 40×40px
+- Brand-blue background, 12px radius
+- White magnifying glass icon
+- 8px right margin (inset into the input)
 
 ---
 
 ## Reusable Components
 
 ### Card
-```
-bg-white rounded-xl border border-brand-gray/40
-```
-Padding varies: `p-4` (compact), `p-5` (standard), `p-7` (spacious).
+White background, 12px radius, thin border (`brand-gray` at 40% opacity), no shadow.
+Padding varies by context: 16px (compact), 20px (standard), 28px (spacious).
 
 ### Badge
-```
-text-[11px] font-bold px-2 py-0.5 rounded-md
-```
-Variants:
-- **Blue** (new): `bg-brand-blue text-white`
-- **Green** (verified): green checkmark SVG icon
-- **Condition**: inline text in specs line
+Inline pill label: 11px bold, horizontal padding 8px, vertical padding 2px, 6px radius.
+- **New/Blue**: brand-blue background, white text
+- **Verified seller**: green checkmark circle SVG icon (not a text badge)
 
 ### Button — Primary
-```
-bg-brand-blue hover:bg-brand-blue-dark text-white font-medium
-rounded-xl px-5 py-2.5 transition-colors cursor-pointer border-none
-```
+Brand-blue background, darker on hover, white text, medium weight, 12px radius, 20×10px padding. No border. Transitions color on hover. Pointer cursor.
 
 ### Button — Secondary
-```
-border border-brand-gray bg-white text-brand-dark font-medium
-rounded-xl px-4 py-2.5 hover:bg-brand-gray-light transition-colors cursor-pointer
-```
+White background, thin gray border, dark text, medium weight, 12px radius, 16×10px padding. Light gray background on hover. Pointer cursor.
 
 ### Button — Circular
-```
-w-10 h-10 rounded-full border border-brand-gray/60 bg-white
-flex items-center justify-center hover:border-brand-gray hover:shadow-sm
-```
+40×40px, full circle, thin gray border, white background. Centers an icon. Subtle border darkening and shadow on hover.
 
 ### FilterSection
-Collapsible section with:
-- Header: flex row, title (semibold) + chevron (rotates)
-- Border bottom separator: `border-b border-brand-gray/40 pb-4 mb-4`
-- Optional "Rensa" (clear) button
+Collapsible panel section:
+- Header row: title (semibold) + rotating chevron icon
+- Bottom border separator
+- Optional "Rensa" clear button (muted text, appears on hover/when active)
+- Content area with smooth expand/collapse
 
 ### Input
-```
-border border-brand-gray/60 rounded-lg px-2.5 py-2 text-[13px]
-text-brand-dark bg-white outline-none
-```
+Thin gray border, 8px radius, ~10×10px padding, 13px text, white background, no outline. Focus highlights border.
 
 ### Select
-Same as input with `appearance-none` and custom chevron background-image SVG.
+Same styling as input, but with `appearance: none` and a custom chevron SVG as background-image on the right side.
 
 ---
 
 ## Footer
 
-- Background: `bg-brand-dark` (same as hero)
+- Full-width `brand-dark` background (same color as hero)
 - 3-column grid (desktop), stacked (mobile)
-- Logo + description in first column
-- Link columns: `text-sm text-white/60 hover:text-white`
-- Bottom row: copyright + social icons, `border-t border-white/10`
+- First column: logo + brief description text
+- Middle/right columns: link lists grouped by category
+- Links: 14px, white at 60% opacity, full white on hover
+- Bottom row: copyright text + social media icons, separated by thin white border (10% opacity)
 
 ---
 
-## Responsive Summary
+## Responsive Behavior
 
-| Aspect | Desktop | Mobile (<640px) |
-|--------|---------|-----------------|
-| Navbar | Full nav links visible | Hamburger menu, stacked links |
-| Hero title | `text-5xl` / `text-[56px]` | `text-4xl` |
-| Container padding | `px-8` (32px) | `px-5` (20px) |
-| Listing grid | 3 columns | 1 column |
-| Detail page | 2-col with sticky sidebar | Single column, inline info panel |
-| Featured carousel | Scroll arrows visible | Touch scroll only |
-| Filter sidebar | Always visible | Collapsible panel |
-| Category grid | 6 columns | 3 columns |
-| Brand grid | 6 columns | 3 columns |
-| How It Works | 3 columns | 1 column |
-| Testimonials | Scroll carousel | Touch scroll |
-| Footer | 3 columns | 1 column |
+| Aspect | Desktop (≥1024px) | Tablet (640–1023px) | Mobile (<640px) |
+|--------|-------------------|---------------------|-----------------|
+| Navbar | All nav links visible | Some links hidden | Hamburger menu |
+| Hero title | 48–56px | 48px | 36px |
+| Container padding | 32px horizontal | 32px | 20px |
+| Listing grid | 3 columns | 2 columns | 1 column |
+| Detail page | 2-col + sticky sidebar | Single column | Single column |
+| Featured carousel | Scroll arrows visible | Scroll arrows | Touch scroll only |
+| Filter sidebar | Always visible (sticky) | Collapsible | Collapsible |
+| Category grid | 6 columns | 6 columns | 3 columns |
+| Brand grid | 6 columns | 4 columns | 3 columns |
+| How It Works | 3 columns | 3 columns | 1 column |
+| Footer | 3 columns | 3 columns | 1 column |
 
-**Breakpoints** (Tailwind defaults):
-- `sm`: 640px
-- `md`: 768px
-- `lg`: 1024px
+**Breakpoints**:
+- Small: 640px
+- Medium: 768px
+- Large: 1024px
 
 ---
 
-## Animations
+## Animations & Transitions
 
-### Scroll Reveal (all sections)
-```css
-.fade-in {
-  opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 0.7s ease-out, transform 0.7s ease-out;
-}
-.fade-in.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-```
-Triggered via IntersectionObserver at `threshold: 0.15`.
+### Scroll Reveal
+All major page sections use a fade-in-from-below entrance:
+- Initial: invisible, shifted 24px down
+- Visible: full opacity, original position
+- Duration: 0.7s ease-out
+- Trigger: IntersectionObserver at 15% threshold
 
 ### Card Hover
-- Image zoom: `group-hover:scale-105 transition-transform duration-500`
-- Card elevation: `hover:shadow-lg hover:border-brand-gray transition-all duration-200`
-- Button scale: `active:scale-95`
+- Image: zoom to 1.05x scale over 500ms
+- Card: shadow appears + border darkens over 200ms
+- Buttons: scale down to 0.95x on active/press
 
-### AI Loading (TryOnCar)
-- 5 floating blobs: `aiFloat1` (6s), `aiFloat2` (7s), `aiFloat3` (5s) — translate + scale
-- Shimmer sweep: `aiShimmer` (3s) — background-position slide
-- Icon pulse: `aiPulse` (2.5s) — scale 1→1.1 + opacity
+### AI Loading Animation
+- 5 large, heavily blurred color blobs floating with different speeds (5–9s cycles), translating and scaling
+- White shimmer sweep moving across the surface (3s cycle, left-to-right)
+- Center sparkle icon gently pulsing (2.5s, scale 1→1.1, opacity 0.7→1)
 
-### Chat Bubble Entrance
-```css
-@keyframes aiBubbleIn {
-  0% { opacity: 0; transform: translateY(8px) scale(0.95); }
-  100% { opacity: 1; transform: translateY(0) scale(1); }
-}
-```
+### Chat Speech Bubble
+- Entrance: fade in + slide up 8px + scale from 0.95 → 1, over 0.4s ease-out
+- Exit: removed from DOM (no exit animation)
 
 ### Image Gallery
-- Cross-fade: `transition-opacity duration-700`
-- Thumbnail highlight: `border-2 border-brand-blue` (active) vs `border-transparent`
+- Main image: cross-fade transition (700ms opacity)
+- Active thumbnail: 2px blue border highlight (instant)
 
----
-
-## Data Model (Mock Listings)
-
-Each listing in `src/data/mockListings.js`:
-
-```js
-{
-  id: Number,
-  title: String,
-  price: Number,
-  image: String,           // primary thumbnail path
-  images: [String],        // all gallery images
-  location: String,        // region
-  condition: String,       // "Nya" | "Begagnade - Bra skick"
-  seller: { name, type },  // type: "Privat" | "Företag"
-  date: String,            // relative date string
-  product: String,         // "Kompletta hjul"
-  tireType: String,        // "Sommardäck" | "Vinterdäck friktion" | "Vinterdäck dubb"
-  brand: String,           // car brand
-  specs: { width, profile, diameter, depth },
-  quantity: Number,
-  description: String,
-  carModel: String,
-  tireBrand: String,
-  dot: String,
-  deliveryOptions: [String],
-  sellerDetails: { avatar, description, memberSince, responseTime, phone, email },
-  locationDetails: { city, region },
-  reference: String,
-}
-```
-
----
-
-## File Structure
-
-```
-client/
-├── public/
-│   ├── listings/          — listing images (.avif)
-│   ├── brands/            — brand logos
-│   ├── logo.svg           — Wheelplace logo
-│   ├── avatar.png         — chatbot avatar
-│   ├── eu-stars.svg       — EU flag stars
-│   └── trustpilot-stars.svg
-├── src/
-│   ├── index.css          — Tailwind v4 theme, CSS variables, animations
-│   ├── App.jsx            — Routes: /, /annonser, /annons/:id, /logga-in, /kontakt, /forfragningar
-│   ├── data/
-│   │   └── mockListings.js
-│   ├── hooks/
-│   │   └── useScrollReveal.js
-│   └── components/
-│       ├── LandingPage.jsx
-│       ├── AnnonserPage.jsx
-│       ├── AnnonsPage.jsx
-│       ├── ui/
-│       │   ├── Navbar.jsx
-│       │   ├── Footer.jsx
-│       │   ├── PlateSearch.jsx
-│       │   ├── ChatBot.jsx
-│       │   ├── CategoryGrid.jsx
-│       │   ├── BrandGrid.jsx
-│       │   ├── TestimonialCard.jsx
-│       │   └── FAQAccordion.jsx
-│       └── annons/
-│           ├── ImageGallery.jsx
-│           ├── InfoPanel.jsx
-│           ├── DetailsGrid.jsx
-│           ├── SellerCard.jsx
-│           ├── LocationSection.jsx
-│           ├── CompareSection.jsx
-│           ├── ReviewsSection.jsx
-│           └── TryOnCar.jsx
-├── api/                   — (also at repo root for Vercel)
-│   └── visualize.js       — OpenAI serverless function
-└── vercel.json
-```
+### General Interactions
+- Color transitions: 200ms ease (links, buttons)
+- Layout transitions: 300ms ease (accordion expand/collapse)
+- Hover scale: 200ms ease (chat button, brand logos)
