@@ -346,28 +346,6 @@ export default function AnnonserBrowse() {
                   </button>
                 </div>
 
-                {/* Reg number search */}
-                <div className="bg-gradient-to-br from-brand-blue-dark to-brand-blue rounded-xl p-4 text-white mb-5">
-                  <h4 className="text-[13px] font-semibold mb-2">Sök via regnummer</h4>
-                  <div className="flex gap-2">
-                    <input
-                      type="text"
-                      placeholder="ABC123"
-                      maxLength={7}
-                      value={regInput}
-                      onChange={(e) => setRegInput(e.target.value.toUpperCase())}
-                      className="flex-1 px-2.5 py-2 rounded-lg text-[14px] font-bold tracking-widest uppercase font-mono text-brand-dark placeholder:font-sans placeholder:font-normal placeholder:tracking-normal placeholder:text-[13px]"
-                    />
-                    <button
-                      onClick={() => setCarMode(true)}
-                      className="px-3 py-2 bg-white text-brand-blue rounded-lg text-[13px] font-bold hover:bg-brand-gray-light transition-colors cursor-pointer"
-                    >
-                      Sök
-                    </button>
-                  </div>
-                  <p className="text-[11px] mt-2 opacity-80">Hittar kompatibla fälgar, däck och hjul för din bil</p>
-                </div>
-
                 {/* Bilmärke */}
                 <FilterSection title="Bilmärke" onClear={() => {}}>
                   <input
