@@ -65,7 +65,7 @@ function Section({ children, className = '' }) {
 function SectionTitle({ icon, children }) {
   return (
     <h3 className="text-[15px] font-bold text-brand-dark flex items-center gap-2 mb-1 font-heading">
-      {icon && <span className="text-[16px]">{icon}</span>}
+      {icon && <img src={`/icons/${icon}.svg`} alt="" className="w-4 h-4 opacity-50" />}
       {children}
     </h3>
   );
@@ -112,7 +112,9 @@ function SelectableCard({ icon, name, desc, selected, onClick }) {
           : 'border-brand-gray/40 bg-white hover:border-brand-blue/40 hover:bg-brand-blue-50/30'
       }`}
     >
-      <div className="text-[28px] mb-2">{icon}</div>
+      <div className={`w-10 h-10 rounded-lg flex items-center justify-center mb-3 ${selected ? 'bg-brand-blue/10' : 'bg-brand-gray-light'}`}>
+        <img src={`/icons/${icon}.svg`} alt="" className={`w-5 h-5 ${selected ? 'opacity-80' : 'opacity-40'}`} />
+      </div>
       <div className="text-[15px] font-semibold text-brand-dark">{name}</div>
       {desc && <div className="text-[12px] text-brand-gray-medium mt-1">{desc}</div>}
     </button>
@@ -156,19 +158,19 @@ function Step1({ onNext }) {
         <SectionSub>Påverkar hur din annons visas</SectionSub>
         <div className="flex gap-2.5">
           {[
-            { id: 'privat', icon: '👤', label: 'Privatperson' },
-            { id: 'foretag', icon: '🏢', label: 'Företag / handlare' },
+            { id: 'privat', icon: 'user', label: 'Privatperson' },
+            { id: 'foretag', icon: 'building', label: 'Företag / handlare' },
           ].map((s) => (
             <button
               key={s.id}
               onClick={() => setSellerType(s.id)}
-              className={`flex-1 py-3 px-4 rounded-xl border-2 text-center text-[14px] font-medium transition-all cursor-pointer ${
+              className={`flex-1 py-4 px-4 rounded-xl border-2 text-center text-[14px] font-medium transition-all cursor-pointer flex flex-col items-center gap-2 ${
                 sellerType === s.id
                   ? 'border-brand-blue bg-brand-blue-50 text-brand-blue'
-                  : 'border-brand-gray/40 hover:border-brand-blue/40'
+                  : 'border-brand-gray/40 text-brand-dark hover:border-brand-blue/40'
               }`}
             >
-              <span className="text-[18px] block mb-1">{s.icon}</span>
+              <img src={`/icons/${s.icon}.svg`} alt="" className={`w-5 h-5 ${sellerType === s.id ? 'opacity-80' : 'opacity-40'}`} />
               {s.label}
             </button>
           ))}
@@ -179,13 +181,13 @@ function Step1({ onNext }) {
         <SectionTitle>Produkttyp</SectionTitle>
         <SectionSub>Välj en — vi anpassar formuläret</SectionSub>
         <div className="grid grid-cols-2 gap-3 mb-3">
-          <SelectableCard icon="🔩" name="Fälgar" desc="Enbart fälgar, utan däck" selected={productType === 'falgar'} onClick={() => setProductType('falgar')} />
-          <SelectableCard icon="🛞" name="Kompletta hjul" desc="Fälg + däck monterade" selected={productType === 'komplett'} onClick={() => setProductType('komplett')} />
+          <SelectableCard icon="grid" name="Fälgar" desc="Enbart fälgar, utan däck" selected={productType === 'falgar'} onClick={() => setProductType('falgar')} />
+          <SelectableCard icon="shopping-cart" name="Kompletta hjul" desc="Fälg + däck monterade" selected={productType === 'komplett'} onClick={() => setProductType('komplett')} />
         </div>
         <div className="grid grid-cols-3 gap-3">
-          <SelectableCard icon="❄️" name="Vinterdäck" desc="Enbart däck" selected={productType === 'vinter'} onClick={() => setProductType('vinter')} />
-          <SelectableCard icon="☀️" name="Sommardäck" desc="Enbart däck" selected={productType === 'sommar'} onClick={() => setProductType('sommar')} />
-          <SelectableCard icon="⚫" name="Däck (övrigt)" desc="All-season m.m." selected={productType === 'dack'} onClick={() => setProductType('dack')} />
+          <SelectableCard icon="truck" name="Vinterdäck" desc="Enbart däck" selected={productType === 'vinter'} onClick={() => setProductType('vinter')} />
+          <SelectableCard icon="tag" name="Sommardäck" desc="Enbart däck" selected={productType === 'sommar'} onClick={() => setProductType('sommar')} />
+          <SelectableCard icon="filter" name="Däck (övrigt)" desc="All-season m.m." selected={productType === 'dack'} onClick={() => setProductType('dack')} />
         </div>
       </Section>
     </div>
@@ -204,7 +206,7 @@ function Step2() {
       <p className="text-[14px] text-brand-gray-medium mb-7">Regnumret läser in bultcirkel, navhål och ET automatiskt</p>
 
       <Section>
-        <SectionTitle icon="🚗">Sök via regnummer <span className="text-[12px] font-normal text-brand-gray-medium">(rekommenderat)</span></SectionTitle>
+        <SectionTitle icon="search">Sök via regnummer <span className="text-[12px] font-normal text-brand-gray-medium">(rekommenderat)</span></SectionTitle>
         <SectionSub>Hämtar bildata från Transportstyrelsen</SectionSub>
 
         <div className="flex gap-0">
@@ -237,7 +239,7 @@ function Step2() {
                 <div className="text-[15px] font-bold text-brand-dark">Volvo XC60</div>
                 <div className="text-[13px] text-brand-gray-medium">Trafikverket: Bensin · AWD · 2019</div>
               </div>
-              <span className="text-brand-green text-xl">✓</span>
+              <img src="/icons/check-circle.svg" alt="" className="w-5 h-5 text-brand-green" />
             </div>
 
             <div className="flex gap-2 flex-wrap mb-3">
@@ -257,7 +259,7 @@ function Step2() {
                   { id: 'T5', sub: '250hk bensin' },
                   { id: 'D4', sub: '190hk diesel' },
                   { id: 'D5', sub: '235hk diesel' },
-                  { id: 'T8', sub: '390hk PHEV ⚠ min 19"' },
+                  { id: 'T8', sub: '390hk PHEV — min 19"' },
                   { id: 'T6', sub: '310hk bensin' },
                 ].map((m) => (
                   <button
@@ -304,7 +306,7 @@ function Step3() {
 
       {/* Locked specs */}
       <Section>
-        <SectionTitle icon="🔒">Automatiskt låsta värden</SectionTitle>
+        <SectionTitle icon="shield-check">Automatiskt låsta värden</SectionTitle>
         <SectionSub>Hämtat från regnummer PKE23J</SectionSub>
         <div className="grid grid-cols-2 gap-4">
           <LockedField label="Bultcirkel" value="5x108" />
@@ -371,7 +373,7 @@ function Step3() {
               defaultValue={45}
               className="w-full px-3.5 py-2.5 border-[1.5px] border-brand-gray/40 rounded-lg text-[14px] font-semibold outline-none focus:border-brand-blue focus:shadow-[0_0_0_3px_rgba(71,123,244,0.12)] transition-all"
             />
-            <p className="text-[12px] text-brand-gray-medium mt-1">Bilens godkända range: 40–50.5mm ✓</p>
+            <p className="text-[12px] text-brand-gray-medium mt-1">Bilens godkända range: 40–50.5mm</p>
           </div>
         </div>
 
@@ -415,7 +417,7 @@ function Step4() {
 
       {/* Photos */}
       <Section>
-        <SectionTitle icon="📷">Bilder</SectionTitle>
+        <SectionTitle icon="camera">Bilder</SectionTitle>
         <SectionSub>Ladda upp upp till 8 bilder — första bilden blir huvudbild</SectionSub>
         <div className="grid grid-cols-4 gap-2.5">
           {/* Filled slots */}
@@ -453,21 +455,21 @@ function Step4() {
         <SectionSub>Beskriv produktens tillstånd</SectionSub>
         <div className="grid grid-cols-3 gap-2.5">
           {[
-            { icon: '✨', name: 'Nyskick', desc: 'Oanvänd / som ny' },
-            { icon: '👍', name: 'Gott skick', desc: 'Normal användning' },
-            { icon: '🔧', name: 'Slitet', desc: 'Synliga märken' },
+            { icon: 'sparkles', name: 'Nyskick', desc: 'Oanvänd / som ny' },
+            { icon: 'check-circle', name: 'Gott skick', desc: 'Normal användning' },
+            { icon: 'warning-triangle', name: 'Slitet', desc: 'Synliga märken' },
           ].map((c, i) => (
             <button
               key={c.name}
-              className={`border-2 rounded-xl py-3.5 px-3 text-center cursor-pointer transition-all ${
+              className={`border-2 rounded-xl py-4 px-3 text-center cursor-pointer transition-all flex flex-col items-center gap-1.5 ${
                 i === 1
                   ? 'border-brand-blue bg-brand-blue-50'
                   : 'border-brand-gray/40 hover:border-brand-blue/40'
               }`}
             >
-              <div className="text-[20px] mb-1">{c.icon}</div>
+              <img src={`/icons/${c.icon}.svg`} alt="" className={`w-5 h-5 ${i === 1 ? 'opacity-70' : 'opacity-35'}`} />
               <div className="text-[13px] font-semibold text-brand-dark">{c.name}</div>
-              <div className="text-[11px] text-brand-gray-medium mt-0.5">{c.desc}</div>
+              <div className="text-[11px] text-brand-gray-medium">{c.desc}</div>
             </button>
           ))}
         </div>
@@ -475,7 +477,7 @@ function Step4() {
 
       {/* Price */}
       <Section>
-        <SectionTitle icon="💰">Pris</SectionTitle>
+        <SectionTitle icon="tag">Pris</SectionTitle>
         <SectionSub>Ange ditt pris — vi visar liknande annonser som referens</SectionSub>
         <div className="relative mb-3">
           <input

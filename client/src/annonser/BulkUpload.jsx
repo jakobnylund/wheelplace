@@ -66,16 +66,18 @@ function Step1() {
         <h3 className="text-[15px] font-bold text-brand-dark mb-4 font-heading">Så här fungerar det</h3>
         <div className="grid grid-cols-4 gap-4">
           {[
-            { num: 1, icon: '📥', title: 'Ladda ner mall', desc: 'Fyll i din lagerlista i vår CSV-mall' },
-            { num: 2, icon: '⬆️', title: 'Ladda upp fil', desc: 'Dra & släpp din CSV eller zip med bilder' },
-            { num: 3, icon: '🔍', title: 'Automatisk validering', desc: 'Vi kontrollerar kompatibilitet mot bilmodeller' },
-            { num: 4, icon: '🚀', title: 'Publicera direkt', desc: 'Godkänn och sätt live med ett klick' },
+            { num: 1, icon: 'document', title: 'Ladda ner mall', desc: 'Fyll i din lagerlista i vår CSV-mall' },
+            { num: 2, icon: 'clipboard', title: 'Ladda upp fil', desc: 'Dra & släpp din CSV eller zip med bilder' },
+            { num: 3, icon: 'search', title: 'Automatisk validering', desc: 'Vi kontrollerar kompatibilitet mot bilmodeller' },
+            { num: 4, icon: 'check-circle', title: 'Publicera direkt', desc: 'Godkänn och sätt live med ett klick' },
           ].map((s) => (
-            <div key={s.num} className="text-center px-2">
-              <div className="w-6 h-6 bg-brand-blue text-white rounded-full text-[11px] font-bold inline-flex items-center justify-center mb-2">
+            <div key={s.num} className="text-center px-2 flex flex-col items-center">
+              <div className="w-6 h-6 bg-brand-blue text-white rounded-full text-[11px] font-bold inline-flex items-center justify-center mb-3">
                 {s.num}
               </div>
-              <div className="text-[28px] mb-2">{s.icon}</div>
+              <div className="w-10 h-10 rounded-lg bg-brand-gray-light flex items-center justify-center mb-2">
+                <img src={`/icons/${s.icon}.svg`} alt="" className="w-5 h-5 opacity-40" />
+              </div>
               <div className="text-[13px] font-semibold text-brand-dark mb-1">{s.title}</div>
               <div className="text-[12px] text-brand-gray-medium">{s.desc}</div>
             </div>
@@ -90,19 +92,19 @@ function Step1() {
 
         {[
           {
-            icon: '🔩',
+            icon: 'grid',
             title: 'Fälgar',
             desc: 'Enbart fälgar utan däck',
             fields: ['diameter*', 'width_j*', 'et_offset*', 'condition*', 'price_sek*', 'city*', 'bolt_pattern', 'brand', 'car_make'],
           },
           {
-            icon: '🛞',
+            icon: 'shopping-cart',
             title: 'Kompletta hjul',
             desc: 'Fälg + däck monterade',
             fields: ['diameter*', 'width_j*', 'et_offset*', 'tire_size*', 'tread_mm*', 'season*', 'condition*', 'price_sek*', 'city*', 'tire_brand', 'car_make'],
           },
           {
-            icon: '⚫',
+            icon: 'filter',
             title: 'Däck (enbart)',
             desc: 'Lösa däck — vinter, sommar eller allround',
             fields: ['tire_size*', 'tread_mm*', 'season*', 'condition*', 'price_sek*', 'city*', 'tire_brand', 'dot_year'],
@@ -112,7 +114,9 @@ function Step1() {
             key={t.title}
             className="border-2 border-brand-gray/30 rounded-xl p-5 flex items-center gap-4 mb-3 cursor-pointer hover:border-brand-blue hover:bg-brand-blue-50/20 transition-all"
           >
-            <span className="text-[32px] shrink-0">{t.icon}</span>
+            <div className="w-12 h-12 rounded-lg bg-brand-gray-light flex items-center justify-center shrink-0">
+              <img src={`/icons/${t.icon}.svg`} alt="" className="w-6 h-6 opacity-40" />
+            </div>
             <div className="flex-1">
               <div className="text-[14px] font-bold text-brand-dark mb-0.5">{t.title}</div>
               <div className="text-[13px] text-brand-gray-medium mb-2">{t.desc}</div>
@@ -148,17 +152,21 @@ function Step1() {
       <Section>
         <h3 className="text-[15px] font-bold text-brand-dark mb-4 font-heading">Tips för bra annonser</h3>
         <div className="grid grid-cols-2 gap-3">
-          <div className="bg-brand-blue-50 border border-brand-blue-100 rounded-lg p-3 text-[13px] text-brand-blue">
-            ✅ Ange <strong>car_make + car_model + year</strong> → vi matchar automatiskt mot rätt bilmodeller
+          <div className="bg-brand-blue-50 border border-brand-blue-100 rounded-lg p-3 text-[13px] text-brand-blue flex items-start gap-2">
+            <img src="/icons/check-circle.svg" alt="" className="w-4 h-4 mt-0.5 opacity-60 shrink-0" />
+            Ange <strong>car_make + car_model + year</strong> → vi matchar automatiskt mot rätt bilmodeller
           </div>
-          <div className="bg-brand-blue-50 border border-brand-blue-100 rounded-lg p-3 text-[13px] text-brand-blue">
-            ✅ Lägg bilder i en <strong>zip-fil</strong> med samma namn som image_url-kolumnen
+          <div className="bg-brand-blue-50 border border-brand-blue-100 rounded-lg p-3 text-[13px] text-brand-blue flex items-start gap-2">
+            <img src="/icons/check-circle.svg" alt="" className="w-4 h-4 mt-0.5 opacity-60 shrink-0" />
+            Lägg bilder i en <strong>zip-fil</strong> med samma namn som image_url-kolumnen
           </div>
-          <div className="bg-brand-gray-light border border-brand-gray/40 rounded-lg p-3 text-[13px] text-brand-dark">
-            ⚠️ ET-offset i CSV gäller <strong>din specifika fälg</strong> — inte bilens godkända range
+          <div className="bg-brand-gray-light border border-brand-gray/40 rounded-lg p-3 text-[13px] text-brand-dark flex items-start gap-2">
+            <img src="/icons/warning-triangle.svg" alt="" className="w-4 h-4 mt-0.5 opacity-40 shrink-0" />
+            ET-offset i CSV gäller <strong>din specifika fälg</strong> — inte bilens godkända range
           </div>
-          <div className="bg-brand-gray-light border border-brand-gray/40 rounded-lg p-3 text-[13px] text-brand-dark">
-            ⚠️ Mönsterdjup anges per <strong>enskilt däck</strong> — inte ett medelvärde
+          <div className="bg-brand-gray-light border border-brand-gray/40 rounded-lg p-3 text-[13px] text-brand-dark flex items-start gap-2">
+            <img src="/icons/warning-triangle.svg" alt="" className="w-4 h-4 mt-0.5 opacity-40 shrink-0" />
+            Mönsterdjup anges per <strong>enskilt däck</strong> — inte ett medelvärde
           </div>
         </div>
       </Section>
@@ -180,13 +188,13 @@ function Step2() {
       <Section>
         {hasFile ? (
           <div className="border-2 border-brand-green rounded-xl p-10 text-center bg-brand-gray-light">
-            <div className="text-[36px] mb-2">✅</div>
+            <img src="/icons/check-circle.svg" alt="" className="w-10 h-10 mx-auto opacity-50 mb-2" />
             <div className="text-[15px] font-semibold text-brand-dark">kompletta_hjul_lager_mars2026.csv</div>
             <div className="text-[13px] text-brand-gray-medium mt-1">47 rader · 128 KB · Uppladdad 20:14</div>
           </div>
         ) : (
           <div className="border-2 border-dashed border-brand-gray/40 rounded-xl p-12 text-center cursor-pointer hover:border-brand-blue hover:bg-brand-blue-50/20 transition-all">
-            <div className="text-[36px] mb-3">📂</div>
+            <img src="/icons/clipboard.svg" alt="" className="w-10 h-10 mx-auto opacity-30 mb-3" />
             <div className="text-[16px] font-semibold text-brand-dark mb-1.5">Dra & släpp din CSV-fil här</div>
             <div className="text-[13px] text-brand-gray-medium">
               eller <span className="text-brand-blue underline">välj fil från din dator</span>
@@ -215,7 +223,7 @@ function Step2() {
             </div>
             <div className="bg-brand-gray-light border-[1.5px] border-brand-gray/40 rounded-xl p-4">
               <div className="text-[28px] font-extrabold text-brand-dark">6</div>
-              <div className="text-[13px] font-medium text-brand-dark">⚠ Kräver granskning</div>
+              <div className="text-[13px] font-medium text-brand-dark">Kräver granskning</div>
               <div className="text-[12px] text-brand-gray-medium mt-1">Varningar — bör ses över</div>
             </div>
             <div className="bg-red-50 border-[1.5px] border-red-300 rounded-xl p-4">
@@ -293,9 +301,9 @@ function Step2() {
                 </thead>
                 <tbody>
                   {[
-                    { status: 'ok', title: 'Kompletta vinterhjul 18"', meta: 'Rad 1 · Nokian Hakkapeliitta', specs: ['18"', '7.5J', 'ET45', '235/60R18', '8mm ❄️'], compat: '✓ 5x108 verifierat', car: 'Volvo XC60 2015–2022', price: '5 500 kr' },
-                    { status: 'ok', title: 'Kompletta sommarhjul 19"', meta: 'Rad 2 · Michelin Pilot Sport', specs: ['19"', '8J', 'ET43', '235/55R19', '6mm ☀️'], compat: '✓ 5x108 verifierat', car: 'Volvo XC60 2017–2022', price: '8 900 kr' },
-                    { status: 'warn', title: 'Vinterfälgar 17" stål', meta: 'Rad 5 · Rial', specs: ['17"', '7J', 'ET50'], compat: '⚠ ET50 = gräns', car: 'Volvo XC60', price: '2 800 kr' },
+                    { status: 'ok', title: 'Kompletta vinterhjul 18"', meta: 'Rad 1 · Nokian Hakkapeliitta', specs: ['18"', '7.5J', 'ET45', '235/60R18', '8mm Vinter'], compat: '5x108 verifierat', car: 'Volvo XC60 2015–2022', price: '5 500 kr' },
+                    { status: 'ok', title: 'Kompletta sommarhjul 19"', meta: 'Rad 2 · Michelin Pilot Sport', specs: ['19"', '8J', 'ET43', '235/55R19', '6mm Sommar'], compat: '5x108 verifierat', car: 'Volvo XC60 2017–2022', price: '8 900 kr' },
+                    { status: 'warn', title: 'Vinterfälgar 17" stål', meta: 'Rad 5 · Rial', specs: ['17"', '7J', 'ET50'], compat: 'ET50 = gräns', car: 'Volvo XC60', price: '2 800 kr' },
                     { status: 'err', title: 'Komplett 20" sommar', meta: 'Rad 8 · Pirelli', specs: ['20"', '9J', '—', '255/45R20'], compat: '✕ ET saknas', car: 'Volvo XC60', price: '12 500 kr' },
                   ].map((row, i) => (
                     <tr key={i} className={`hover:bg-brand-gray-light/30 border-b border-brand-gray-light ${
@@ -306,7 +314,7 @@ function Step2() {
                         <span className={`inline-flex items-center gap-1 px-2 py-1 rounded-md text-[12px] font-semibold ${
                           row.status === 'ok' ? 'bg-brand-blue-50 text-brand-blue' : row.status === 'warn' ? 'bg-brand-gray-light text-brand-dark' : 'bg-red-50 text-red-800'
                         }`}>
-                          {row.status === 'ok' ? '✓ OK' : row.status === 'warn' ? '⚠ Varning' : '✕ Fel'}
+                          {row.status === 'ok' ? 'OK' : row.status === 'warn' ? 'Varning' : 'Fel'}
                         </span>
                       </td>
                       <td className="px-3 py-3">
@@ -374,7 +382,8 @@ function Step3() {
       </div>
 
       <div className="bg-brand-gray-light border border-brand-gray/40 rounded-xl px-4 py-3 text-[13px] text-brand-dark flex items-start gap-2 mb-5">
-        ⚠️ Annonserna publiceras direkt på Wheelplace och blir synliga för köpare. Du kan avpublicera när som helst från "Mina annonser".
+        <img src="/icons/warning-triangle.svg" alt="" className="w-4 h-4 mt-0.5 opacity-40 shrink-0" />
+        Annonserna publiceras direkt på Wheelplace och blir synliga för köpare. Du kan avpublicera när som helst från "Mina annonser".
       </div>
 
       <button className="w-full py-4.5 bg-brand-blue text-white rounded-xl text-[16px] font-bold hover:bg-brand-blue-dark transition-colors cursor-pointer shadow-md">
@@ -389,7 +398,7 @@ function Step3() {
 function Step4() {
   return (
     <div className="text-center py-10">
-      <div className="text-[56px] mb-4">🎉</div>
+      <img src="/icons/check-circle.svg" alt="" className="w-16 h-16 mx-auto opacity-40 mb-4" />
       <h2 className="text-[24px] font-extrabold text-brand-dark font-heading mb-2">Klart!</h2>
       <p className="text-[15px] text-brand-gray-medium mb-8">44 annonser har publicerats på Wheelplace</p>
 
@@ -439,7 +448,10 @@ export default function BulkUpload() {
       <div className="bg-white border-b border-brand-gray/30 px-5 sm:px-8">
         <div className="max-w-site mx-auto">
           <div className="max-w-[900px] mx-auto flex items-center justify-between py-2.5">
-            <span className="text-[12px] font-semibold text-brand-blue bg-brand-blue-50 px-2.5 py-1 rounded-full">🏢 Företagskonto</span>
+            <span className="text-[12px] font-semibold text-brand-blue bg-brand-blue-50 px-2.5 py-1 rounded-full flex items-center gap-1.5">
+            <img src="/icons/building.svg" alt="" className="w-3.5 h-3.5 opacity-60" />
+            Företagskonto
+          </span>
             <span className="text-[13px] text-brand-gray-medium">Magnus Hansson · <a href="#" className="text-brand-blue hover:underline">← Mina annonser</a></span>
           </div>
         </div>
