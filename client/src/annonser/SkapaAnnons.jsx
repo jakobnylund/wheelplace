@@ -3,7 +3,7 @@ import { useState } from 'react';
 /* ── Progress steps ────────────────────────────────────── */
 
 const steps = [
-  { id: 1, label: 'Vad saljer du?' },
+  { id: 1, label: 'Vad säljer du?' },
   { id: 2, label: 'Bilinfo' },
   { id: 3, label: 'Specifikationer' },
   { id: 4, label: 'Bilder & pris' },
@@ -94,7 +94,7 @@ function LockedField({ label, value }) {
           <img src="/icons/shield-check.svg" alt="" className="w-3.5 h-3.5 opacity-70" />
           {value}
         </span>
-        <button className="text-[12px] text-brand-gray-medium underline font-normal cursor-pointer">Andra</button>
+        <button className="text-[12px] text-brand-gray-medium underline font-normal cursor-pointer">Ändra</button>
       </div>
     </div>
   );
@@ -146,16 +146,16 @@ function Step1({ onNext }) {
 
   return (
     <div>
-      <h2 className="text-[22px] font-bold text-brand-dark font-heading mb-1">Vad saljer du?</h2>
-      <p className="text-[14px] text-brand-gray-medium mb-7">Valj produkttyp for att fa ratt falt</p>
+      <h2 className="text-[22px] font-bold text-brand-dark font-heading mb-1">Vad säljer du?</h2>
+      <p className="text-[14px] text-brand-gray-medium mb-7">Välj produkttyp för att få rätt fält</p>
 
       <Section>
-        <SectionTitle>Saljartyp</SectionTitle>
-        <SectionSub>Paverkar hur din annons visas</SectionSub>
+        <SectionTitle>Säljartyp</SectionTitle>
+        <SectionSub>Påverkar hur din annons visas</SectionSub>
         <div className="flex gap-2.5">
           {[
             { id: 'privat', icon: '👤', label: 'Privatperson' },
-            { id: 'foretag', icon: '🏢', label: 'Foretag / handlare' },
+            { id: 'foretag', icon: '🏢', label: 'Företag / handlare' },
           ].map((s) => (
             <button
               key={s.id}
@@ -175,15 +175,15 @@ function Step1({ onNext }) {
 
       <Section>
         <SectionTitle>Produkttyp</SectionTitle>
-        <SectionSub>Valj en — vi anpassar formularet</SectionSub>
+        <SectionSub>Välj en — vi anpassar formuläret</SectionSub>
         <div className="grid grid-cols-2 gap-3 mb-3">
-          <SelectableCard icon="🔩" name="Falgar" desc="Enbart falgar, utan dack" selected={productType === 'falgar'} onClick={() => setProductType('falgar')} />
-          <SelectableCard icon="🛞" name="Kompletta hjul" desc="Falg + dack monterade" selected={productType === 'komplett'} onClick={() => setProductType('komplett')} />
+          <SelectableCard icon="🔩" name="Fälgar" desc="Enbart fälgar, utan däck" selected={productType === 'falgar'} onClick={() => setProductType('falgar')} />
+          <SelectableCard icon="🛞" name="Kompletta hjul" desc="Fälg + däck monterade" selected={productType === 'komplett'} onClick={() => setProductType('komplett')} />
         </div>
         <div className="grid grid-cols-3 gap-3">
-          <SelectableCard icon="❄️" name="Vinterdack" desc="Enbart dack" selected={productType === 'vinter'} onClick={() => setProductType('vinter')} />
-          <SelectableCard icon="☀️" name="Sommardack" desc="Enbart dack" selected={productType === 'sommar'} onClick={() => setProductType('sommar')} />
-          <SelectableCard icon="⚫" name="Dack (ovrigt)" desc="All-season m.m." selected={productType === 'dack'} onClick={() => setProductType('dack')} />
+          <SelectableCard icon="❄️" name="Vinterdäck" desc="Enbart däck" selected={productType === 'vinter'} onClick={() => setProductType('vinter')} />
+          <SelectableCard icon="☀️" name="Sommardäck" desc="Enbart däck" selected={productType === 'sommar'} onClick={() => setProductType('sommar')} />
+          <SelectableCard icon="⚫" name="Däck (övrigt)" desc="All-season m.m." selected={productType === 'dack'} onClick={() => setProductType('dack')} />
         </div>
       </Section>
     </div>
@@ -198,12 +198,12 @@ function Step2() {
 
   return (
     <div>
-      <h2 className="text-[22px] font-bold text-brand-dark font-heading mb-1">Fran vilken bil?</h2>
-      <p className="text-[14px] text-brand-gray-medium mb-7">Regnumret laser in bultcirkel, navhal och ET automatiskt</p>
+      <h2 className="text-[22px] font-bold text-brand-dark font-heading mb-1">Från vilken bil?</h2>
+      <p className="text-[14px] text-brand-gray-medium mb-7">Regnumret läser in bultcirkel, navhål och ET automatiskt</p>
 
       <Section>
-        <SectionTitle icon="🚗">Sok via regnummer <span className="text-[12px] font-normal text-brand-gray-medium">(rekommenderat)</span></SectionTitle>
-        <SectionSub>Hamtar bildata fran Transportstyrelsen</SectionSub>
+        <SectionTitle icon="🚗">Sök via regnummer <span className="text-[12px] font-normal text-brand-gray-medium">(rekommenderat)</span></SectionTitle>
+        <SectionSub>Hämtar bildata från Transportstyrelsen</SectionSub>
 
         <div className="flex gap-0">
           <input
@@ -217,11 +217,11 @@ function Step2() {
             onClick={() => setRegDone(true)}
             className="px-5 py-3 bg-brand-blue text-white rounded-r-xl text-[14px] font-bold hover:bg-brand-blue-dark transition-colors cursor-pointer"
           >
-            Sok →
+            Sök →
           </button>
         </div>
         <button className="text-[13px] text-brand-gray-medium underline mt-2 block cursor-pointer hover:text-brand-dark">
-          Hoppa over — jag vet inte regnumret
+          Hoppa över — jag vet inte regnumret
         </button>
 
         {/* Car result */}
@@ -239,7 +239,7 @@ function Step2() {
             </div>
 
             <div className="flex gap-2 flex-wrap mb-3">
-              {['5x108', 'Navhal 63.4mm', 'ET 40–50.5mm', '5 bultar'].map((spec) => (
+              {['5x108', 'Navhål 63.4mm', 'ET 40–50.5mm', '5 bultar'].map((spec) => (
                 <span key={spec} className="bg-white border border-green-200 rounded-lg px-2.5 py-1 text-[12px] font-semibold text-green-800 flex items-center gap-1.5">
                   <img src="/icons/shield-check.svg" alt="" className="w-3 h-3 opacity-60" />
                   {spec}
@@ -249,7 +249,7 @@ function Step2() {
 
             {/* Motor picker */}
             <div className="border-t border-green-200 pt-3 mt-1">
-              <p className="text-[12px] font-semibold text-green-800 mb-2">Valj motorvariant for korrekt bromsinfo:</p>
+              <p className="text-[12px] font-semibold text-green-800 mb-2">Välj motorvariant för korrekt bromsinfo:</p>
               <div className="flex gap-2 flex-wrap">
                 {[
                   { id: 'T5', sub: '250hk bensin' },
@@ -274,7 +274,7 @@ function Step2() {
               </div>
             </div>
 
-            <button className="text-[12px] text-brand-gray-medium underline mt-3 block cursor-pointer">Inte ratt bil? Andra</button>
+            <button className="text-[12px] text-brand-gray-medium underline mt-3 block cursor-pointer">Inte rätt bil? Ändra</button>
           </div>
         )}
       </Section>
@@ -292,21 +292,21 @@ function Step3() {
   return (
     <div>
       <h2 className="text-[22px] font-bold text-brand-dark font-heading mb-1">Produktspecifikationer</h2>
-      <p className="text-[14px] text-brand-gray-medium mb-5">Falten med last ar hamtade fran din bil — bekrafta de ovriga</p>
+      <p className="text-[14px] text-brand-gray-medium mb-5">Fälten med lås är hämtade från din bil — bekräfta de övriga</p>
 
       {/* Info bar */}
       <div className="bg-brand-blue-50 border border-brand-blue-100 rounded-xl px-4 py-3 text-[13px] text-brand-blue flex items-start gap-2.5 mb-5">
         <img src="/icons/sparkles.svg" alt="" className="w-4 h-4 mt-0.5 opacity-70" />
-        Du saljer <strong>Kompletta hjul</strong> for <strong>Volvo XC60 D4</strong> — bultcirkel och navhal ar lasta.
+        Du säljer <strong>Kompletta hjul</strong> för <strong>Volvo XC60 D4</strong> — bultcirkel och navhål är låsta.
       </div>
 
       {/* Locked specs */}
       <Section>
-        <SectionTitle icon="🔒">Automatiskt lasta varden</SectionTitle>
-        <SectionSub>Hamtat fran regnummer PKE23J</SectionSub>
+        <SectionTitle icon="🔒">Automatiskt låsta värden</SectionTitle>
+        <SectionSub>Hämtat från regnummer PKE23J</SectionSub>
         <div className="grid grid-cols-2 gap-4">
           <LockedField label="Bultcirkel" value="5x108" />
-          <LockedField label="Navhal" value="63.4mm" />
+          <LockedField label="Navhål" value="63.4mm" />
           <LockedField label="Antal bultar" value="5" />
           <LockedField label="ET-range (bil)" value="40–50.5mm" />
         </div>
@@ -315,7 +315,7 @@ function Step3() {
       {/* Diameter */}
       <Section>
         <SectionTitle>Storlek</SectionTitle>
-        <SectionSub>Grona storlekar = OEM-godkant for din Volvo XC60</SectionSub>
+        <SectionSub>Gröna storlekar = OEM-godkänt för din Volvo XC60</SectionSub>
 
         <div className="mb-5">
           <FieldLabel required>Diameter</FieldLabel>
@@ -332,22 +332,22 @@ function Step3() {
               </Chip>
             ))}
           </div>
-          <p className="text-[12px] text-brand-gray-medium mt-1.5">Gra = passar inte denna bil</p>
+          <p className="text-[12px] text-brand-gray-medium mt-1.5">Grå = passar inte denna bil</p>
         </div>
 
         <div>
-          <FieldLabel required auto>Dackdimension</FieldLabel>
+          <FieldLabel required auto>Däckdimension</FieldLabel>
           <div className="flex flex-wrap gap-2">
             <Chip selected compat>235/60R18</Chip>
           </div>
-          <p className="text-[12px] text-brand-blue mt-1.5">Baserat pa OEM-spec for XC60 + 18"</p>
+          <p className="text-[12px] text-brand-blue mt-1.5">Baserat på OEM-spec för XC60 + 18"</p>
         </div>
       </Section>
 
       {/* Separator */}
       <div className="flex items-center gap-3 my-5">
         <div className="flex-1 h-px bg-brand-gray/40" />
-        <span className="text-[11px] font-bold text-brand-gray-medium uppercase tracking-wide">Falgspecifikationer — fyll i manuellt</span>
+        <span className="text-[11px] font-bold text-brand-gray-medium uppercase tracking-wide">Fälgspecifikationer — fyll i manuellt</span>
         <div className="flex-1 h-px bg-brand-gray/40" />
       </div>
 
@@ -355,7 +355,7 @@ function Step3() {
       <Section>
         <div className="grid grid-cols-2 gap-4 mb-4">
           <div>
-            <FieldLabel required>Falgbredd (J)</FieldLabel>
+            <FieldLabel required>Fälgbredd (J)</FieldLabel>
             <div className="flex flex-wrap gap-2">
               {['7J', '7.5J', '8J', '8.5J', '9J'].map((w) => (
                 <Chip key={w} selected={w === width} onClick={() => setWidth(w)}>{w}</Chip>
@@ -363,19 +363,19 @@ function Step3() {
             </div>
           </div>
           <div>
-            <FieldLabel required>ET-offset (din falg)</FieldLabel>
+            <FieldLabel required>ET-offset (din fälg)</FieldLabel>
             <input
               type="number"
               defaultValue={45}
               className="w-full px-3.5 py-2.5 border-[1.5px] border-brand-green rounded-lg text-[14px] font-semibold outline-none focus:border-brand-blue focus:shadow-[0_0_0_3px_rgba(71,123,244,0.12)] transition-all"
             />
-            <p className="text-[12px] text-brand-gray-medium mt-1">Bilens godkanda range: 40–50.5mm ✓</p>
+            <p className="text-[12px] text-brand-gray-medium mt-1">Bilens godkända range: 40–50.5mm ✓</p>
           </div>
         </div>
 
         <div className="grid grid-cols-2 gap-4 mb-4">
           <div>
-            <FieldLabel>Falgmarke</FieldLabel>
+            <FieldLabel>Fälgmärke</FieldLabel>
             <input
               type="text"
               placeholder="t.ex. Volvo OEM, BBS, Enkei"
@@ -383,10 +383,10 @@ function Step3() {
             />
           </div>
           <div>
-            <FieldLabel>Falgtyp</FieldLabel>
+            <FieldLabel>Fälgtyp</FieldLabel>
             <div className="flex flex-wrap gap-2">
               <Chip selected={rimType === 'alu'} onClick={() => setRimType('alu')}>Aluminium</Chip>
-              <Chip selected={rimType === 'stal'} onClick={() => setRimType('stal')}>Stal</Chip>
+              <Chip selected={rimType === 'stal'} onClick={() => setRimType('stal')}>Stål</Chip>
             </div>
           </div>
         </div>
@@ -394,7 +394,7 @@ function Step3() {
         <div>
           <FieldLabel>TPMS (trycksensorer)</FieldLabel>
           <div className="flex items-center justify-between py-2">
-            <span className="text-[13px] text-brand-dark">Ingar TPMS-sensorer?</span>
+            <span className="text-[13px] text-brand-dark">Ingår TPMS-sensorer?</span>
             <ToggleSwitch defaultOn />
           </div>
         </div>
@@ -409,12 +409,12 @@ function Step4() {
   return (
     <div>
       <h2 className="text-[22px] font-bold text-brand-dark font-heading mb-1">Bilder & pris</h2>
-      <p className="text-[14px] text-brand-gray-medium mb-7">Bra bilder okar chansen att salja snabbt</p>
+      <p className="text-[14px] text-brand-gray-medium mb-7">Bra bilder ökar chansen att sälja snabbt</p>
 
       {/* Photos */}
       <Section>
         <SectionTitle icon="📷">Bilder</SectionTitle>
-        <SectionSub>Ladda upp upp till 8 bilder — forsta bilden blir huvudbild</SectionSub>
+        <SectionSub>Ladda upp upp till 8 bilder — första bilden blir huvudbild</SectionSub>
         <div className="grid grid-cols-4 gap-2.5">
           {/* Filled slots */}
           {[0, 1].map((i) => (
@@ -448,12 +448,12 @@ function Step4() {
       {/* Condition */}
       <Section>
         <SectionTitle>Skick</SectionTitle>
-        <SectionSub>Beskriv produktens tillstand</SectionSub>
+        <SectionSub>Beskriv produktens tillstånd</SectionSub>
         <div className="grid grid-cols-3 gap-2.5">
           {[
-            { icon: '✨', name: 'Nyskick', desc: 'Oanvand / som ny' },
-            { icon: '👍', name: 'Gott skick', desc: 'Normal anvandning' },
-            { icon: '🔧', name: 'Slitet', desc: 'Synliga marken' },
+            { icon: '✨', name: 'Nyskick', desc: 'Oanvänd / som ny' },
+            { icon: '👍', name: 'Gott skick', desc: 'Normal användning' },
+            { icon: '🔧', name: 'Slitet', desc: 'Synliga märken' },
           ].map((c, i) => (
             <button
               key={c.name}
@@ -485,7 +485,7 @@ function Step4() {
         </div>
         <div className="bg-amber-50 border border-amber-200 rounded-xl px-4 py-3 text-[13px] text-amber-800 flex items-center gap-2">
           <img src="/icons/tag.svg" alt="" className="w-4 h-4 opacity-60" />
-          Liknande produkter saljs for 6 500–11 000 kr — ditt pris ligger bra!
+          Liknande produkter säljs för 6 500–11 000 kr — ditt pris ligger bra!
         </div>
       </Section>
 
@@ -498,17 +498,17 @@ function Step4() {
           className="w-full px-3.5 py-2.5 border-[1.5px] border-brand-gray/40 rounded-lg text-[14px] outline-none focus:border-brand-blue transition-colors mb-3"
         />
         <div className="bg-brand-blue-50 border border-brand-blue-100 rounded-lg px-3.5 py-2.5 flex items-center justify-between text-[13px]">
-          <span className="text-brand-blue font-medium">Forslag: "Vinterhjul 18" 5x108 Nokian Hakka — Volvo XC60"</span>
-          <button className="text-brand-blue underline text-[12px] shrink-0 ml-3 cursor-pointer">Anvand</button>
+          <span className="text-brand-blue font-medium">Förslag: "Vinterhjul 18" 5x108 Nokian Hakka — Volvo XC60"</span>
+          <button className="text-brand-blue underline text-[12px] shrink-0 ml-3 cursor-pointer">Använd</button>
         </div>
 
         <div className="mt-5">
           <FieldLabel>Beskrivning</FieldLabel>
           <textarea
             rows={4}
-            placeholder="Beskriv produkten — skick, anvandning, eventella defekter..."
+            placeholder="Beskriv produkten — skick, användning, eventuella defekter..."
             className="w-full px-3.5 py-2.5 border-[1.5px] border-brand-gray/40 rounded-lg text-[14px] outline-none focus:border-brand-blue transition-colors resize-y"
-            defaultValue="Kompletta vinterhjul, korta ca 8000 km. Nokian Hakkapeliitta 10, 8mm monster. Falgarna ar i perfekt skick. Kan levereras med TPMS-sensorer."
+            defaultValue="Kompletta vinterhjul, körda ca 8000 km. Nokian Hakkapeliitta 10, 8mm mönster. Fälgarna är i perfekt skick. Kan levereras med TPMS-sensorer."
           />
           <p className="text-[12px] text-brand-gray-medium text-right mt-1">142 / 500</p>
         </div>
@@ -522,8 +522,8 @@ function Step4() {
 function Step5() {
   return (
     <div>
-      <h2 className="text-[22px] font-bold text-brand-dark font-heading mb-1">Forhandsgranska & publicera</h2>
-      <p className="text-[14px] text-brand-gray-medium mb-7">Sa har ser din annons ut for kopare</p>
+      <h2 className="text-[22px] font-bold text-brand-dark font-heading mb-1">Förhandsgranska & publicera</h2>
+      <p className="text-[14px] text-brand-gray-medium mb-7">Så här ser din annons ut för köpare</p>
 
       {/* Preview card */}
       <Section className="p-0 overflow-hidden">
@@ -548,12 +548,12 @@ function Step5() {
 
       {/* Toggles */}
       <Section>
-        <SectionTitle>Installningar</SectionTitle>
+        <SectionTitle>Inställningar</SectionTitle>
         <div className="divide-y divide-brand-gray-light">
           {[
-            { label: 'Visa telefonnummer i annons', sub: 'Kopare kan ringa dig direkt', on: true },
-            { label: 'Tillat meddelanden', sub: 'Kopare kan skicka fraga via Wheelplace', on: true },
-            { label: 'Marknadsforing (gratis)', sub: 'Vi kan visa din annons pa sociala medier', on: false },
+            { label: 'Visa telefonnummer i annons', sub: 'Köpare kan ringa dig direkt', on: true },
+            { label: 'Tillåt meddelanden', sub: 'Köpare kan skicka fråga via Wheelplace', on: true },
+            { label: 'Marknadsföring (gratis)', sub: 'Vi kan visa din annons på sociala medier', on: false },
           ].map((t) => (
             <div key={t.label} className="flex items-center justify-between py-3">
               <div>
@@ -633,7 +633,7 @@ export default function SkapaAnnons() {
               : 'bg-brand-blue text-white hover:bg-brand-blue-dark'
           } disabled:opacity-30`}
         >
-          {step === 4 ? 'Forhandsgranska' : step === 5 ? 'Publicera' : 'Nasta'} →
+          {step === 4 ? 'Förhandsgranska' : step === 5 ? 'Publicera' : 'Nästa'} →
         </button>
       </div>
     </div>

@@ -1,57 +1,48 @@
-import { NavLink, Outlet, useLocation } from 'react-router-dom';
+import { NavLink, Outlet } from 'react-router-dom';
+import Navbar from '../components/ui/Navbar';
 
-const navItems = [
-  { to: '/annonser-proto', label: 'Annonser', icon: '/icons/grid.svg', end: true },
-  { to: '/annonser-proto/skapa', label: 'Skapa annons', icon: '/icons/plus.svg' },
-  { to: '/annonser-proto/bulk', label: 'Bulk-uppladdning', icon: '/icons/clipboard.svg' },
-  { to: '/annonser-proto/seo/volvo-xc60', label: 'SEO-sida', icon: '/icons/document.svg' },
+const protoNavItems = [
+  { to: '/annonser-proto', label: 'Annonser', end: true },
+  { to: '/annonser-proto/skapa', label: 'Skapa annons' },
+  { to: '/annonser-proto/bulk', label: 'Bulk-uppladdning' },
+  { to: '/annonser-proto/seo/volvo-xc60', label: 'SEO-sida' },
 ];
 
 export default function AnnonserLayout() {
-  const location = useLocation();
-
   return (
     <div className="min-h-screen bg-brand-gray-light">
-      {/* Top navigator bar */}
-      <div className="sticky top-0 z-50 bg-white border-b border-brand-gray/40 backdrop-blur-md bg-white/95">
-        <div className="max-w-site mx-auto px-5 md:px-8">
-          <div className="flex items-center h-16 gap-6">
-            {/* Logo / back link */}
-            <a href="/" className="flex items-center gap-2 shrink-0 mr-2">
-              <img src="/logo.svg" alt="Wheelplace" className="h-6" />
-            </a>
+      {/* Production navbar */}
+      <Navbar activePage="annonser" />
 
-            {/* Prototype badge */}
-            <span className="hidden sm:inline-flex items-center gap-1.5 text-[11px] font-semibold text-brand-blue bg-brand-blue-50 px-2.5 py-1 rounded-full shrink-0 tracking-wide uppercase">
-              Prototyp
-            </span>
-
-            {/* Nav items */}
-            <nav className="flex items-center gap-1 ml-auto overflow-x-auto scrollbar-hide">
-              {navItems.map(({ to, label, icon, end }) => (
-                <NavLink
-                  key={to}
-                  to={to}
-                  end={end}
-                  className={({ isActive }) =>
-                    `flex items-center gap-2 px-4 py-2 rounded-lg text-[13px] font-medium whitespace-nowrap transition-colors duration-150 ${
-                      isActive
-                        ? 'bg-brand-blue-50 text-brand-blue font-semibold'
-                        : 'text-brand-gray-medium hover:text-brand-dark hover:bg-brand-gray-light'
-                    }`
-                  }
-                >
-                  <img src={icon} alt="" className="w-4 h-4 opacity-60" />
-                  {label}
-                </NavLink>
-              ))}
-            </nav>
+      {/* Prototype sub-nav — sits below the 72px navbar */}
+      <div className="fixed top-[72px] left-0 right-0 z-40 bg-brand-dark/95 backdrop-blur-sm">
+        <div className="px-5 sm:px-8">
+          <div className="max-w-site mx-auto flex items-center h-10 gap-1 overflow-x-auto">
+            <span className="text-[11px] font-bold text-white/40 uppercase tracking-wider mr-3 shrink-0">Prototyp</span>
+            {protoNavItems.map(({ to, label, end }) => (
+              <NavLink
+                key={to}
+                to={to}
+                end={end}
+                className={({ isActive }) =>
+                  `px-3 py-1.5 rounded-md text-[12px] font-medium whitespace-nowrap transition-colors ${
+                    isActive
+                      ? 'bg-brand-blue text-white'
+                      : 'text-white/60 hover:text-white hover:bg-white/10'
+                  }`
+                }
+              >
+                {label}
+              </NavLink>
+            ))}
           </div>
         </div>
       </div>
 
-      {/* Page content */}
-      <Outlet />
+      {/* Page content — offset for both navbar (72px) + proto-nav (40px) */}
+      <div className="pt-[112px]">
+        <Outlet />
+      </div>
     </div>
   );
 }
