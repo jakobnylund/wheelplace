@@ -13,7 +13,7 @@ function StepBar({ current }) {
   return (
     <div className="bg-white border-b border-brand-gray/30 px-5 sm:px-8">
       <div className="max-w-site mx-auto">
-        <div className="max-w-[720px] mx-auto flex items-center py-4">
+        <div className="max-w-[900px] mx-auto flex items-center py-4">
           {steps.map((step, i) => (
             <div key={step.id} className="contents">
               <div className="flex items-center gap-2 shrink-0">
@@ -438,7 +438,7 @@ export default function BulkUpload() {
       {/* Top bar */}
       <div className="bg-white border-b border-brand-gray/30 px-5 sm:px-8">
         <div className="max-w-site mx-auto">
-          <div className="max-w-[720px] mx-auto flex items-center justify-between py-2.5">
+          <div className="max-w-[900px] mx-auto flex items-center justify-between py-2.5">
             <span className="text-[12px] font-semibold text-brand-blue bg-brand-blue-50 px-2.5 py-1 rounded-full">🏢 Företagskonto</span>
             <span className="text-[13px] text-brand-gray-medium">Magnus Hansson · <a href="#" className="text-brand-blue hover:underline">← Mina annonser</a></span>
           </div>
@@ -447,7 +447,7 @@ export default function BulkUpload() {
 
       <div className="px-5 sm:px-8">
         <div className="max-w-site mx-auto">
-          <div className="max-w-[720px] mx-auto py-8">
+          <div className="max-w-[900px] mx-auto py-8">
             {step === 1 && <Step1 />}
             {step === 2 && <Step2 />}
             {step === 3 && <Step3 />}
