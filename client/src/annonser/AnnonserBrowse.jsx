@@ -79,7 +79,7 @@ function FilterChip({ label }) {
 
 /* ── Listing card (matches production exactly) ─────────── */
 
-function ListingCard({ title, meta, specs, price, location, condition, compat }) {
+function ListingCard({ title, meta, specs, price, location, condition, compat, image }) {
   return (
     <a
       href="#"
@@ -87,12 +87,11 @@ function ListingCard({ title, meta, specs, price, location, condition, compat })
     >
       {/* Image — 4:3 aspect, matching production */}
       <div className="relative aspect-[4/3] overflow-hidden bg-brand-gray-light">
-        {/* Placeholder wheel image */}
-        <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-brand-gray-light to-brand-gray/20">
-          <div className="w-28 h-28 rounded-full border-[8px] border-brand-gray/40 flex items-center justify-center group-hover:scale-105 transition-transform duration-500">
-            <div className="w-12 h-12 rounded-full border-[4px] border-brand-gray/30" />
-          </div>
-        </div>
+        <img
+          src={image}
+          alt={title}
+          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+        />
 
         {/* Condition badge — top left */}
         {condition === 'new' && (
@@ -171,15 +170,15 @@ const categories = [
 /* ── Sample listings ───────────────────────────────────── */
 
 const sampleListings = [
-  { title: 'Mercedes AMG 19" 5×112 ET35', meta: 'AutoCenter AB', specs: '19" · 5×112 · ET35 · 8.5J · Begagnade - Bra skick', price: '7 500 kr', location: 'Stockholms län', condition: 'used', compat: true },
-  { title: 'OEM Mercedes 18" AMG-linje', meta: 'DäckHuset i Göteborg', specs: '18" · 5×112 · ET48 · 8J · Nya', price: '12 000 kr', location: 'Västra Götalands län', condition: 'new', compat: true },
-  { title: 'Mercedes 19" Multispoke GLC', meta: 'PrivatAnvändare', specs: '19" · 5×112 · ET44 · 8J · Begagnade - Bra skick', price: '9 900 kr', location: 'Skåne län', condition: 'used', compat: false },
-  { title: '19" Forged Aluett 5×112', meta: 'HjulHandlaren', specs: '19" · 5×112 · ET40 · Begagnade - Mycket bra skick', price: '14 500 kr', location: 'Uppsala län', condition: 'used', compat: true },
-  { title: 'Mercedes 22" S-klass OEM-design', meta: 'LuxWheels AB', specs: '22" · 5×112 · ET50 · 10J · Nya', price: '28 000 kr', location: 'Stockholms län', condition: 'new', compat: false },
-  { title: '18" Mercedes C43 AMG 4-ek', meta: 'PrivatAnvändare', specs: '18" · 5×112 · ET43 · Begagnade - Bra skick', price: '4 800 kr', location: 'Västmanlands län', condition: 'used', compat: true },
-  { title: 'Volvo XC60 Original 19" vinter', meta: 'NordicWheels', specs: '19" · 5×108 · ET42.5 · 8J · Begagnade - Bra skick', price: '11 200 kr', location: 'Östergötlands län', condition: 'used', compat: true },
-  { title: 'Kompletta sommarhjul BMW 18"', meta: 'TireShop Sthlm', specs: '18" · 5×120 · ET45 · 8J · Michelin · Begagnade', price: '8 900 kr', location: 'Stockholms län', condition: 'used', compat: false },
-  { title: 'Nokian Hakkapeliitta 10 235/55R19', meta: 'DäckCenter Nord', specs: '235/55R19 · 8mm · Vinter · Nya', price: '6 400 kr', location: 'Västerbottens län', condition: 'new', compat: true },
+  { title: 'Coventry Hjul (Jaguar) Good Year Eagle 245/45 R18', meta: 'AutoCenter AB', specs: '245/45R18 · Ca 6 mm · Begagnade - Bra skick', price: '22 000 kr', location: 'Västra Götalands län', condition: 'used', compat: true, image: '/listings/listing-coventry-1.avif' },
+  { title: 'Nissan Qashqai originalfälgar 225/45 R19 med TPMS', meta: 'DäckHuset i Göteborg', specs: '225/45R19 · 4–7 mm · Begagnade - Bra skick', price: '5 900 kr', location: 'Jönköpings län', condition: 'used', compat: true, image: '/listings/listing-nissan-1.avif' },
+  { title: 'Vinterhjul Audi Q3 17" Nya Goodyear friktion', meta: 'Svenstigs Bil AB', specs: '215/65R17 · Nya · Nya', price: '15 000 kr', location: 'Jönköpings län', condition: 'new', compat: false, image: '/listings/listing-audi-1.avif' },
+  { title: 'Audi A6 originalfälgar 19" med sommardäck', meta: 'HjulHandlaren', specs: '19" · 5×112 · ET40 · Begagnade - Mycket bra skick', price: '14 500 kr', location: 'Uppsala län', condition: 'used', compat: true, image: '/listings/listing-audi2-1.avif' },
+  { title: 'BMW 3-serie 18" M Sport komplett vinter', meta: 'LuxWheels AB', specs: '18" · 5×120 · ET45 · 8J · Nya', price: '28 000 kr', location: 'Stockholms län', condition: 'new', compat: false, image: '/listings/listing-bmw-1.avif' },
+  { title: 'Kia EV6 original 19" med sommardäck', meta: 'PrivatAnvändare', specs: '19" · 5×114.3 · ET55 · Begagnade - Bra skick', price: '8 800 kr', location: 'Västmanlands län', condition: 'used', compat: true, image: '/listings/listing-kia-1.avif' },
+  { title: 'Nissan Qashqai 17" stålfälgar vinterdäck', meta: 'NordicWheels', specs: '17" · 5×114.3 · ET40 · Begagnade - Bra skick', price: '4 200 kr', location: 'Östergötlands län', condition: 'used', compat: true, image: '/listings/listing-nissan2-1.avif' },
+  { title: 'Seat Leon 18" Cupra fälgar sommar', meta: 'TireShop Sthlm', specs: '18" · 5×112 · ET45 · 8J · Begagnade', price: '8 900 kr', location: 'Stockholms län', condition: 'used', compat: false, image: '/listings/listing-seat-1.avif' },
+  { title: 'Audi e-tron 20" original vinterhjul', meta: 'DäckCenter Nord', specs: '20" · 5×112 · ET36 · Nya', price: '16 400 kr', location: 'Västerbottens län', condition: 'new', compat: true, image: '/listings/listing-etron-1.avif' },
 ];
 
 /* ── Car spec layer ────────────────────────────────────── */

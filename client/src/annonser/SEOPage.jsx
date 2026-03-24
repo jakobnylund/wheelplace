@@ -2,13 +2,15 @@ import { useState } from 'react';
 
 /* ── Listing card (simplified for SEO page) ────────────── */
 
-function ListingCard({ title, specs, price, location, condition }) {
+function ListingCard({ title, specs, price, location, condition, image }) {
   return (
     <div className="bg-white rounded-xl border border-brand-gray/40 overflow-hidden cursor-pointer transition-all duration-200 hover:shadow-lg hover:-translate-y-0.5 group">
-      <div className="relative aspect-[4/3] bg-gradient-to-br from-brand-gray-light to-brand-gray/20 flex items-center justify-center overflow-hidden">
-        <div className="w-16 h-16 rounded-full border-[5px] border-brand-gray/40 flex items-center justify-center">
-          <div className="w-7 h-7 rounded-full border-[3px] border-brand-gray/30" />
-        </div>
+      <div className="relative aspect-[4/3] overflow-hidden bg-brand-gray-light">
+        <img
+          src={image}
+          alt={title}
+          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+        />
         {condition === 'new' && (
           <span className="absolute top-2.5 left-2.5 bg-brand-blue text-white text-[11px] font-bold px-2 py-0.5 rounded-md">Ny</span>
         )}
@@ -50,12 +52,12 @@ export default function SEOPage() {
   ];
 
   const listings = [
-    { title: 'Vinterhjul Volvo XC60/XC90 Original 19"', specs: '235/55R19 · 5/108 · Bra skick', price: '14 900 kr', location: 'Stockholm', condition: 'used' },
-    { title: 'Nya sommarfälgar 20" XC60 II', specs: '20" · 5x108 · ET42 · 8.5J', price: '18 500 kr', location: 'Göteborg', condition: 'new' },
-    { title: 'Original 18" 5x108 Volvo XC60', specs: '18" · 5x108 · ET43 · 7.5J', price: '6 200 kr', location: 'Malmö', condition: 'used' },
-    { title: 'BBS SR 19" för Volvo 5x108', specs: '19" · 5x108 · ET40 · 8J', price: '22 000 kr', location: 'Uppsala', condition: 'new' },
-    { title: 'Vinterdäck Nokian 235/60R18 4st', specs: '235/60R18 · 7mm mönster · DOT2024', price: '4 800 kr', location: 'Linköping', condition: 'used' },
-    { title: 'Komplett sommar Michelin 19"', specs: '235/55R19 · 5x108 · ET45 · 6mm', price: '11 900 kr', location: 'Stockholm', condition: 'used' },
+    { title: 'Vinterhjul Volvo XC60/XC90 Original 19"', specs: '235/55R19 · 5/108 · Bra skick', price: '14 900 kr', location: 'Stockholm', condition: 'used', image: '/listings/listing-coventry-1.avif' },
+    { title: 'Nya sommarfälgar 20" XC60 II', specs: '20" · 5x108 · ET42 · 8.5J', price: '18 500 kr', location: 'Göteborg', condition: 'new', image: '/listings/listing-audi2-1.avif' },
+    { title: 'Original 18" 5x108 Volvo XC60', specs: '18" · 5x108 · ET43 · 7.5J', price: '6 200 kr', location: 'Malmö', condition: 'used', image: '/listings/listing-bmw-1.avif' },
+    { title: 'BBS SR 19" för Volvo 5x108', specs: '19" · 5x108 · ET40 · 8J', price: '22 000 kr', location: 'Uppsala', condition: 'new', image: '/listings/listing-nissan-1.avif' },
+    { title: 'Vinterdäck Nokian 235/60R18 4st', specs: '235/60R18 · 7mm mönster · DOT2024', price: '4 800 kr', location: 'Linköping', condition: 'used', image: '/listings/listing-kia-1.avif' },
+    { title: 'Komplett sommar Michelin 19"', specs: '235/55R19 · 5x108 · ET45 · 6mm', price: '11 900 kr', location: 'Stockholm', condition: 'used', image: '/listings/listing-seat-1.avif' },
   ];
 
   return (
