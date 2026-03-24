@@ -6,6 +6,7 @@ import LoginPage from './components/LoginPage';
 import KontaktPage from './components/KontaktPage';
 import ForfragningarPage from './components/ForfragningarPage';
 import ChatBot from './components/ui/ChatBot';
+import AnnonserPrototype from './annonser';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/logga-in" element={<LoginPage />} />
         <Route path="/kontakt" element={<KontaktPage />} />
         <Route path="/forfragningar" element={<ForfragningarPage />} />
+        <Route path="/annonser-proto/*" element={<AnnonserPrototype />} />
       </Routes>
       <ChatBot />
     </BrowserRouter>
