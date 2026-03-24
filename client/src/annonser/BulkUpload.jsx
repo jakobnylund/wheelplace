@@ -11,35 +11,37 @@ const steps = [
 
 function StepBar({ current }) {
   return (
-    <div className="bg-white border-b border-brand-gray/30 px-5 md:px-8">
-      <div className="max-w-[860px] mx-auto flex items-center py-4">
-        {steps.map((step, i) => (
-          <div key={step.id} className="contents">
-            <div className="flex items-center gap-2 shrink-0">
-              <div
-                className={`w-7 h-7 rounded-full flex items-center justify-center text-[13px] font-bold ${
-                  step.id < current
-                    ? 'bg-brand-blue text-white'
-                    : step.id === current
-                    ? 'bg-brand-blue text-white shadow-[0_0_0_3px_rgba(71,123,244,0.25)]'
-                    : 'bg-brand-gray-light text-brand-gray-medium'
-                }`}
-              >
-                {step.id < current ? '✓' : step.id}
+    <div className="bg-white border-b border-brand-gray/30 px-5 sm:px-8">
+      <div className="max-w-site mx-auto">
+        <div className="max-w-[720px] mx-auto flex items-center py-4">
+          {steps.map((step, i) => (
+            <div key={step.id} className="contents">
+              <div className="flex items-center gap-2 shrink-0">
+                <div
+                  className={`w-7 h-7 rounded-full flex items-center justify-center text-[13px] font-bold ${
+                    step.id < current
+                      ? 'bg-brand-blue text-white'
+                      : step.id === current
+                      ? 'bg-brand-blue text-white shadow-[0_0_0_3px_rgba(71,123,244,0.25)]'
+                      : 'bg-brand-gray-light text-brand-gray-medium'
+                  }`}
+                >
+                  {step.id < current ? '✓' : step.id}
+                </div>
+                <span
+                  className={`text-[13px] font-medium whitespace-nowrap hidden sm:inline ${
+                    step.id === current ? 'text-brand-blue font-semibold' : step.id < current ? 'text-brand-dark' : 'text-brand-gray-medium'
+                  }`}
+                >
+                  {step.label}
+                </span>
               </div>
-              <span
-                className={`text-[13px] font-medium whitespace-nowrap hidden sm:inline ${
-                  step.id === current ? 'text-brand-blue font-semibold' : step.id < current ? 'text-brand-dark' : 'text-brand-gray-medium'
-                }`}
-              >
-                {step.label}
-              </span>
+              {i < steps.length - 1 && (
+                <div className={`flex-1 h-0.5 mx-2 min-w-5 rounded ${step.id < current ? 'bg-brand-blue' : 'bg-brand-gray-light'}`} />
+              )}
             </div>
-            {i < steps.length - 1 && (
-              <div className={`flex-1 h-0.5 mx-2 min-w-5 rounded ${step.id < current ? 'bg-brand-blue' : 'bg-brand-gray-light'}`} />
-            )}
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </div>
   );
@@ -48,7 +50,7 @@ function StepBar({ current }) {
 /* ── Section wrapper ───────────────────────────────────── */
 
 function Section({ children, className = '' }) {
-  return <div className={`bg-white rounded-2xl border border-brand-gray/30 p-6 mb-4 ${className}`}>{children}</div>;
+  return <div className={`bg-white rounded-xl border border-brand-gray/40 p-5 mb-4 ${className}`}>{children}</div>;
 }
 
 /* ── Step 1: Prepare CSV ───────────────────────────────── */
@@ -120,7 +122,7 @@ function Step1() {
                     key={f}
                     className={`px-2 py-0.5 rounded text-[11px] ${
                       f.endsWith('*')
-                        ? 'bg-amber-100 text-amber-800 font-medium'
+                        ? 'bg-brand-blue-50 text-brand-blue font-medium'
                         : 'bg-brand-gray-light text-brand-gray-medium'
                     }`}
                   >
@@ -129,15 +131,15 @@ function Step1() {
                 ))}
               </div>
             </div>
-            <button className="px-4 py-2.5 bg-brand-blue text-white rounded-lg text-[13px] font-semibold hover:bg-brand-blue-dark transition-colors cursor-pointer shrink-0">
+            <button className="px-4 py-2.5 bg-brand-blue text-white rounded-xl text-[13px] font-semibold hover:bg-brand-blue-dark transition-colors cursor-pointer shrink-0">
               Ladda ner
             </button>
           </div>
         ))}
 
         <div className="flex gap-4 mt-3 text-[12px] text-brand-gray-medium">
-          <span className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-sm bg-amber-200 shrink-0" /> Obligatoriskt</span>
-          <span className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-sm bg-green-200 shrink-0" /> Auto-fylls</span>
+          <span className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-sm bg-brand-blue-50 shrink-0" /> Obligatoriskt</span>
+          <span className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-sm bg-brand-blue-100 shrink-0" /> Auto-fylls</span>
           <span className="flex items-center gap-1.5"><span className="w-2.5 h-2.5 rounded-sm bg-brand-gray-light shrink-0" /> Valfritt</span>
         </div>
       </Section>
@@ -146,16 +148,16 @@ function Step1() {
       <Section>
         <h3 className="text-[15px] font-bold text-brand-dark mb-4 font-heading">Tips för bra annonser</h3>
         <div className="grid grid-cols-2 gap-3">
-          <div className="bg-green-50 border border-green-200 rounded-lg p-3 text-[13px] text-green-800">
+          <div className="bg-brand-blue-50 border border-brand-blue-100 rounded-lg p-3 text-[13px] text-brand-blue">
             ✅ Ange <strong>car_make + car_model + year</strong> → vi matchar automatiskt mot rätt bilmodeller
           </div>
-          <div className="bg-green-50 border border-green-200 rounded-lg p-3 text-[13px] text-green-800">
+          <div className="bg-brand-blue-50 border border-brand-blue-100 rounded-lg p-3 text-[13px] text-brand-blue">
             ✅ Lägg bilder i en <strong>zip-fil</strong> med samma namn som image_url-kolumnen
           </div>
-          <div className="bg-amber-50 border border-amber-200 rounded-lg p-3 text-[13px] text-amber-800">
+          <div className="bg-brand-gray-light border border-brand-gray/40 rounded-lg p-3 text-[13px] text-brand-dark">
             ⚠️ ET-offset i CSV gäller <strong>din specifika fälg</strong> — inte bilens godkända range
           </div>
-          <div className="bg-amber-50 border border-amber-200 rounded-lg p-3 text-[13px] text-amber-800">
+          <div className="bg-brand-gray-light border border-brand-gray/40 rounded-lg p-3 text-[13px] text-brand-dark">
             ⚠️ Mönsterdjup anges per <strong>enskilt däck</strong> — inte ett medelvärde
           </div>
         </div>
@@ -177,13 +179,13 @@ function Step2() {
       {/* Upload zone */}
       <Section>
         {hasFile ? (
-          <div className="border-2 border-brand-green rounded-2xl p-10 text-center bg-green-50/30">
+          <div className="border-2 border-brand-green rounded-xl p-10 text-center bg-brand-gray-light">
             <div className="text-[36px] mb-2">✅</div>
-            <div className="text-[15px] font-semibold text-green-800">kompletta_hjul_lager_mars2026.csv</div>
+            <div className="text-[15px] font-semibold text-brand-dark">kompletta_hjul_lager_mars2026.csv</div>
             <div className="text-[13px] text-brand-gray-medium mt-1">47 rader · 128 KB · Uppladdad 20:14</div>
           </div>
         ) : (
-          <div className="border-2 border-dashed border-brand-gray/40 rounded-2xl p-12 text-center cursor-pointer hover:border-brand-blue hover:bg-brand-blue-50/20 transition-all">
+          <div className="border-2 border-dashed border-brand-gray/40 rounded-xl p-12 text-center cursor-pointer hover:border-brand-blue hover:bg-brand-blue-50/20 transition-all">
             <div className="text-[36px] mb-3">📂</div>
             <div className="text-[16px] font-semibold text-brand-dark mb-1.5">Dra & släpp din CSV-fil här</div>
             <div className="text-[13px] text-brand-gray-medium">
@@ -206,14 +208,14 @@ function Step2() {
       {hasFile && (
         <>
           <div className="grid grid-cols-3 gap-3 mb-4">
-            <div className="bg-green-50 border-[1.5px] border-green-300 rounded-xl p-4">
-              <div className="text-[28px] font-extrabold text-green-600">38</div>
-              <div className="text-[13px] font-medium text-green-800">✓ Redo att publicera</div>
+            <div className="bg-brand-blue-50 border-[1.5px] border-brand-blue-100 rounded-xl p-4">
+              <div className="text-[28px] font-extrabold text-brand-blue">38</div>
+              <div className="text-[13px] font-medium text-brand-dark">✓ Redo att publicera</div>
               <div className="text-[12px] text-brand-gray-medium mt-1">Alla fält godkända</div>
             </div>
-            <div className="bg-amber-50 border-[1.5px] border-amber-300 rounded-xl p-4">
-              <div className="text-[28px] font-extrabold text-amber-600">6</div>
-              <div className="text-[13px] font-medium text-amber-800">⚠ Kräver granskning</div>
+            <div className="bg-brand-gray-light border-[1.5px] border-brand-gray/40 rounded-xl p-4">
+              <div className="text-[28px] font-extrabold text-brand-dark">6</div>
+              <div className="text-[13px] font-medium text-brand-dark">⚠ Kräver granskning</div>
               <div className="text-[12px] text-brand-gray-medium mt-1">Varningar — bör ses över</div>
             </div>
             <div className="bg-red-50 border-[1.5px] border-red-300 rounded-xl p-4">
@@ -228,10 +230,10 @@ function Step2() {
             {/* Tabs */}
             <div className="flex border-b-2 border-brand-gray/20 px-4">
               {[
-                { label: 'Alla rader', count: '47', color: 'green' },
-                { label: 'Godkända', count: '38', color: 'green' },
-                { label: 'Varningar', count: '6', color: 'amber' },
-                { label: 'Fel', count: '3', color: 'red' },
+                { label: 'Alla rader', count: '47', type: 'all' },
+                { label: 'Godkända', count: '38', type: 'ok' },
+                { label: 'Varningar', count: '6', type: 'warn' },
+                { label: 'Fel', count: '3', type: 'err' },
               ].map((tab, i) => (
                 <button
                   key={tab.label}
@@ -242,11 +244,11 @@ function Step2() {
                   {tab.label}
                   <span
                     className={`ml-1.5 text-[11px] font-bold px-1.5 py-px rounded-full ${
-                      tab.color === 'green'
-                        ? 'bg-green-100 text-green-800'
-                        : tab.color === 'amber'
-                        ? 'bg-amber-100 text-amber-800'
-                        : 'bg-red-100 text-red-800'
+                      tab.type === 'ok' || tab.type === 'all'
+                        ? 'bg-brand-blue-50 text-brand-blue'
+                        : tab.type === 'warn'
+                        ? 'bg-brand-gray-light text-brand-dark'
+                        : 'bg-red-50 text-red-800'
                     }`}
                   >
                     {tab.count}
@@ -263,10 +265,10 @@ function Step2() {
                   Välj alla synliga
                 </label>
                 <div className="w-px h-5 bg-brand-gray/40" />
-                <button className="px-3 py-1.5 border-[1.5px] border-brand-green text-green-800 bg-green-50 rounded-lg text-[13px] font-semibold cursor-pointer hover:bg-green-100 transition-colors">
+                <button className="px-3 py-1.5 border-[1.5px] border-brand-blue text-brand-blue bg-brand-blue-50 rounded-xl text-[13px] font-semibold cursor-pointer hover:bg-brand-blue-100 transition-colors">
                   ✓ Publicera valda
                 </button>
-                <button className="px-3 py-1.5 border-[1.5px] border-brand-gray/40 text-brand-gray-medium bg-white rounded-lg text-[13px] font-semibold cursor-pointer hover:bg-brand-gray-light transition-colors">
+                <button className="px-3 py-1.5 border-[1.5px] border-brand-gray/40 text-brand-gray-medium bg-white rounded-xl text-[13px] font-semibold cursor-pointer hover:bg-brand-gray-light transition-colors">
                   Skippa valda
                 </button>
                 <span className="ml-auto text-[13px] text-brand-gray-medium">47 rader visas</span>
@@ -297,12 +299,12 @@ function Step2() {
                     { status: 'err', title: 'Komplett 20" sommar', meta: 'Rad 8 · Pirelli', specs: ['20"', '9J', '—', '255/45R20'], compat: '✕ ET saknas', car: 'Volvo XC60', price: '12 500 kr' },
                   ].map((row, i) => (
                     <tr key={i} className={`hover:bg-brand-gray-light/30 border-b border-brand-gray-light ${
-                      row.status === 'ok' ? 'border-l-[3px] border-l-brand-green' : row.status === 'warn' ? 'border-l-[3px] border-l-amber-400' : 'border-l-[3px] border-l-red-400'
+                      row.status === 'ok' ? 'border-l-[3px] border-l-brand-green' : row.status === 'warn' ? 'border-l-[3px] border-l-brand-gray-medium' : 'border-l-[3px] border-l-red-400'
                     }`}>
                       <td className="px-4 py-3"><input type="checkbox" defaultChecked={row.status === 'ok'} className="w-4 h-4 accent-brand-blue" /></td>
                       <td className="px-3 py-3">
                         <span className={`inline-flex items-center gap-1 px-2 py-1 rounded-md text-[12px] font-semibold ${
-                          row.status === 'ok' ? 'bg-green-100 text-green-800' : row.status === 'warn' ? 'bg-amber-100 text-amber-800' : 'bg-red-100 text-red-800'
+                          row.status === 'ok' ? 'bg-brand-blue-50 text-brand-blue' : row.status === 'warn' ? 'bg-brand-gray-light text-brand-dark' : 'bg-red-50 text-red-800'
                         }`}>
                           {row.status === 'ok' ? '✓ OK' : row.status === 'warn' ? '⚠ Varning' : '✕ Fel'}
                         </span>
@@ -315,14 +317,14 @@ function Step2() {
                         <div className="flex gap-1 flex-wrap">
                           {row.specs.map((s, j) => (
                             <span key={j} className={`px-1.5 py-0.5 rounded text-[11px] ${
-                              s === '—' ? 'bg-red-100 text-red-800' : 'bg-brand-gray-light text-brand-gray-medium'
+                              s === '—' ? 'bg-red-50 text-red-800' : 'bg-brand-gray-light text-brand-gray-medium'
                             }`}>{s}</span>
                           ))}
                         </div>
                       </td>
                       <td className="px-3 py-3">
                         <div className={`text-[12px] font-semibold ${
-                          row.status === 'ok' ? 'text-green-700' : row.status === 'warn' ? 'text-amber-700' : 'text-red-700'
+                          row.status === 'ok' ? 'text-brand-green' : row.status === 'warn' ? 'text-brand-gray-medium' : 'text-red-600'
                         }`}>{row.compat}</div>
                         <div className="text-[12px] text-brand-gray-medium">{row.car}</div>
                       </td>
@@ -360,7 +362,7 @@ function Step3() {
           <div className="text-[12px] text-brand-gray-medium mt-1">Godkända annonser med alla fält korrekt ifyllda</div>
         </Section>
         <Section className="text-center">
-          <div className="text-[32px] font-extrabold text-amber-600">6</div>
+          <div className="text-[32px] font-extrabold text-brand-gray-medium">6</div>
           <div className="text-[14px] font-medium text-brand-dark mt-1">Publiceras med varning</div>
           <div className="text-[12px] text-brand-gray-medium mt-1">Varningar noteras men blockar ej</div>
         </Section>
@@ -371,11 +373,11 @@ function Step3() {
         3 rader med fel har hoppats över. Du kan gå tillbaka och rätta dem när som helst.
       </div>
 
-      <div className="bg-amber-50 border border-amber-200 rounded-xl px-4 py-3 text-[13px] text-amber-800 flex items-start gap-2 mb-5">
+      <div className="bg-brand-gray-light border border-brand-gray/40 rounded-xl px-4 py-3 text-[13px] text-brand-dark flex items-start gap-2 mb-5">
         ⚠️ Annonserna publiceras direkt på Wheelplace och blir synliga för köpare. Du kan avpublicera när som helst från "Mina annonser".
       </div>
 
-      <button className="w-full py-4.5 bg-brand-green text-white rounded-xl text-[16px] font-bold hover:bg-brand-green-dark transition-colors cursor-pointer shadow-md">
+      <button className="w-full py-4.5 bg-brand-blue text-white rounded-xl text-[16px] font-bold hover:bg-brand-blue-dark transition-colors cursor-pointer shadow-md">
         Publicera 44 annonser
       </button>
     </div>
@@ -397,7 +399,7 @@ function Step4() {
           <div className="text-[13px] text-brand-gray-medium mt-1">Publicerade</div>
         </div>
         <div className="text-center">
-          <div className="text-[28px] font-extrabold text-amber-600">6</div>
+          <div className="text-[28px] font-extrabold text-brand-gray-medium">6</div>
           <div className="text-[13px] text-brand-gray-medium mt-1">Med varningar</div>
         </div>
         <div className="text-center">
@@ -434,23 +436,29 @@ export default function BulkUpload() {
       <StepBar current={step} />
 
       {/* Top bar */}
-      <div className="bg-white border-b border-brand-gray/30 px-5 md:px-8">
-        <div className="max-w-[860px] mx-auto flex items-center justify-between py-2.5">
-          <span className="text-[12px] font-semibold text-brand-blue bg-brand-blue-50 px-2.5 py-1 rounded-full">🏢 Företagskonto</span>
-          <span className="text-[13px] text-brand-gray-medium">Magnus Hansson · <a href="#" className="text-brand-blue hover:underline">← Mina annonser</a></span>
+      <div className="bg-white border-b border-brand-gray/30 px-5 sm:px-8">
+        <div className="max-w-site mx-auto">
+          <div className="max-w-[720px] mx-auto flex items-center justify-between py-2.5">
+            <span className="text-[12px] font-semibold text-brand-blue bg-brand-blue-50 px-2.5 py-1 rounded-full">🏢 Företagskonto</span>
+            <span className="text-[13px] text-brand-gray-medium">Magnus Hansson · <a href="#" className="text-brand-blue hover:underline">← Mina annonser</a></span>
+          </div>
         </div>
       </div>
 
-      <div className="max-w-[860px] mx-auto px-4 py-8">
-        {step === 1 && <Step1 />}
-        {step === 2 && <Step2 />}
-        {step === 3 && <Step3 />}
-        {step === 4 && <Step4 />}
+      <div className="px-5 sm:px-8">
+        <div className="max-w-site mx-auto">
+          <div className="max-w-[720px] mx-auto py-8">
+            {step === 1 && <Step1 />}
+            {step === 2 && <Step2 />}
+            {step === 3 && <Step3 />}
+            {step === 4 && <Step4 />}
+          </div>
+        </div>
       </div>
 
       {/* Bottom nav */}
       {step < 4 && (
-        <div className="fixed bottom-0 inset-x-0 bg-white border-t border-brand-gray/30 px-5 md:px-8 py-3.5 flex items-center justify-between z-40">
+        <div className="fixed bottom-0 inset-x-0 bg-white border-t border-brand-gray/30 px-5 sm:px-8 py-3.5 flex items-center justify-between z-40">
           <button
             onClick={goPrev}
             disabled={step === 1}
@@ -461,11 +469,7 @@ export default function BulkUpload() {
           <span className="text-[13px] text-brand-gray-medium">Steg {step} av 4</span>
           <button
             onClick={goNext}
-            className={`px-6 py-2.5 rounded-xl text-[14px] font-bold transition-colors cursor-pointer flex items-center gap-2 ${
-              step === 3
-                ? 'bg-brand-green text-white hover:bg-brand-green-dark'
-                : 'bg-brand-blue text-white hover:bg-brand-blue-dark'
-            }`}
+            className="px-6 py-2.5 rounded-xl text-[14px] font-bold transition-colors cursor-pointer flex items-center gap-2 bg-brand-blue text-white hover:bg-brand-blue-dark"
           >
             {step === 3 ? 'Publicera' : 'Nästa'} →
           </button>

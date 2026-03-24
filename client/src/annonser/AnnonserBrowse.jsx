@@ -59,7 +59,7 @@ function DiamChip({ size, active = false, compat = false }) {
         on
           ? 'border-brand-blue text-brand-blue bg-brand-blue-50'
           : compat
-          ? 'border-brand-green/40 text-green-700 bg-green-50/50 hover:border-brand-green'
+          ? 'border-brand-green/40 text-brand-green bg-brand-gray-light hover:border-brand-green'
           : 'border-brand-gray/50 text-brand-gray-medium hover:border-brand-gray'
       }`}
     >
@@ -70,7 +70,7 @@ function DiamChip({ size, active = false, compat = false }) {
 
 function FilterChip({ label }) {
   return (
-    <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[13px] font-medium border border-brand-blue/20 bg-brand-blue-50 text-brand-blue">
+    <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-[13px] font-medium border border-brand-blue-100 bg-brand-blue-50 text-brand-blue">
       {label}
       <button className="text-brand-blue/50 hover:text-brand-blue cursor-pointer text-[15px] leading-none">&times;</button>
     </span>
@@ -88,9 +88,9 @@ function ListingCard({ title, meta, specs, price, location, condition, compat })
       {/* Image — 4:3 aspect, matching production */}
       <div className="relative aspect-[4/3] overflow-hidden bg-brand-gray-light">
         {/* Placeholder wheel image */}
-        <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-gray-100 to-gray-200">
-          <div className="w-28 h-28 rounded-full border-[8px] border-gray-300/60 flex items-center justify-center group-hover:scale-105 transition-transform duration-500">
-            <div className="w-12 h-12 rounded-full border-[4px] border-gray-300/50" />
+        <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-brand-gray-light to-brand-gray/20">
+          <div className="w-28 h-28 rounded-full border-[8px] border-brand-gray/40 flex items-center justify-center group-hover:scale-105 transition-transform duration-500">
+            <div className="w-12 h-12 rounded-full border-[4px] border-brand-gray/30" />
           </div>
         </div>
 
@@ -138,7 +138,7 @@ function ListingCard({ title, meta, specs, price, location, condition, compat })
         <div className="flex items-center justify-between mb-3 pt-3 border-t border-brand-gray/30">
           <div className="flex items-center gap-1.5">
             <span className="text-[13px] text-brand-dark">{meta}</span>
-            <svg className="w-4 h-4 text-green-500 flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
+            <svg className="w-4 h-4 text-brand-green flex-shrink-0" viewBox="0 0 20 20" fill="currentColor">
               <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clipRule="evenodd" />
             </svg>
           </div>
@@ -197,7 +197,7 @@ function CarSpecLayer({ visible }) {
             <span className="bg-yellow-200 border-2 border-yellow-500 rounded-md px-3.5 py-1 text-[17px] font-black tracking-[3px] font-mono text-brand-dark">
               PKE23J
             </span>
-            <button className="text-[11px] text-brand-gray-medium underline hover:text-red-500 cursor-pointer">
+            <button className="text-[11px] text-brand-gray-medium underline hover:text-brand-blue cursor-pointer">
               ✕ rensa
             </button>
           </div>
@@ -206,7 +206,7 @@ function CarSpecLayer({ visible }) {
           <div className="px-5 border-r border-brand-gray/30 shrink-0">
             <div className="flex items-center gap-2 text-[15px] font-bold text-brand-dark">
               Volvo XC60 {motor}
-              <span className="text-[11px] font-semibold bg-green-100 text-green-800 px-2 py-0.5 rounded-full">✓ Verifierad</span>
+              <span className="text-[11px] font-semibold bg-brand-gray-light text-brand-green px-2 py-0.5 rounded-full">✓ Verifierad</span>
             </div>
             <p className="text-[12px] text-brand-gray-medium mt-0.5">Diesel 190hk · AWD · Momentum · 2018</p>
             <div className="flex gap-1.5 mt-2 flex-wrap">
@@ -275,13 +275,13 @@ export default function AnnonserBrowse() {
 
       {/* Compat notice */}
       {carMode && (
-        <div className="bg-green-50 border-b border-green-200">
+        <div className="bg-brand-gray-light border-b border-brand-gray/40">
           <div className="px-5 sm:px-8">
-            <div className="max-w-site mx-auto py-2.5 text-[13px] text-green-700 flex items-center gap-2">
-              <svg className="w-4 h-4 text-green-500 shrink-0" viewBox="0 0 20 20" fill="currentColor">
+            <div className="max-w-site mx-auto py-2.5 text-[13px] text-brand-dark flex items-center gap-2">
+              <svg className="w-4 h-4 text-brand-green shrink-0" viewBox="0 0 20 20" fill="currentColor">
                 <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.857-9.809a.75.75 0 00-1.214-.882l-3.483 4.79-1.88-1.88a.75.75 0 10-1.06 1.061l2.5 2.5a.75.75 0 001.137-.089l4-5.5z" clipRule="evenodd" />
               </svg>
-              Visar <strong className="text-green-800 mx-1">347 kompatibla annonser</strong> för Volvo XC60 D4 — filtrerat på 5×108 och tillåtna dimensioner
+              Visar <strong className="text-brand-dark mx-1">347 kompatibla annonser</strong> för Volvo XC60 D4 — filtrerat på 5×108 och tillåtna dimensioner
             </div>
           </div>
         </div>
@@ -520,7 +520,7 @@ export default function AnnonserBrowse() {
                 <FilterChip label="Mercedes" />
                 <FilterChip label="18&quot;" />
                 <FilterChip label="19&quot;" />
-                <button className="text-[13px] text-brand-gray-medium hover:text-red-500 cursor-pointer bg-transparent border-none ml-1">
+                <button className="text-[13px] text-brand-gray-medium hover:text-brand-blue cursor-pointer bg-transparent border-none ml-1">
                   Rensa alla filter
                 </button>
               </div>

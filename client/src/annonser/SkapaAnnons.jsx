@@ -12,39 +12,41 @@ const steps = [
 
 function StepBar({ current }) {
   return (
-    <div className="bg-white border-b border-brand-gray/30 px-5 md:px-8">
-      <div className="max-w-[680px] mx-auto flex items-center py-4">
-        {steps.map((step, i) => (
-          <div key={step.id} className="contents">
-            <div className="flex items-center gap-2 shrink-0">
-              <div
-                className={`w-7 h-7 rounded-full flex items-center justify-center text-[13px] font-bold transition-all ${
-                  step.id < current
-                    ? 'bg-brand-blue text-white'
-                    : step.id === current
-                    ? 'bg-brand-blue text-white shadow-[0_0_0_3px_rgba(71,123,244,0.25)]'
-                    : 'bg-brand-gray-light text-brand-gray-medium'
-                }`}
-              >
-                {step.id < current ? (
-                  <img src="/icons/check.svg" alt="" className="w-3.5 h-3.5 invert" />
-                ) : (
-                  step.id
-                )}
+    <div className="bg-white border-b border-brand-gray/30 px-5 sm:px-8">
+      <div className="max-w-site mx-auto">
+        <div className="max-w-[720px] mx-auto flex items-center py-4">
+          {steps.map((step, i) => (
+            <div key={step.id} className="contents">
+              <div className="flex items-center gap-2 shrink-0">
+                <div
+                  className={`w-7 h-7 rounded-full flex items-center justify-center text-[13px] font-bold transition-all ${
+                    step.id < current
+                      ? 'bg-brand-blue text-white'
+                      : step.id === current
+                      ? 'bg-brand-blue text-white shadow-[0_0_0_3px_rgba(71,123,244,0.25)]'
+                      : 'bg-brand-gray-light text-brand-gray-medium'
+                  }`}
+                >
+                  {step.id < current ? (
+                    <img src="/icons/check.svg" alt="" className="w-3.5 h-3.5 invert" />
+                  ) : (
+                    step.id
+                  )}
+                </div>
+                <span
+                  className={`text-[13px] font-medium whitespace-nowrap hidden sm:inline ${
+                    step.id === current ? 'text-brand-blue font-semibold' : step.id < current ? 'text-brand-dark' : 'text-brand-gray-medium'
+                  }`}
+                >
+                  {step.label}
+                </span>
               </div>
-              <span
-                className={`text-[13px] font-medium whitespace-nowrap hidden sm:inline ${
-                  step.id === current ? 'text-brand-blue font-semibold' : step.id < current ? 'text-brand-dark' : 'text-brand-gray-medium'
-                }`}
-              >
-                {step.label}
-              </span>
+              {i < steps.length - 1 && (
+                <div className={`flex-1 h-0.5 mx-2 min-w-5 rounded ${step.id < current ? 'bg-brand-blue' : 'bg-brand-gray-light'}`} />
+              )}
             </div>
-            {i < steps.length - 1 && (
-              <div className={`flex-1 h-0.5 mx-2 min-w-5 rounded ${step.id < current ? 'bg-brand-blue' : 'bg-brand-gray-light'}`} />
-            )}
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </div>
   );
@@ -54,7 +56,7 @@ function StepBar({ current }) {
 
 function Section({ children, className = '' }) {
   return (
-    <div className={`bg-white rounded-2xl border border-brand-gray/30 p-6 mb-4 ${className}`}>
+    <div className={`bg-white rounded-xl border border-brand-gray/40 p-5 mb-4 ${className}`}>
       {children}
     </div>
   );
@@ -79,7 +81,7 @@ function FieldLabel({ children, required, auto }) {
       {children}
       {required && <span className="text-red-500">*</span>}
       {auto && (
-        <span className="text-[10px] font-semibold bg-green-100 text-green-800 px-1.5 py-px rounded-full">AUTO</span>
+        <span className="text-[10px] font-semibold bg-brand-blue-50 text-brand-blue px-1.5 py-px rounded-full">AUTO</span>
       )}
     </label>
   );
@@ -104,7 +106,7 @@ function SelectableCard({ icon, name, desc, selected, onClick }) {
   return (
     <button
       onClick={onClick}
-      className={`text-left border-2 rounded-2xl p-5 cursor-pointer transition-all duration-200 ${
+      className={`text-left border-2 rounded-xl p-5 cursor-pointer transition-all duration-200 ${
         selected
           ? 'border-brand-blue bg-brand-blue-50'
           : 'border-brand-gray/40 bg-white hover:border-brand-blue/40 hover:bg-brand-blue-50/30'
@@ -126,10 +128,10 @@ function Chip({ children, selected, compat, disabled, onClick }) {
           ? 'opacity-30 cursor-not-allowed border-brand-gray/30 text-brand-gray-medium'
           : selected
           ? compat
-            ? 'border-brand-green bg-green-100 text-green-800'
+            ? 'border-brand-green bg-brand-gray-light text-brand-green'
             : 'border-brand-blue bg-brand-blue-50 text-brand-blue'
           : compat
-          ? 'border-brand-green/40 text-green-700 bg-green-50/50 hover:border-brand-green'
+          ? 'border-brand-green/40 text-brand-green bg-brand-gray-light hover:border-brand-green'
           : 'border-brand-gray/40 text-brand-dark bg-white hover:border-brand-blue/40'
       }`}
     >
@@ -226,7 +228,7 @@ function Step2() {
 
         {/* Car result */}
         {regDone && (
-          <div className="mt-4 bg-green-50 border-[1.5px] border-green-300 rounded-xl p-4">
+          <div className="mt-4 bg-brand-gray-light border-[1.5px] border-brand-gray/40 rounded-xl p-4">
             <div className="flex items-center gap-3 mb-3">
               <span className="bg-yellow-200 border-2 border-yellow-500 rounded-md px-3 py-1 text-[15px] font-black tracking-[3px] font-mono">
                 PKE23J
@@ -240,7 +242,7 @@ function Step2() {
 
             <div className="flex gap-2 flex-wrap mb-3">
               {['5x108', 'Navhål 63.4mm', 'ET 40–50.5mm', '5 bultar'].map((spec) => (
-                <span key={spec} className="bg-white border border-green-200 rounded-lg px-2.5 py-1 text-[12px] font-semibold text-green-800 flex items-center gap-1.5">
+                <span key={spec} className="bg-brand-blue-50 border border-brand-blue-100 rounded-lg px-2.5 py-1 text-[12px] font-semibold text-brand-blue flex items-center gap-1.5">
                   <img src="/icons/shield-check.svg" alt="" className="w-3 h-3 opacity-60" />
                   {spec}
                 </span>
@@ -248,8 +250,8 @@ function Step2() {
             </div>
 
             {/* Motor picker */}
-            <div className="border-t border-green-200 pt-3 mt-1">
-              <p className="text-[12px] font-semibold text-green-800 mb-2">Välj motorvariant för korrekt bromsinfo:</p>
+            <div className="border-t border-brand-gray/40 pt-3 mt-1">
+              <p className="text-[12px] font-semibold text-brand-dark mb-2">Välj motorvariant för korrekt bromsinfo:</p>
               <div className="flex gap-2 flex-wrap">
                 {[
                   { id: 'T5', sub: '250hk bensin' },
@@ -367,7 +369,7 @@ function Step3() {
             <input
               type="number"
               defaultValue={45}
-              className="w-full px-3.5 py-2.5 border-[1.5px] border-brand-green rounded-lg text-[14px] font-semibold outline-none focus:border-brand-blue focus:shadow-[0_0_0_3px_rgba(71,123,244,0.12)] transition-all"
+              className="w-full px-3.5 py-2.5 border-[1.5px] border-brand-gray/40 rounded-lg text-[14px] font-semibold outline-none focus:border-brand-blue focus:shadow-[0_0_0_3px_rgba(71,123,244,0.12)] transition-all"
             />
             <p className="text-[12px] text-brand-gray-medium mt-1">Bilens godkända range: 40–50.5mm ✓</p>
           </div>
@@ -483,7 +485,7 @@ function Step4() {
           />
           <span className="absolute right-4 top-1/2 -translate-y-1/2 text-[14px] font-semibold text-brand-gray-medium">kr</span>
         </div>
-        <div className="bg-amber-50 border border-amber-200 rounded-xl px-4 py-3 text-[13px] text-amber-800 flex items-center gap-2">
+        <div className="bg-brand-blue-50 border border-brand-blue-100 rounded-xl px-4 py-3 text-[13px] text-brand-blue flex items-center gap-2">
           <img src="/icons/tag.svg" alt="" className="w-4 h-4 opacity-60" />
           Liknande produkter säljs för 6 500–11 000 kr — ditt pris ligger bra!
         </div>
@@ -567,7 +569,7 @@ function Step5() {
       </Section>
 
       {/* Publish button */}
-      <button className="w-full py-4.5 bg-brand-green text-white rounded-xl text-[16px] font-bold hover:bg-brand-green-dark transition-colors cursor-pointer shadow-md">
+      <button className="w-full py-4.5 bg-brand-blue text-white rounded-xl text-[16px] font-bold hover:bg-brand-blue-dark transition-colors cursor-pointer shadow-md">
         Publicera annons
       </button>
     </div>
@@ -606,16 +608,20 @@ export default function SkapaAnnons() {
     <div className="bg-brand-gray-light min-h-screen pb-24">
       <StepBar current={step} />
 
-      <div className="max-w-[680px] mx-auto px-4 py-8">
-        {step === 1 && <Step1 onNext={goNext} />}
-        {step === 2 && <Step2 />}
-        {step === 3 && <Step3 />}
-        {step === 4 && <Step4 />}
-        {step === 5 && <Step5 />}
+      <div className="px-5 sm:px-8">
+        <div className="max-w-site mx-auto">
+          <div className="max-w-[720px] mx-auto py-8">
+            {step === 1 && <Step1 onNext={goNext} />}
+            {step === 2 && <Step2 />}
+            {step === 3 && <Step3 />}
+            {step === 4 && <Step4 />}
+            {step === 5 && <Step5 />}
+          </div>
+        </div>
       </div>
 
       {/* Bottom navigation */}
-      <div className="fixed bottom-0 inset-x-0 bg-white border-t border-brand-gray/30 px-5 md:px-8 py-3.5 flex items-center justify-between z-40">
+      <div className="fixed bottom-0 inset-x-0 bg-white border-t border-brand-gray/30 px-5 sm:px-8 py-3.5 flex items-center justify-between z-40">
         <button
           onClick={goPrev}
           disabled={step === 1}
@@ -627,11 +633,7 @@ export default function SkapaAnnons() {
         <button
           onClick={goNext}
           disabled={step === 5}
-          className={`px-6 py-2.5 rounded-xl text-[14px] font-bold transition-colors cursor-pointer flex items-center gap-2 ${
-            step === 5
-              ? 'bg-brand-green text-white hover:bg-brand-green-dark'
-              : 'bg-brand-blue text-white hover:bg-brand-blue-dark'
-          } disabled:opacity-30`}
+          className="px-6 py-2.5 rounded-xl text-[14px] font-bold transition-colors cursor-pointer flex items-center gap-2 bg-brand-blue text-white hover:bg-brand-blue-dark disabled:opacity-30"
         >
           {step === 4 ? 'Förhandsgranska' : step === 5 ? 'Publicera' : 'Nästa'} →
         </button>
