@@ -235,21 +235,33 @@ function SlideTraction() {
         <Tag>Traktion</Tag>
         <H1 className="mt-3">4 650 annonser och 5M besökare på 22 månader</H1>
 
-        <div className="mt-14 grid grid-cols-4 gap-8">
-          <Stat number="4 650" label="Aktiva annonser" />
-          <Stat number="5M+" label="Besökare sedan start" />
-          <Stat number="35M" label="SEK transaktionsvärde" />
-          <Stat number="19" label="B2B-prenumeranter" />
+        <div className="mt-10 grid grid-cols-4 gap-5">
+          {[
+            ['4 650', 'Aktiva annonser'],
+            ['5M+', 'Besökare sedan start'],
+            ['35M', 'SEK transaktionsvärde'],
+            ['19', 'B2B-prenumeranter'],
+          ].map(([num, label]) => (
+            <div key={label} className="bg-brand-gray-light rounded-xl p-5">
+              <div className="text-[40px] font-bold text-brand-blue leading-none font-heading">{num}</div>
+              <div className="text-[13px] font-medium uppercase tracking-wider mt-2 text-brand-gray-medium">{label}</div>
+            </div>
+          ))}
         </div>
 
-        <div className="mt-16">
-          <p className="text-[14px] font-semibold text-brand-gray-medium uppercase tracking-wider mb-3">Signerade kunder</p>
-          <p className="text-[22px] font-bold text-brand-dark font-heading">Hedin Automotive</p>
-          <p className="text-[14px] text-brand-gray-medium mt-1">Sveriges största bilkoncern — centralt avtal</p>
-          <p className="text-[15px] text-brand-dark font-medium mt-4">Frontbilar · Toveks</p>
-          <p className="text-[14px] text-brand-gray-medium mt-3">
-            I förhandling: Börjessons Bil, Bilia, Ehrlings Bil, Cetira
-          </p>
+        <div className="mt-8 flex gap-5">
+          {/* Hedin — hero customer */}
+          <div className="bg-brand-blue-50 rounded-xl p-5 flex-1">
+            <p className="text-[13px] font-semibold text-brand-blue uppercase tracking-wider mb-2">Signerad ankarkund</p>
+            <p className="text-[24px] font-bold text-brand-dark font-heading">Hedin Automotive</p>
+            <p className="text-[14px] text-brand-gray-medium mt-1">Sveriges största bilkoncern — centralt avtal</p>
+          </div>
+          {/* Other customers */}
+          <div className="border border-brand-gray/30 rounded-xl p-5 flex-1">
+            <p className="text-[13px] font-semibold text-brand-gray-medium uppercase tracking-wider mb-2">Signerade</p>
+            <p className="text-[16px] font-bold text-brand-dark">Frontbilar · Toveks</p>
+            <p className="text-[14px] text-brand-gray-medium mt-3">I förhandling: Börjessons Bil, Bilia, Ehrlings Bil, Cetira</p>
+          </div>
         </div>
         <SlideNum n={8} />
       </div>
