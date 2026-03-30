@@ -119,14 +119,14 @@ function Stagger({ children, delay = 0.12, className = '' }) {
       {items.map((child, i) => (
         <div
           key={i}
-          className="flex"
+          className="min-h-full"
           style={{
             opacity: visible ? 1 : 0,
             transform: visible ? 'translateY(0)' : 'translateY(20px)',
             transition: `opacity 0.5s cubic-bezier(0.16,1,0.3,1) ${i * delay}s, transform 0.5s cubic-bezier(0.16,1,0.3,1) ${i * delay}s`,
           }}
         >
-          <div className="flex-1 flex">{child}</div>
+          {child}
         </div>
       ))}
     </div>
