@@ -312,23 +312,23 @@ function SlideMarket() {
         <Tag>Marknad</Tag>
         <H1 className="mt-3">$30–45B marknad — ingen ägare</H1>
 
-        <div className="mt-8 flex gap-10 flex-1">
+        <div className="mt-8 flex gap-10">
           {/* Left: bars */}
           <div className="flex-1">
-            <div className="space-y-4">
+            <div className="space-y-3">
               {bars.map((b, i) => (
                 <div key={i}>
-                  <div className="flex justify-between text-[14px] mb-1.5">
+                  <div className="flex justify-between text-[14px] mb-1">
                     <span className="text-brand-gray-medium">{b.label}</span>
                     <span className="text-brand-dark font-semibold">{b.value}</span>
                   </div>
-                  <div className="h-4 rounded bg-brand-gray-light overflow-hidden">
+                  <div className="h-3 rounded bg-brand-gray-light overflow-hidden">
                     <div className="h-full rounded bg-brand-blue" style={{ width: b.w, opacity: 1 - i * 0.15 }} />
                   </div>
                 </div>
               ))}
             </div>
-            <div className="mt-8 space-y-2">
+            <div className="mt-6 space-y-2">
               {['Ekonomisk press → fler köper begagnat', 'Leasingboom → överskottshjul', 'Större fälgar & SUV → högre andrahandsvärde'].map((d, i) => (
                 <div key={i} className="flex items-start gap-3">
                   <div className="w-[3px] h-4 bg-brand-blue rounded-full mt-0.5 shrink-0" />
@@ -339,16 +339,16 @@ function SlideMarket() {
           </div>
 
           {/* Right: Sweden */}
-          <div className="w-[380px] shrink-0">
-            <BlueCard className="h-full">
-              <h3 className="text-[14px] font-bold text-brand-dark uppercase tracking-wider mb-5">Sverige</h3>
+          <div className="w-[360px] shrink-0">
+            <BlueCard>
+              <h3 className="text-[14px] font-bold text-brand-dark uppercase tracking-wider mb-4">Sverige</h3>
               {[
                 ['Sålda däck/år', '~6,3 milj.'],
                 ['Ersättningsdäck', '~5–6 milj./år'],
                 ['Andrahandsmarknad', '~1–2 mdr SEK'],
-                ['Blocket idag', '~6 000–7 000 annonser'],
+                ['Blocket idag', '~6–7k annonser'],
               ].map(([l, v]) => (
-                <div key={l} className="flex justify-between py-2.5 border-b border-brand-gray/20 last:border-0 text-[14px]">
+                <div key={l} className="flex justify-between py-2 border-b border-brand-gray/20 last:border-0 text-[14px]">
                   <span className="text-brand-gray-medium">{l}</span>
                   <span className="text-brand-dark font-semibold">{v}</span>
                 </div>
