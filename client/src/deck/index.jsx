@@ -312,15 +312,15 @@ function SlideMarket() {
         <Tag>Marknad</Tag>
         <H1 className="mt-3">$30–45B marknad — ingen ägare</H1>
 
-        <div className="mt-8 flex gap-10">
+        <div className="mt-8 grid grid-cols-[1fr_360px] gap-10">
           {/* Left: bars */}
-          <div className="flex-1">
+          <div>
             <div className="space-y-3">
               {bars.map((b, i) => (
                 <div key={i}>
                   <div className="flex justify-between text-[14px] mb-1">
                     <span className="text-brand-gray-medium">{b.label}</span>
-                    <span className="text-brand-dark font-semibold">{b.value}</span>
+                    <span className="text-brand-dark font-semibold text-right">{b.value}</span>
                   </div>
                   <div className="h-3 rounded bg-brand-gray-light overflow-hidden">
                     <div className="h-full rounded bg-brand-blue" style={{ width: b.w, opacity: 1 - i * 0.15 }} />
@@ -339,7 +339,7 @@ function SlideMarket() {
           </div>
 
           {/* Right: Sweden */}
-          <div className="w-[360px] shrink-0">
+          <div>
             <BlueCard>
               <h3 className="text-[14px] font-bold text-brand-dark uppercase tracking-wider mb-4">Sverige</h3>
               {[
