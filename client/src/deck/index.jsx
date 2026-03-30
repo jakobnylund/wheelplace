@@ -739,15 +739,15 @@ function SlideSustainability() {
         <Tag dark>Hållbarhet</Tag>
         <h2 className="text-[38px] font-bold leading-[1.12] font-heading text-white mt-3">Varje återanvänt däckset sparar 50–80 kg CO₂</h2>
 
-        <Stagger delay={0.15} className="mt-10 grid grid-cols-3 gap-6">
+        <Stagger delay={0.15} className="mt-10 grid grid-cols-3 gap-6 items-stretch">
           {[
-            ['Förlänger livslängden', 'Minskar behovet av ny produktion. Varje set som återanvänds är ett set som inte tillverkas.'],
-            ['Minskar avfall', 'Sverige skickar ~100 000 ton däck till materialåtervinning årligen. Återanvändning slår återvinning.'],
-            ['Cirkulär infrastruktur', 'Förvandlar sovande verkstadslager till sökbart utbud. Struktur skapar marknad.'],
+            ['Förlänger livslängden', 'Minskar behovet av ny däckproduktion. En återanvänd däcksats sparar uppskattningsvis 50–80 kg CO₂ jämfört med nytillverkning. Varje set som återanvänds är ett set som inte behöver tillverkas.'],
+            ['Minskar avfall', 'Sverige skickar ~100 000 ton däck till materialåtervinning varje år. Återanvändning är alltid bättre än återvinning — det förlänger produktens livscykel och minskar resursförbrukningen.'],
+            ['Cirkulär infrastruktur', 'Wheelplace förvandlar sovande lager hos verkstäder och bilhandlare till tillgängligt, sökbart utbud. Vi skapar den digitala infrastrukturen för en strukturerad andrahandsmarknad.'],
           ].map(([title, desc]) => (
-            <div key={title} className="bg-white/10 backdrop-blur-sm rounded-lg border-t-[3px] border-t-white/30 px-5 pt-4 pb-5">
+            <div key={title} className="bg-white/10 backdrop-blur-sm rounded-lg border-t-[3px] border-t-white/30 px-5 pt-4 pb-5 flex flex-col">
               <h3 className="text-[16px] font-bold text-white mb-2">{title}</h3>
-              <p className="text-[14px] leading-[1.6] text-white/70">{desc}</p>
+              <p className="text-[14px] leading-[1.6] text-white/70 flex-1">{desc}</p>
             </div>
           ))}
         </Stagger>
