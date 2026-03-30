@@ -208,9 +208,9 @@ function Crs() { return <span className="text-brand-gray/60">—</span>; }
 function SlideCover() {
   return (
     <Slide dark>
-      {/* Background image */}
-      <div className="absolute inset-0">
-        <video src="/deck/cover-bg.mp4" autoPlay loop muted playsInline className="absolute w-full h-full object-cover" style={{ top: '-5%', left: '-5%', width: '110%', height: '110%' }} />
+      {/* Background video */}
+      <div className="absolute inset-0 overflow-hidden">
+        <video src="/deck/cover-bg.mp4" autoPlay loop muted playsInline className="absolute object-cover" style={{ top: '-5%', left: '-5%', width: '110%', height: '110%' }} />
         <div className="absolute inset-0 bg-brand-dark/20" />
       </div>
       <div className="relative h-full flex flex-col justify-end px-14 pb-16">
