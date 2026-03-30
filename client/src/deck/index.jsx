@@ -189,7 +189,10 @@ function Stat({ number, label, dark }) {
 
 function SlideNum({ n, dark }) {
   return (
-    <span className={`absolute bottom-5 left-14 text-[11px] ${dark ? 'text-white/25' : 'text-brand-gray/80'}`}>{n}</span>
+    <>
+      <span className={`absolute bottom-5 left-14 text-[11px] ${dark ? 'text-white/25' : 'text-brand-gray/80'}`}>{n}</span>
+      <span className={`absolute bottom-5 right-14 text-[11px] ${dark ? 'text-white/25' : 'text-brand-gray/80'}`}>Konfidentiellt · wheelplace.com</span>
+    </>
   );
 }
 
