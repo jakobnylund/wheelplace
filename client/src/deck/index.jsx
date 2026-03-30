@@ -93,7 +93,7 @@ function SlideCover() {
       {/* Background image */}
       <div className="absolute inset-0">
         <img src="/hero-bg.jpg" alt="" className="w-full h-full object-cover" />
-        <div className="absolute inset-0 bg-brand-dark/50" />
+        <div className="absolute inset-0 bg-brand-dark/20" />
       </div>
       <div className="relative h-full flex flex-col justify-end px-14 pb-16">
         <Tag dark>Investeringsmöjlighet · Mars 2026</Tag>
@@ -585,7 +585,7 @@ function SlideSustainability() {
     <Slide dark>
       <div className="absolute inset-0">
         <img src="/sustainability-bg.jpg" alt="" className="w-full h-full object-cover" />
-        <div className="absolute inset-0 bg-brand-dark/40" />
+        <div className="absolute inset-0 bg-brand-dark/20" />
       </div>
       <div className="relative h-full flex flex-col px-14 pt-14">
         <Tag dark>Hållbarhet</Tag>
@@ -615,7 +615,7 @@ function SlideClosing() {
     <Slide dark>
       <div className="absolute inset-0">
         <img src="/hero-bg.jpg" alt="" className="w-full h-full object-cover" />
-        <div className="absolute inset-0 bg-brand-dark/40" />
+        <div className="absolute inset-0 bg-brand-dark/20" />
       </div>
       <div className="relative h-full flex flex-col items-center justify-center text-center px-14">
         <h2 className="text-[44px] font-bold text-white leading-[1.1] font-heading max-w-[700px]">
