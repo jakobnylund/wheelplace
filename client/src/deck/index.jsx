@@ -222,7 +222,7 @@ function ScreenshotSlide({ src, label, n }) {
 
 function SlideProduct1() { return <ScreenshotSlide src="/deck/ui-annonser.png" label="Sök & filtrera" n={5} />; }
 function SlideProduct2() { return <ScreenshotSlide src="/deck/ui-annons-detail.png" label="Annonsvy" n={6} />; }
-function SlideProduct3() { return <ScreenshotSlide src="/deck/ui-categories.png" label="Kategorier & regnummersökning" n={7} />; }
+function SlideProduct3() { return <ScreenshotSlide src="/deck/ui-hero.png" label="Startsidan" n={7} />; }
 
 /* ══════════════════════════════════════════════════════════
    ACT 2 — THE ARGUMENT
