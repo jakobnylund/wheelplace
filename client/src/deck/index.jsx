@@ -1,5 +1,5 @@
 import { useRef, useState } from 'react';
-import html2canvas from 'html2canvas';
+import { toJpeg } from 'html-to-image';
 import { jsPDF } from 'jspdf';
 
 /* ── Shared primitives ─────────────────────────────────── */
@@ -612,36 +612,19 @@ export default function Deck() {
   const downloadPDF = async () => {
     setDownloading(true);
     try {
-      // Wait for all images to load
-      const images = deckRef.current.querySelectorAll('img');
-      await Promise.all(
-        Array.from(images).map(
-          (img) =>
-            img.complete
-              ? Promise.resolve()
-              : new Promise((resolve) => {
-                  img.onload = resolve;
-                  img.onerror = resolve;
-                })
-        )
-      );
-
       const pdf = new jsPDF({ orientation: 'landscape', unit: 'px', format: [1280, 720] });
       const slideEls = deckRef.current.querySelectorAll('.slide');
 
       for (let i = 0; i < slideEls.length; i++) {
-        const canvas = await html2canvas(slideEls[i], {
-          scale: 2,
-          backgroundColor: '#ffffff',
-          useCORS: true,
-          allowTaint: true,
-          logging: false,
+        const dataUrl = await toJpeg(slideEls[i], {
+          quality: 0.92,
+          pixelRatio: 2,
           width: 1280,
           height: 720,
+          backgroundColor: '#ffffff',
         });
-        const imgData = canvas.toDataURL('image/jpeg', 0.92);
         if (i > 0) pdf.addPage([1280, 720], 'landscape');
-        pdf.addImage(imgData, 'JPEG', 0, 0, 1280, 720);
+        pdf.addImage(dataUrl, 'JPEG', 0, 0, 1280, 720);
       }
 
       pdf.save('Wheelplace-Investeringsdeck-2026.pdf');
