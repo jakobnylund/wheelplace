@@ -119,13 +119,14 @@ function Stagger({ children, delay = 0.12, className = '' }) {
       {items.map((child, i) => (
         <div
           key={i}
+          className="flex"
           style={{
             opacity: visible ? 1 : 0,
             transform: visible ? 'translateY(0)' : 'translateY(20px)',
             transition: `opacity 0.5s cubic-bezier(0.16,1,0.3,1) ${i * delay}s, transform 0.5s cubic-bezier(0.16,1,0.3,1) ${i * delay}s`,
           }}
         >
-          {child}
+          <div className="flex-1 flex">{child}</div>
         </div>
       ))}
     </div>
@@ -264,7 +265,7 @@ function SlideProblem() {
             ['02', 'Ingen transparens', 'Köpare kan inte verifiera passform eller pris. Bultmönster och kompatibilitet är en gissningslek.'],
             ['03', 'Offline', 'Majoriteten av affärerna sker i verkstäder, via mun till mun eller genom osynliga exportkanaler.'],
           ].map(([num, title, desc]) => (
-            <div key={num} className="bg-brand-gray-light rounded-xl p-5">
+            <div key={num} className="bg-brand-gray-light rounded-xl p-5 flex-1 flex flex-col">
               <span className="text-[28px] font-bold text-brand-blue/20 font-heading">{num}</span>
               <h3 className="text-[16px] font-bold text-brand-dark mt-2 mb-2">{title}</h3>
               <Body>{desc}</Body>
@@ -710,7 +711,7 @@ function SlideAsk() {
             ['02', 'Strategisk partner', 'Fordonsbranschens räckvidd, internationell marknadsplatserfarenhet eller europeiska distributionsnätverk.'],
             ['03', 'Go-to-market', 'Företagspartnerskap med stora bilkoncerner, leasingbolag och fleet-operatörer.'],
           ].map(([num, title, desc]) => (
-            <div key={num} className="border border-brand-gray/30 rounded-xl p-5">
+            <div key={num} className="border border-brand-gray/30 rounded-xl p-5 flex-1 flex flex-col">
               <span className="text-[28px] font-bold text-brand-blue/20 font-heading">{num}</span>
               <h3 className="text-[16px] font-bold text-brand-dark mt-2 mb-2">{title}</h3>
               <Body className="text-[14px]">{desc}</Body>
