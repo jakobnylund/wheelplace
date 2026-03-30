@@ -141,15 +141,15 @@ function SlideProblem() {
         <Tag>Problemet</Tag>
         <H1 className="mt-3 max-w-[700px]">6 miljoner däck säljs i Sverige varje år — utan struktur</H1>
 
-        <div className="mt-10 grid grid-cols-3 gap-10">
+        <div className="mt-10 grid grid-cols-3 gap-6">
           {[
             ['01', 'Fragmenterad', 'Privatpersoner, verkstäder, bilhandlare och exportörer. Ingen gemensam plattform.'],
             ['02', 'Ingen transparens', 'Köpare kan inte verifiera passform eller pris. Bultmönster och kompatibilitet är en gissningslek.'],
             ['03', 'Offline', 'Majoriteten av affärerna sker i verkstäder, via mun till mun eller genom osynliga exportkanaler.'],
           ].map(([num, title, desc]) => (
-            <div key={num}>
-              <span className="text-[32px] font-bold text-brand-blue/20 font-heading">{num}</span>
-              <h3 className="text-[16px] font-bold text-brand-dark mt-1 mb-2">{title}</h3>
+            <div key={num} className="bg-brand-gray-light rounded-xl p-5">
+              <span className="text-[28px] font-bold text-brand-blue/20 font-heading">{num}</span>
+              <h3 className="text-[16px] font-bold text-brand-dark mt-2 mb-2">{title}</h3>
               <Body>{desc}</Body>
             </div>
           ))}
@@ -418,7 +418,7 @@ function SlideCompetition() {
                 <p>Bred kategoritäckning</p>
               </div>
             </div>
-            <div className="border-t border-brand-gray/30 pt-5">
+            <div className="bg-brand-blue-50 rounded-xl p-5">
               <h3 className="text-[14px] font-bold text-brand-blue uppercase tracking-wider mb-3">Vi har</h3>
               <div className="space-y-1.5 text-[14px] text-brand-dark font-medium">
                 <p>Regnummersökning — skriv reg.nr, se vad som passar</p>
@@ -461,20 +461,20 @@ function SlideTeam() {
           <Tag>Team</Tag>
           <H1 className="mt-3">Familjebolaget såldes till Storskogen — nu bygger vi kategorin</H1>
 
-          <div className="mt-7">
-            <Body className="text-[15px] max-w-[560px]">
+          <div className="mt-6 bg-brand-gray-light rounded-xl p-5">
+            <Body className="text-[15px]">
               Svante Hertel byggde ett marknadsledande nordiskt bolag inom premium-fälgar. Djup produktkunskap och starka branschrelationer. Christofer tog över, växte med stark lönsamhet — Storskogen förvärvade. Nu digitaliserar han hela marknadskategorin.
             </Body>
           </div>
 
-          {/* Additional team — compact */}
-          <div className="mt-6 grid grid-cols-2 gap-6">
-            <div>
+          {/* Additional team */}
+          <div className="mt-5 grid grid-cols-2 gap-5">
+            <div className="border border-brand-gray/30 rounded-xl p-4">
               <p className="text-[15px] font-bold text-brand-dark">Calle Kock</p>
               <p className="text-[13px] text-brand-blue">Rådgivare & nätverk</p>
               <p className="text-[13px] text-brand-gray-medium mt-1">Stort kontaktnät inom svenskt näringsliv. Öppnar dörrar till bilkoncerner och företagskunder.</p>
             </div>
-            <div>
+            <div className="border border-brand-gray/30 rounded-xl p-4">
               <p className="text-[15px] font-bold text-brand-dark">Jakob Nylund</p>
               <p className="text-[13px] text-brand-blue">Varumärke & design</p>
               <p className="text-[13px] text-brand-gray-medium mt-1">Internationell erfarenhet av varumärkesbyggande och digital produktdesign. Kreativ riktning.</p>
@@ -548,15 +548,15 @@ function SlideAsk() {
         <Tag>Möjligheten</Tag>
         <H1 className="mt-3 max-w-[700px]">Vi söker kapital och en partner för nordisk expansion</H1>
 
-        <div className="mt-10 grid grid-cols-3 gap-10">
+        <div className="mt-10 grid grid-cols-3 gap-6">
           {[
             ['01', 'Kapital', 'Tillväxtkapital för plattformsutveckling, B2B-expansion och nordisk/europeisk utrullning.'],
             ['02', 'Strategisk partner', 'Fordonsbranschens räckvidd, internationell marknadsplatserfarenhet eller europeiska distributionsnätverk.'],
             ['03', 'Go-to-market', 'Företagspartnerskap med stora bilkoncerner, leasingbolag och fleet-operatörer.'],
           ].map(([num, title, desc]) => (
-            <div key={num}>
-              <span className="text-[32px] font-bold text-brand-blue/20 font-heading">{num}</span>
-              <h3 className="text-[16px] font-bold text-brand-dark mt-1 mb-2">{title}</h3>
+            <div key={num} className="border border-brand-gray/30 rounded-xl p-5">
+              <span className="text-[28px] font-bold text-brand-blue/20 font-heading">{num}</span>
+              <h3 className="text-[16px] font-bold text-brand-dark mt-2 mb-2">{title}</h3>
               <Body className="text-[14px]">{desc}</Body>
             </div>
           ))}
