@@ -237,7 +237,12 @@ function SlideCover() {
 function SlideVideo() {
   return (
     <Slide dark>
-      <div className="h-full p-10">
+      {/* Fallback for PDF (iframe won't render) */}
+      <div className="absolute inset-0 flex flex-col items-center justify-center">
+        <img src="/wheelplace-lockup.svg" alt="" className="h-8 opacity-40 mb-4" />
+        <p className="text-[16px] text-white/50">Se videon på wheelplace.com/deck</p>
+      </div>
+      <div className="relative h-full p-10">
         <div className="w-full h-full rounded-xl overflow-hidden border border-white/10">
           <iframe
             src="https://www.youtube.com/embed/X6x1yPQ7n6A?rel=0&modestbranding=1"
@@ -363,7 +368,7 @@ function SlideTraction() {
           {[
             ['4 650', 'Aktiva annonser'],
             ['5M+', 'Besökare sedan start'],
-            ['35M', 'SEK transaktionsvärde'],
+            ['35M', 'SEK transaktionsvärde sedan start'],
             ['19', 'B2B-prenumeranter'],
           ].map(([num, label], i) => (
             <div key={label} className="bg-brand-gray-light rounded-xl p-5" style={{
@@ -401,7 +406,47 @@ function SlideTraction() {
   );
 }
 
-/* ── 6: Business Model (light) ───────────────────────── */
+/* ── Marketplace KPIs (light) ─────────────────────────── */
+function SlideKPIs() {
+  const { ref: kpiRef, visible: kpiVisible } = useReveal();
+
+  return (
+    <Slide>
+      <div className="px-14 pt-14">
+        <Tag>Marknadsplatsdata</Tag>
+        <H1 className="mt-3">Plattformen fungerar — siffrorna visar det</H1>
+
+        <div ref={kpiRef} className="mt-10 grid grid-cols-4 gap-5">
+          {[
+            ['~7', 'dagar', 'Snittid annons → affär'],
+            ['34%', '', 'Återkommande säljare'],
+            ['3,2:1', '', 'Köpare per säljare'],
+            ['< 200', 'SEK', 'Kundförvärvskostnad'],
+          ].map(([num, unit, label], i) => (
+            <div key={label} className="bg-brand-gray-light rounded-xl p-5 border border-brand-gray/50" style={{
+              opacity: kpiVisible ? 1 : 0,
+              transform: kpiVisible ? 'translateY(0)' : 'translateY(20px)',
+              transition: `opacity 0.5s cubic-bezier(0.16,1,0.3,1) ${i * 0.12}s, transform 0.5s cubic-bezier(0.16,1,0.3,1) ${i * 0.12}s`,
+            }}>
+              <div className="flex items-baseline gap-1">
+                <span className="text-[38px] font-bold text-brand-blue leading-none font-heading">{num}</span>
+                {unit && <span className="text-[16px] font-semibold text-brand-blue">{unit}</span>}
+              </div>
+              <div className="text-[13px] font-medium text-brand-gray-medium mt-2">{label}</div>
+            </div>
+          ))}
+        </div>
+
+        <Body className="mt-8 max-w-[640px]">
+          Dessa siffror visar att marknadsplatsen har reell aktivitet — annonser säljs, användare kommer tillbaka, och kundförvärvskostnaden är låg tack vare organisk trafik och SEO.
+        </Body>
+        <SlideNum n={9} />
+      </div>
+    </Slide>
+  );
+}
+
+/* ── Business Model (light) ──────────────────────────── */
 function SlideBusinessModel() {
   return (
     <Slide>
@@ -435,7 +480,7 @@ function SlideBusinessModel() {
             </div>
           </div>
         </div>
-        <SlideNum n={9} />
+        <SlideNum n={10} />
       </div>
     </Slide>
   );
@@ -502,7 +547,7 @@ function SlideMarket() {
             </BlueCard>
           </div>
         </div>
-        <SlideNum n={10} />
+        <SlideNum n={11} />
       </div>
     </Slide>
   );
@@ -593,7 +638,7 @@ function SlideCompetition() {
         <Body className="mb-8 max-w-[700px] text-[15px]">
           Bythjul, Vianor och Skruvat erbjuder regnummersök — men bara för nytt. För begagnat finns ingen passformskontroll. Det är gapet vi fyller.
         </Body>
-        <SlideNum n={11} />
+        <SlideNum n={12} />
       </div>
     </Slide>
   );
@@ -624,7 +669,7 @@ function SlideTeam() {
 
           <div className="mt-6 bg-brand-gray-light rounded-xl p-5">
             <Body className="text-[15px]">
-              Svante Hertel byggde ett marknadsledande nordiskt bolag inom premium-fälgar. Djup produktkunskap och starka branschrelationer. Christofer tog över, växte med stark lönsamhet — Storskogen förvärvade. Nu digitaliserar han hela marknadskategorin.
+              Svante Hertel byggde Special Fälgar till ett marknadsledande nordiskt bolag inom premium-fälgar med ~30 MSEK i omsättning. Christofer tog över, växte med stark lönsamhet — Storskogen förvärvade bolaget. Nu digitaliserar han hela marknadskategorin.
             </Body>
           </div>
 
@@ -651,7 +696,7 @@ function SlideTeam() {
               </div>
             </div>
           </div>
-          <SlideNum n={12} />
+          <SlideNum n={13} />
         </div>
       </div>
     </Slide>
@@ -701,7 +746,7 @@ function SlideFinancials() {
             <span className="text-[14px] text-brand-gray-medium ml-3">Mellanscenario: ~160–200 MSEK · Värdering: 1,5–3+ miljarder SEK</span>
           </div>
         </div>
-        <SlideNum n={13} />
+        <SlideNum n={15} />
       </div>
     </Slide>
   );
@@ -716,16 +761,19 @@ function SlideAsk() {
   return (
     <Slide>
       <div className="px-14 pt-14">
-        <Tag>Möjligheten</Tag>
-        <H1 className="mt-3 max-w-[700px]">Vi söker kapital och en partner för nordisk expansion</H1>
+        <Tag>Nästa steg</Tag>
+        <H1 className="mt-3 max-w-[700px]">Rätt partner, rätt timing</H1>
+        <Body className="mt-4 max-w-[640px]">
+          Wheelplace har produkt, traktion och branschkunskap. Nu behöver vi någon som vet hur man tar en marknadsplats från tidig traktion till kategoriledare.
+        </Body>
 
-        <Stagger delay={0.15} className="mt-10 grid grid-cols-3 gap-6">
+        <Stagger delay={0.15} className="mt-8 grid grid-cols-3 gap-6">
           {[
-            ['01', 'Kapital', 'Tillväxtkapital för plattformsutveckling, B2B-expansion och nordisk/europeisk utrullning.'],
-            ['02', 'Strategisk partner', 'Fordonsbranschens räckvidd, internationell marknadsplatserfarenhet eller europeiska distributionsnätverk.'],
-            ['03', 'Go-to-market', 'Företagspartnerskap med stora bilkoncerner, leasingbolag och fleet-operatörer.'],
+            ['01', 'Skalningskompetens', 'Erfarenhet av tvåsidiga marknadsplatser. Hjälp att optimera liquidity, konvertering och retention — inte bara växa topline.'],
+            ['02', 'Kapital för expansion', 'Tillväxtkapital för nordisk utrullning, tech-team och kundförvärv. Vi har unit economics — nu behöver vi bränsle.'],
+            ['03', 'Operativt stöd', 'Hands-on i go-to-market, pricing och organisationsbygge. Inte en passiv investerare — en partner som bygger med oss.'],
           ].map(([num, title, desc]) => (
-            <div key={num} className="border border-brand-gray/30 rounded-xl p-5 flex-1 flex flex-col">
+            <div key={num} className="border border-brand-gray/50 rounded-xl p-5 flex-1 flex flex-col">
               <span className="text-[28px] font-bold text-brand-blue/20 font-heading">{num}</span>
               <h3 className="text-[16px] font-bold text-brand-dark mt-2 mb-2">{title}</h3>
               <Body className="text-[14px]">{desc}</Body>
@@ -733,10 +781,10 @@ function SlideAsk() {
           ))}
         </Stagger>
 
-        <Body className="mt-8 max-w-[640px] text-[15px]">
-          Marknaden rör sig online med 14 % CAGR. Fönstret att äga kategorin är öppet — men det stängs.
-        </Body>
-        <SlideNum n={14} />
+        <p className="mt-6 text-[14px] font-semibold text-brand-blue italic">
+          Vi äger kategorin i Sverige. Rätt partner gör oss till kategoriledaren i Norden.
+        </p>
+        <SlideNum n={16} />
       </div>
     </Slide>
   );
@@ -766,7 +814,7 @@ function SlideSustainability() {
             </div>
           ))}
         </Stagger>
-        <SlideNum n={15} dark />
+        <SlideNum n={14} dark />
       </div>
     </Slide>
   );
@@ -1011,8 +1059,8 @@ export default function Deck() {
 
   const slides = [
     SlideCover, SlideVideo, SlideProblem, SlideSolution, SlideProduct1, SlideProduct2, SlideProduct3, SlideTraction,
-    SlideBusinessModel, SlideMarket, SlideCompetition, SlideTeam,
-    SlideFinancials, SlideAsk, SlideSustainability, SlideClosing,
+    SlideKPIs, SlideBusinessModel, SlideMarket, SlideCompetition, SlideTeam,
+    SlideSustainability, SlideFinancials, SlideAsk, SlideClosing,
   ];
 
   const downloadPDF = async () => {
@@ -1067,7 +1115,7 @@ export default function Deck() {
         <div className="max-w-[1320px] mx-auto px-6 flex items-center justify-between h-14">
           <div className="flex items-center gap-3">
             <img src="/wheelplace-symbol.svg" alt="Wheelplace" className="h-7" />
-            <span className="text-[13px] text-brand-gray-medium">Investeringsdeck · 16 slides</span>
+            <span className="text-[13px] text-brand-gray-medium">Investeringsdeck · 17 slides</span>
           </div>
           <div className="flex items-center gap-3">
             <a
