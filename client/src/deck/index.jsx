@@ -481,15 +481,25 @@ function SlideTeam() {
 
           {/* Additional team */}
           <div className="mt-5 grid grid-cols-2 gap-5">
-            <div className="border border-brand-gray/30 rounded-xl p-4">
-              <p className="text-[15px] font-bold text-brand-dark">Calle Kock</p>
-              <p className="text-[13px] text-brand-blue">Rådgivare & nätverk</p>
-              <p className="text-[13px] text-brand-gray-medium mt-1">Stort kontaktnät inom svenskt näringsliv. Öppnar dörrar till bilkoncerner och företagskunder.</p>
+            <div className="border border-brand-gray/30 rounded-xl p-4 flex gap-4 items-start">
+              <div className="w-14 h-14 rounded-full overflow-hidden shrink-0">
+                <img src="/team-calle.avif" alt="Calle Kock" className="w-full h-full object-cover" />
+              </div>
+              <div>
+                <p className="text-[15px] font-bold text-brand-dark">Calle Kock</p>
+                <p className="text-[13px] text-brand-blue">Rådgivare & nätverk</p>
+                <p className="text-[13px] text-brand-gray-medium mt-1">Stort kontaktnät inom svenskt näringsliv. Öppnar dörrar till bilkoncerner och företagskunder.</p>
+              </div>
             </div>
-            <div className="border border-brand-gray/30 rounded-xl p-4">
-              <p className="text-[15px] font-bold text-brand-dark">Jakob Nylund</p>
-              <p className="text-[13px] text-brand-blue">Varumärke & design</p>
-              <p className="text-[13px] text-brand-gray-medium mt-1">Internationell erfarenhet av varumärkesbyggande och digital produktdesign. Kreativ riktning.</p>
+            <div className="border border-brand-gray/30 rounded-xl p-4 flex gap-4 items-start">
+              <div className="w-14 h-14 rounded-full overflow-hidden shrink-0">
+                <img src="/team-jakob.avif" alt="Jakob Nylund" className="w-full h-full object-cover" />
+              </div>
+              <div>
+                <p className="text-[15px] font-bold text-brand-dark">Jakob Nylund</p>
+                <p className="text-[13px] text-brand-blue">Varumärke & design</p>
+                <p className="text-[13px] text-brand-gray-medium mt-1">Internationell erfarenhet av varumärkesbyggande och digital produktdesign. Kreativ riktning.</p>
+              </div>
             </div>
           </div>
           <SlideNum n={12} />
