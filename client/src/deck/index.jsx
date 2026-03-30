@@ -532,23 +532,33 @@ function SlideCompetition() {
               <div className="text-[11px] text-white/70 mt-0.5">Passform + B2B</div>
             </div>
 
-            {/* Competitors — positioned as gray dots */}
-            <div className="absolute bottom-[22%] left-[15%] text-center">
+            {/* Competitors — positioned as dots */}
+            <div className="absolute bottom-[22%] left-[12%] text-center">
               <div className="w-4 h-4 rounded-full bg-brand-gray mx-auto mb-1" />
               <div className="text-[12px] text-brand-gray-medium font-medium">Facebook</div>
             </div>
-            <div className="absolute bottom-[18%] right-[25%] text-center">
+            <div className="absolute bottom-[16%] right-[22%] text-center">
               <div className="w-4 h-4 rounded-full bg-brand-gray mx-auto mb-1" />
               <div className="text-[12px] text-brand-gray-medium font-medium">Blocket</div>
             </div>
-            <div className="absolute bottom-[30%] right-[15%] text-center">
+            <div className="absolute bottom-[28%] right-[12%] text-center">
               <div className="w-4 h-4 rounded-full bg-brand-gray mx-auto mb-1" />
               <div className="text-[12px] text-brand-gray-medium font-medium">Tradera</div>
             </div>
-            <div className="absolute top-[35%] left-[22%] text-center">
+            <div className="absolute bottom-[15%] left-[38%] text-center">
+              <div className="w-4 h-4 rounded-full bg-brand-gray mx-auto mb-1" />
+              <div className="text-[12px] text-brand-gray-medium font-medium">eBay</div>
+              <div className="text-[10px] text-brand-gray-medium">(global)</div>
+            </div>
+            <div className="absolute top-[35%] left-[18%] text-center">
               <div className="w-4 h-4 rounded-full bg-brand-gray mx-auto mb-1" />
               <div className="text-[12px] text-brand-gray-medium font-medium">WheelPrice</div>
-              <div className="text-[10px] text-brand-gray-medium">(US, entusiaster)</div>
+              <div className="text-[10px] text-brand-gray-medium">(US, premium aftermarket)</div>
+            </div>
+            <div className="absolute top-[28%] right-[30%] text-center">
+              <div className="w-4 h-4 rounded-full bg-brand-gray/80 mx-auto mb-1" />
+              <div className="text-[12px] text-brand-gray-medium font-medium">Vianor Däcktorget</div>
+              <div className="text-[10px] text-brand-gray-medium">(eget lager, nytt)</div>
             </div>
           </div>
 
@@ -560,12 +570,13 @@ function SlideCompetition() {
                 <p>Miljonpublik</p>
                 <p>Starkt varumärke</p>
                 <p>Bred kategoritäckning</p>
+                <p className="text-brand-dark font-medium mt-2">Men: ingen passformskontroll, ingen branschdata</p>
               </div>
             </div>
             <div className="bg-brand-blue-50 rounded-xl p-5">
               <h3 className="text-[14px] font-bold text-brand-blue uppercase tracking-wider mb-3">Vi har</h3>
               <div className="space-y-2 text-[14px] text-brand-dark font-medium">
-                {['Regnummersökning — skriv reg.nr, se vad som passar', 'Passformskontroll — bara det som faktiskt passar', 'B2B-prenumeration — verkstäder och bilhandlare'].map((t) => (
+                {['Regnummersökning på begagnat — först att kombinera reg.nr-sök med begagnatutbud', 'Passformskontroll — vi visar bara det som faktiskt passar din bil', 'B2B-prenumeration — verkstäder och bilhandlare på en plattform'].map((t) => (
                   <div key={t} className="flex items-start gap-2">
                     <img src="/icons/check-circle.svg" alt="" className="w-4 h-4 mt-0.5 shrink-0 opacity-50" />
                     <span>{t}</span>
@@ -576,8 +587,8 @@ function SlideCompetition() {
           </div>
         </div>
 
-        <Body className="mb-8 max-w-[640px] text-[15px]">
-          För en köpare som behöver 225/45 R17 till en 2019 V60 är räckvidd meningslöst utan passform.
+        <Body className="mb-8 max-w-[700px] text-[15px]">
+          Bythjul, Vianor och Skruvat erbjuder regnummersök — men bara för nytt. För begagnat finns ingen passformskontroll. Det är gapet vi fyller.
         </Body>
         <SlideNum n={11} />
       </div>
