@@ -618,7 +618,7 @@ function SlideClosing() {
         <div className="absolute inset-0 bg-brand-dark/20" />
       </div>
       <div className="relative h-full flex flex-col items-center justify-center text-center px-14">
-        <h2 className="text-[44px] font-bold text-white leading-[1.1] font-heading max-w-[700px]" style={{ textShadow: '0 2px 12px rgba(0,0,0,0.5)' }}>
+        <h2 className="text-[40px] font-bold text-white leading-[1.1] font-heading whitespace-nowrap" style={{ textShadow: '0 2px 12px rgba(0,0,0,0.5)' }}>
           Fönstret att äga kategorin är öppet.
         </h2>
         <p className="text-[18px] text-white/50 mt-6">Låt oss bygga den globala ledaren — tillsammans.</p>
