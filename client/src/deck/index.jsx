@@ -64,7 +64,7 @@ function Stat({ number, label, dark }) {
   return (
     <div>
       <div className="text-[44px] font-bold text-brand-blue leading-none font-heading">{number}</div>
-      <div className={`text-[12px] font-medium uppercase tracking-wider mt-2 ${dark ? 'text-white/50' : 'text-brand-gray-medium'}`}>{label}</div>
+      <div className={`text-[14px] font-medium uppercase tracking-wider mt-2 ${dark ? 'text-white/50' : 'text-brand-gray-medium'}`}>{label}</div>
     </div>
   );
 }
@@ -188,7 +188,7 @@ function SlideSolution() {
    ACT 2 — THE ARGUMENT
    ══════════════════════════════════════════════════════════ */
 
-/* ── 4: Traction — hero stats (light) ────────────────── */
+/* ── 4: Traction — hero stats only (light) ───────────── */
 function SlideTraction() {
   return (
     <Slide>
@@ -196,27 +196,21 @@ function SlideTraction() {
         <Tag>Traktion</Tag>
         <H1 className="mt-3">4 650 annonser och 5M besökare på 22 månader</H1>
 
-        <div className="mt-10 grid grid-cols-4 gap-8">
+        <div className="mt-14 grid grid-cols-4 gap-8">
           <Stat number="4 650" label="Aktiva annonser" />
           <Stat number="5M+" label="Besökare sedan start" />
           <Stat number="35M" label="SEK transaktionsvärde" />
-          <Stat number="3 min" label="Snittlig session" />
+          <Stat number="19" label="B2B-prenumeranter" />
         </div>
 
-        <div className="mt-10 grid grid-cols-2 gap-6">
-          <BlueCard>
-            <h3 className="text-[15px] font-bold text-brand-dark mb-3">Milstolpar</h3>
-            <div className="space-y-1.5 text-[14px] text-brand-gray-medium">
-              <p>April 2024 — Lansering</p>
-              <p>19 aktiva B2B-prenumerationer (3 000 SEK/mån)</p>
-              <p>Från 0 till 4 650 annonser på under 2 år</p>
-            </div>
-          </BlueCard>
-          <BlueCard>
-            <h3 className="text-[15px] font-bold text-brand-dark mb-3">Nyckelkunder</h3>
-            <p className="text-[14px] text-brand-dark font-semibold">Hedin Automotive · Frontbilar · Toveks</p>
-            <p className="text-[13px] text-brand-gray-medium mt-2">I förhandling: Börjessons Bil, Bilia, Ehrlings Bil, Cetira</p>
-          </BlueCard>
+        <div className="mt-auto mb-14">
+          <p className="text-[15px] text-brand-dark">
+            <span className="font-semibold">Signerade kunder:</span>
+            <span className="text-brand-gray-medium"> Hedin Automotive (Sveriges största bilkoncern) · Frontbilar · Toveks</span>
+          </p>
+          <p className="text-[14px] text-brand-gray-medium mt-2">
+            I förhandling: Börjessons Bil, Bilia, Ehrlings Bil, Cetira
+          </p>
         </div>
         <SlideNum n={4} />
       </div>
@@ -232,24 +226,27 @@ function SlideBusinessModel() {
         <Tag>Affärsmodell</Tag>
         <H1 className="mt-3">3 000 SEK/mån + 5 % per transaktion</H1>
 
-        <div className="mt-10 grid grid-cols-2 gap-8 flex-1">
-          <div>
-            <div className="text-[11px] font-semibold text-brand-blue uppercase tracking-wider mb-3">Prenumerationer (SaaS)</div>
-            <div className="text-[36px] font-bold text-brand-dark font-heading leading-none">3 000 SEK</div>
-            <div className="text-[15px] text-brand-gray-medium mt-1 mb-5">/månad per företag</div>
-            <Body>Däckverkstäder, bilhandlare och leasingbolag. Obegränsade annonser, prioriterad synlighet, företagsprofil.</Body>
-            <div className="mt-5 flex gap-8 text-[13px]">
+        <div className="mt-10 flex gap-0 flex-1">
+          <div className="flex-1 pr-10">
+            <div className="text-[14px] font-semibold text-brand-blue uppercase tracking-wider mb-3">Prenumerationer (SaaS)</div>
+            <div className="text-[44px] font-bold text-brand-dark font-heading leading-none">3 000</div>
+            <div className="text-[15px] text-brand-gray-medium mt-1 mb-5">SEK/mån per företag</div>
+            <Body>Däckverkstäder, bilhandlare och leasingbolag. Obegränsade annonser och prioriterad synlighet.</Body>
+            <div className="mt-6 flex gap-10 text-[14px]">
               <div><span className="text-brand-gray-medium">Nuvarande</span><br /><span className="text-brand-dark font-semibold">19 prenumeranter</span></div>
-              <div><span className="text-brand-gray-medium">Mål Sverige</span><br /><span className="text-brand-dark font-semibold">100–300</span></div>
+              <div><span className="text-brand-gray-medium">Mål</span><br /><span className="text-brand-dark font-semibold">100–300</span></div>
             </div>
           </div>
 
-          <div>
-            <div className="text-[11px] font-semibold text-brand-blue uppercase tracking-wider mb-3">Marknadsplats</div>
-            <div className="text-[36px] font-bold text-brand-dark font-heading leading-none">5 %</div>
+          {/* Visual divider — motif line */}
+          <div className="w-[3px] bg-brand-blue rounded-full shrink-0 my-2" />
+
+          <div className="flex-1 pl-10">
+            <div className="text-[14px] font-semibold text-brand-blue uppercase tracking-wider mb-3">Marknadsplats</div>
+            <div className="text-[44px] font-bold text-brand-dark font-heading leading-none">5 %</div>
             <div className="text-[15px] text-brand-gray-medium mt-1 mb-5">take rate (~300 SEK/transaktion)</div>
-            <Body>Tillämpas på genomförda transaktioner. Snittligt transaktionsvärde: 3 000–8 000 SEK per set.</Body>
-            <div className="mt-5 text-[13px]">
+            <Body>Genomförda transaktioner. Snitt: 3 000–8 000 SEK per hjulset.</Body>
+            <div className="mt-6 text-[14px]">
               <span className="text-brand-gray-medium">Adresserbar marknad</span><br />
               <span className="text-brand-dark font-semibold">~200 000 transaktioner/år i Sverige</span>
             </div>
@@ -281,7 +278,7 @@ function SlideMarket() {
             <div className="space-y-4">
               {bars.map((b, i) => (
                 <div key={i}>
-                  <div className="flex justify-between text-[13px] mb-1.5">
+                  <div className="flex justify-between text-[14px] mb-1.5">
                     <span className="text-brand-gray-medium">{b.label}</span>
                     <span className="text-brand-dark font-semibold">{b.value}</span>
                   </div>
@@ -295,7 +292,7 @@ function SlideMarket() {
               {['Ekonomisk press → fler köper begagnat', 'Leasingboom → överskottshjul', 'Större fälgar & SUV → högre andrahandsvärde'].map((d, i) => (
                 <div key={i} className="flex items-start gap-3">
                   <div className="w-[3px] h-4 bg-brand-blue rounded-full mt-0.5 shrink-0" />
-                  <span className="text-[13px] text-brand-gray-medium">{d}</span>
+                  <span className="text-[14px] text-brand-gray-medium">{d}</span>
                 </div>
               ))}
             </div>
@@ -393,7 +390,7 @@ function SlideCompetition() {
           </div>
         </div>
 
-        <Body className="mb-8 max-w-[640px] text-[13px]">
+        <Body className="mb-8 max-w-[640px] text-[15px]">
           För en köpare som behöver 225/45 R17 till en 2019 V60 är räckvidd meningslöst utan passform.
         </Body>
         <SlideNum n={7} />
@@ -423,7 +420,7 @@ function SlideTeam() {
             ].map((p, i) => (
               <div key={i} className="flex items-start gap-3">
                 <div className="w-[3px] h-4 bg-brand-blue rounded-full mt-0.5 shrink-0" />
-                <span className="text-[13px] text-brand-gray-medium">{p}</span>
+                <span className="text-[14px] text-brand-gray-medium">{p}</span>
               </div>
             ))}
           </div>
@@ -438,13 +435,13 @@ function SlideTeam() {
             <BlueCard>
               <h3 className="text-[15px] font-bold text-brand-dark mb-2">Arvet</h3>
               <Body className="text-[14px]">
-                Christofers far Svante Hertel var en pionjär inom premium-fälgar i Norden och byggde ett marknadsledande bolag med djup produktkunskap och etablerade branschrelationer.
+                Svante Hertel byggde ett marknadsledande nordiskt bolag inom premium-fälgar. Djup produktkunskap och starka branschrelationer.
               </Body>
             </BlueCard>
             <BlueCard>
               <h3 className="text-[15px] font-bold text-brand-dark mb-2">Utvecklingen</h3>
               <Body className="text-[14px]">
-                Christofer tog över och växte verksamheten med stark lönsamhet — förvärv av Storskogen. Nu kanaliserar han samma expertis in i att digitalisera en hel marknadskategori.
+                Christofer tog över, växte med stark lönsamhet. Storskogen förvärvade. Nu digitaliserar han hela marknadskategorin.
               </Body>
             </BlueCard>
           </div>
@@ -476,16 +473,16 @@ function SlideFinancials() {
         <div className="mt-8 grid grid-cols-3 gap-6">
           {sc.map((s, i) => (
             <div key={s.name} className={`rounded-xl p-5 ${i === 1 ? 'bg-brand-blue-50 border-2 border-brand-blue' : 'bg-brand-gray-light'}`}>
-              <div className="text-[11px] font-semibold text-brand-blue uppercase tracking-wider">{s.name}</div>
+              <div className="text-[14px] font-semibold text-brand-blue uppercase tracking-wider">{s.name}</div>
               <div className="text-[34px] font-bold text-brand-dark font-heading leading-none mt-2">{s.total}</div>
               <div className="text-[14px] text-brand-gray-medium">MSEK</div>
-              <div className="space-y-1 mt-4 text-[13px]">
+              <div className="space-y-1 mt-4 text-[14px]">
                 <div className="flex justify-between"><span className="text-brand-gray-medium">Andel</span><span className="text-brand-dark font-semibold">{s.share}</span></div>
                 <div className="flex justify-between"><span className="text-brand-gray-medium">Transaktioner</span><span className="text-brand-dark font-semibold">{s.txn}</span></div>
                 <div className="flex justify-between"><span className="text-brand-gray-medium">Prenumeranter</span><span className="text-brand-dark font-semibold">{s.sub}</span></div>
               </div>
               <div className="mt-4 pt-3 border-t border-brand-gray/20">
-                <div className="text-[11px] text-brand-gray-medium">Värdering</div>
+                <div className="text-[14px] text-brand-gray-medium">Värdering</div>
                 <div className="text-[16px] font-bold text-brand-blue">{s.val} MSEK</div>
               </div>
             </div>
@@ -533,8 +530,8 @@ function SlideAsk() {
           ))}
         </div>
 
-        <Body className="mt-8 max-w-[640px] text-[14px]">
-          Verkliga intäkter. Hedin Automotive som kund. 5M besökare på 22 månader. Marknaden rör sig online med 14 % CAGR. Fönstret är öppet — men det stängs.
+        <Body className="mt-8 max-w-[640px] text-[15px]">
+          Marknaden rör sig online med 14 % CAGR. Fönstret att äga kategorin är öppet — men det stängs.
         </Body>
         <SlideNum n={10} />
       </div>
@@ -556,9 +553,9 @@ function SlideSustainability() {
 
         <div className="mt-10 grid grid-cols-3 gap-6">
           {[
-            ['Förlänger livslängden', 'Minskar behovet av ny produktion. En återanvänd däcksats sparar ~50–80 kg CO₂.'],
-            ['Minskar avfall', 'Sverige skickar ~100 000 ton däck till materialåtervinning årligen. Återanvändning är alltid bättre.'],
-            ['Cirkulär infrastruktur', 'Förvandlar sovande verkstadslager till tillgängligt, sökbart utbud.'],
+            ['Förlänger livslängden', 'Minskar behovet av ny produktion. Varje set som återanvänds är ett set som inte tillverkas.'],
+            ['Minskar avfall', 'Sverige skickar ~100 000 ton däck till materialåtervinning årligen. Återanvändning slår återvinning.'],
+            ['Cirkulär infrastruktur', 'Förvandlar sovande verkstadslager till sökbart utbud. Struktur skapar marknad.'],
           ].map(([title, desc]) => (
             <BlueCard key={title} className="bg-white/80">
               <h3 className="text-[16px] font-bold text-brand-dark mb-2">{title}</h3>
