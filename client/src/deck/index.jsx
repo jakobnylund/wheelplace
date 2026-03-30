@@ -22,6 +22,69 @@ function useReveal() {
   return { ref, visible };
 }
 
+/* ── Animated number counter ───────────────────────────── */
+
+function useCountUp(target, visible, duration = 1200) {
+  const [value, setValue] = useState(0);
+
+  useEffect(() => {
+    if (!visible) return;
+    const num = parseFloat(String(target).replace(/[^0-9.,]/g, '').replace(',', '.')) || 0;
+    if (num === 0) { setValue(0); return; }
+    const start = performance.now();
+    const step = (now) => {
+      const progress = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      setValue(Math.round(eased * num));
+      if (progress < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  }, [visible, target, duration]);
+
+  return value;
+}
+
+function AnimatedStat({ number, label, visible }) {
+  // Parse the display format: "4 650" → count to 4650, display with space
+  const raw = String(number).replace(/\s/g, '');
+  const isM = raw.includes('M');
+  const numericTarget = parseFloat(raw.replace(/[^0-9.]/g, '')) || 0;
+  const counted = useCountUp(numericTarget, visible, 1400);
+
+  let display;
+  if (isM) {
+    display = counted + 'M' + (raw.includes('+') ? '+' : '');
+  } else if (numericTarget >= 1000) {
+    display = counted.toLocaleString('sv-SE');
+  } else {
+    display = String(counted);
+  }
+
+  return (
+    <div>
+      <div className="text-[40px] font-bold text-brand-blue leading-none font-heading">{visible ? display : '0'}</div>
+      <div className="text-[13px] font-medium uppercase tracking-wider mt-2 text-brand-gray-medium">{label}</div>
+    </div>
+  );
+}
+
+/* ── Animated bar fill ─────────────────────────────────── */
+
+function AnimatedBar({ width, opacity, visible, delay = 0 }) {
+  return (
+    <div className="h-3 rounded bg-brand-gray-light overflow-hidden">
+      <div
+        className="h-full rounded bg-brand-blue"
+        style={{
+          width: visible ? width : '0%',
+          opacity,
+          transition: `width 1s cubic-bezier(0.16,1,0.3,1) ${delay}s`,
+        }}
+      />
+    </div>
+  );
+}
+
 /* ── Shared primitives ─────────────────────────────────── */
 
 function Slide({ children, dark = false, className = '' }) {
@@ -285,25 +348,30 @@ function SlideProduct3() { return <ScreenshotSlide src="/deck/ui-hero.png" label
 
 /* ── 5: Traction (light) ─────────────────────────────── */
 function SlideTraction() {
+  const { ref: statsRef, visible: statsVisible } = useReveal();
+
   return (
     <Slide>
       <div className="px-14 pt-14">
         <Tag>Traktion</Tag>
         <H1 className="mt-3">4 650 annonser och 5M besökare på 22 månader</H1>
 
-        <Stagger delay={0.12} className="mt-10 grid grid-cols-4 gap-5">
+        <div ref={statsRef} className="mt-10 grid grid-cols-4 gap-5">
           {[
             ['4 650', 'Aktiva annonser'],
             ['5M+', 'Besökare sedan start'],
             ['35M', 'SEK transaktionsvärde'],
             ['19', 'B2B-prenumeranter'],
-          ].map(([num, label]) => (
-            <div key={label} className="bg-brand-gray-light rounded-xl p-5">
-              <div className="text-[40px] font-bold text-brand-blue leading-none font-heading">{num}</div>
-              <div className="text-[13px] font-medium uppercase tracking-wider mt-2 text-brand-gray-medium">{label}</div>
+          ].map(([num, label], i) => (
+            <div key={label} className="bg-brand-gray-light rounded-xl p-5" style={{
+              opacity: statsVisible ? 1 : 0,
+              transform: statsVisible ? 'translateY(0)' : 'translateY(20px)',
+              transition: `opacity 0.5s cubic-bezier(0.16,1,0.3,1) ${i * 0.12}s, transform 0.5s cubic-bezier(0.16,1,0.3,1) ${i * 0.12}s`,
+            }}>
+              <AnimatedStat number={num} label={label} visible={statsVisible} />
             </div>
           ))}
-        </Stagger>
+        </div>
 
         <div className="mt-8 flex gap-5">
           {/* Hedin — hero customer */}
@@ -367,6 +435,7 @@ function SlideBusinessModel() {
 
 /* ── 7: Market (light, split) ────────────────────────── */
 function SlideMarket() {
+  const { ref: barsRef, visible: barsVisible } = useReveal();
   const bars = [
     { label: 'Global däckmarknad', value: '$150–300B', w: '100%' },
     { label: 'Eftermarknad (ersättning)', value: '$150B+', w: '80%' },
@@ -381,17 +450,19 @@ function SlideMarket() {
 
         <div className="mt-8" style={{ display: 'flex', gap: '40px' }}>
           {/* Left: bars */}
-          <div style={{ width: '740px' }}>
+          <div ref={barsRef} style={{ width: '740px' }}>
             <div className="space-y-4">
               {bars.map((b, i) => (
-                <div key={i}>
+                <div key={i} style={{
+                  opacity: barsVisible ? 1 : 0,
+                  transform: barsVisible ? 'translateY(0)' : 'translateY(12px)',
+                  transition: `opacity 0.4s ease ${i * 0.1}s, transform 0.4s ease ${i * 0.1}s`,
+                }}>
                   <div className="flex items-baseline gap-3 mb-1.5">
                     <span className="text-[14px] text-brand-gray-medium">{b.label}</span>
                     <span className="text-[14px] text-brand-dark font-semibold whitespace-nowrap ml-auto">{b.value}</span>
                   </div>
-                  <div className="h-3 rounded bg-brand-gray-light overflow-hidden">
-                    <div className="h-full rounded bg-brand-blue" style={{ width: b.w, opacity: 1 - i * 0.15 }} />
-                  </div>
+                  <AnimatedBar width={b.w} opacity={1 - i * 0.15} visible={barsVisible} delay={0.3 + i * 0.15} />
                 </div>
               ))}
             </div>
@@ -710,7 +781,7 @@ function SlideClosing() {
    ══════════════════════════════════════════════════════════ */
 
 function PasswordGate({ children }) {
-  const [authenticated, setAuthenticated] = useState(false);
+  const [authenticated, setAuthenticated] = useState(() => sessionStorage.getItem('deck_auth') === '1');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(false);
 
@@ -719,6 +790,7 @@ function PasswordGate({ children }) {
     if (password === 'wheelplace2027!') {
       setAuthenticated(true);
       setError(false);
+      sessionStorage.setItem('deck_auth', '1');
     } else {
       setError(true);
     }
