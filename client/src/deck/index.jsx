@@ -615,6 +615,20 @@ export default function Deck() {
   const downloadPDF = async () => {
     setDownloading(true);
     try {
+      // Wait for all images to load
+      const images = deckRef.current.querySelectorAll('img');
+      await Promise.all(
+        Array.from(images).map(
+          (img) =>
+            img.complete
+              ? Promise.resolve()
+              : new Promise((resolve) => {
+                  img.onload = resolve;
+                  img.onerror = resolve;
+                })
+        )
+      );
+
       const pdf = new jsPDF({ orientation: 'landscape', unit: 'px', format: [1280, 720] });
       const slideEls = deckRef.current.querySelectorAll('.slide');
 
@@ -623,9 +637,12 @@ export default function Deck() {
           scale: 2,
           backgroundColor: '#ffffff',
           useCORS: true,
+          allowTaint: true,
           logging: false,
+          width: 1280,
+          height: 720,
         });
-        const imgData = canvas.toDataURL('image/jpeg', 0.95);
+        const imgData = canvas.toDataURL('image/jpeg', 0.92);
         if (i > 0) pdf.addPage([1280, 720], 'landscape');
         pdf.addImage(imgData, 'JPEG', 0, 0, 1280, 720);
       }
@@ -633,6 +650,7 @@ export default function Deck() {
       pdf.save('Wheelplace-Investeringsdeck-2026.pdf');
     } catch (err) {
       console.error('PDF generation failed:', err);
+      alert('PDF-generering misslyckades: ' + err.message);
     } finally {
       setDownloading(false);
     }
