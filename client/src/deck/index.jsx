@@ -582,14 +582,14 @@ function SlideAsk() {
 /* ── 12: Sustainability (light, image bg) ────────────── */
 function SlideSustainability() {
   return (
-    <Slide>
+    <Slide dark>
       <div className="absolute inset-0">
         <img src="/sustainability-bg.jpg" alt="" className="w-full h-full object-cover" />
-        <div className="absolute inset-0 bg-white/90" />
+        <div className="absolute inset-0 bg-brand-dark/40" />
       </div>
       <div className="relative h-full flex flex-col px-14 pt-14">
-        <Tag>Hållbarhet</Tag>
-        <H1 className="mt-3">Varje återanvänt däckset sparar 50–80 kg CO₂</H1>
+        <Tag dark>Hållbarhet</Tag>
+        <h2 className="text-[38px] font-bold leading-[1.12] font-heading text-white mt-3">Varje återanvänt däckset sparar 50–80 kg CO₂</h2>
 
         <div className="mt-10 grid grid-cols-3 gap-6">
           {[
@@ -597,13 +597,13 @@ function SlideSustainability() {
             ['Minskar avfall', 'Sverige skickar ~100 000 ton däck till materialåtervinning årligen. Återanvändning slår återvinning.'],
             ['Cirkulär infrastruktur', 'Förvandlar sovande verkstadslager till sökbart utbud. Struktur skapar marknad.'],
           ].map(([title, desc]) => (
-            <BlueCard key={title} className="bg-white/80">
-              <h3 className="text-[16px] font-bold text-brand-dark mb-2">{title}</h3>
-              <Body className="text-[14px]">{desc}</Body>
-            </BlueCard>
+            <div key={title} className="border-l-[3px] border-l-white/40 bg-brand-dark/60 backdrop-blur-sm rounded-r-lg pl-5 pr-5 py-4">
+              <h3 className="text-[16px] font-bold text-white mb-2">{title}</h3>
+              <p className="text-[14px] leading-[1.6] text-white/70">{desc}</p>
+            </div>
           ))}
         </div>
-        <SlideNum n={15} />
+        <SlideNum n={15} dark />
       </div>
     </Slide>
   );
