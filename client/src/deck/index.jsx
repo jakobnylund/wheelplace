@@ -1029,7 +1029,31 @@ export default function Deck() {
 
   return (
     <PasswordGate>
-    <div className="min-h-screen bg-brand-gray-light">
+    {/* Mobile gate */}
+    <div className="lg:hidden min-h-screen bg-brand-gray-light flex items-center justify-center p-6">
+      <div className="bg-white rounded-xl border border-brand-gray/40 p-8 max-w-[360px] text-center">
+        <img src="/wheelplace-symbol.svg" alt="Wheelplace" className="h-10 mx-auto mb-5" />
+        <h2 className="text-[20px] font-bold text-brand-dark font-heading mb-2">Investeringsdeck</h2>
+        <p className="text-[14px] text-brand-gray-medium mb-6">
+          Presentationen är optimerad för desktop. Öppna på en dator för den interaktiva versionen, eller ladda ner som PDF.
+        </p>
+        <button
+          onClick={downloadPDF}
+          disabled={downloading}
+          className="w-full px-5 py-3 bg-brand-blue hover:bg-brand-blue-dark text-white rounded-xl text-[14px] font-semibold transition-colors cursor-pointer disabled:opacity-50"
+        >
+          {downloading ? 'Genererar PDF...' : 'Ladda ner PDF'}
+        </button>
+        <a
+          href="mailto:christofer@wheelplace.com?subject=Wheelplace%20Investeringsdeck"
+          className="block mt-3 text-[14px] text-brand-blue font-medium"
+        >
+          Kontakta Christofer
+        </a>
+      </div>
+    </div>
+
+    <div className="hidden lg:block min-h-screen bg-brand-gray-light">
       {/* Top bar */}
       <div className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-brand-gray/40">
         <div className="max-w-[1320px] mx-auto px-6 flex items-center justify-between h-14">
