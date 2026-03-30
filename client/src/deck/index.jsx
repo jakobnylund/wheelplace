@@ -71,10 +71,7 @@ function Stat({ number, label, dark }) {
 
 function SlideNum({ n, dark }) {
   return (
-    <>
-      <span className={`absolute bottom-5 left-14 text-[11px] ${dark ? 'text-white/25' : 'text-brand-gray/80'}`}>{n}</span>
-      <img src="/wheelplace-symbol.svg" alt="" className="absolute bottom-5 right-14 h-10 opacity-20" />
-    </>
+    <span className={`absolute bottom-5 left-14 text-[11px] ${dark ? 'text-white/25' : 'text-brand-gray/80'}`}>{n}</span>
   );
 }
 
@@ -107,7 +104,7 @@ function SlideCover() {
           Marknadsplatsen för begagnade hjul, däck och fälgar
         </p>
         <div className="absolute bottom-5 right-14">
-          <img src="/wheelplace-lockup.svg" alt="Wheelplace" className="h-10 opacity-50" />
+          <img src="/wheelplace-lockup.svg" alt="Wheelplace" className="h-10" />
         </div>
         <p className="absolute bottom-5 left-14 text-[11px] text-white/25">Konfidentiellt · wheelplace.com</p>
       </div>
@@ -592,7 +589,7 @@ function SlideClosing() {
           <p>Christofer Hertel · christofer@wheelplace.com</p>
           <p className="mt-1">wheelplace.com</p>
         </div>
-        <img src="/wheelplace-lockup.svg" alt="Wheelplace" className="absolute bottom-8 right-14 h-10 opacity-50" />
+        <img src="/wheelplace-lockup.svg" alt="Wheelplace" className="absolute bottom-8 right-14 h-10" />
       </div>
     </Slide>
   );
