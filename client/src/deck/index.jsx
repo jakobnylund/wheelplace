@@ -615,7 +615,7 @@ function SlideClosing() {
     <Slide dark>
       <div className="absolute inset-0">
         <img src="/hero-bg.jpg" alt="" className="w-full h-full object-cover" />
-        <div className="absolute inset-0 bg-brand-dark/80" />
+        <div className="absolute inset-0 bg-brand-dark/40" />
       </div>
       <div className="relative h-full flex flex-col items-center justify-center text-center px-14">
         <h2 className="text-[44px] font-bold text-white leading-[1.1] font-heading max-w-[700px]">
