@@ -483,7 +483,7 @@ function SlideTeam() {
                 <h3 className="text-[15px] font-bold text-brand-dark">Jakob Nylund</h3>
                 <p className="text-[14px] text-brand-blue mb-2">Varumärke & design</p>
                 <Body className="text-[13px]">
-                  Executive Creative Director på North Kingdom. Arbetat med LEGO, Google, Adidas och Netflix. Bygger Wheelplace-varumärket och den digitala upplevelsen.
+                  Internationell erfarenhet av varumärkesbyggande och digital produktdesign. Ansvarar för Wheelplace varumärke, upplevelse och kreativ riktning.
                 </Body>
               </BlueCard>
             </div>
