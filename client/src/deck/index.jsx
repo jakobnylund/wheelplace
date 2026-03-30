@@ -654,6 +654,53 @@ function SlideClosing() {
    DECK SHELL
    ══════════════════════════════════════════════════════════ */
 
+function PasswordGate({ children }) {
+  const [authenticated, setAuthenticated] = useState(false);
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState(false);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (password === 'wheelplace2027!') {
+      setAuthenticated(true);
+      setError(false);
+    } else {
+      setError(true);
+    }
+  };
+
+  if (authenticated) return children;
+
+  return (
+    <div className="min-h-screen bg-brand-gray-light flex items-center justify-center">
+      <div className="bg-white rounded-xl border border-brand-gray/40 p-10 w-full max-w-[400px] text-center">
+        <img src="/wheelplace-symbol.svg" alt="Wheelplace" className="h-12 mx-auto mb-6" />
+        <h2 className="text-[22px] font-bold text-brand-dark font-heading mb-2">Investeringsdeck</h2>
+        <p className="text-[14px] text-brand-gray-medium mb-6">Ange lösenord för att fortsätta</p>
+        <form onSubmit={handleSubmit}>
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => { setPassword(e.target.value); setError(false); }}
+            placeholder="Lösenord"
+            autoFocus
+            className={`w-full px-4 py-3 border rounded-xl text-[15px] outline-none transition-colors ${
+              error ? 'border-red-400 bg-red-50' : 'border-brand-gray/40 focus:border-brand-blue'
+            }`}
+          />
+          {error && <p className="text-[13px] text-red-500 mt-2">Fel lösenord</p>}
+          <button
+            type="submit"
+            className="w-full mt-4 px-5 py-3 bg-brand-blue hover:bg-brand-blue-dark text-white rounded-xl text-[14px] font-semibold transition-colors cursor-pointer"
+          >
+            Öppna deck
+          </button>
+        </form>
+      </div>
+    </div>
+  );
+}
+
 export default function Deck() {
   const deckRef = useRef(null);
   const [downloading, setDownloading] = useState(false);
@@ -692,6 +739,7 @@ export default function Deck() {
   };
 
   return (
+    <PasswordGate>
     <div className="min-h-screen bg-brand-gray-light">
       {/* Top bar */}
       <div className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-brand-gray/40">
@@ -700,13 +748,21 @@ export default function Deck() {
             <img src="/wheelplace-symbol.svg" alt="Wheelplace" className="h-7" />
             <span className="text-[13px] text-brand-gray-medium">Investeringsdeck · 16 slides</span>
           </div>
-          <button
-            onClick={downloadPDF}
-            disabled={downloading}
-            className="flex items-center gap-2 px-5 py-2 bg-brand-blue hover:bg-brand-blue-dark text-white rounded-xl text-[13px] font-semibold transition-colors cursor-pointer disabled:opacity-50"
-          >
-            {downloading ? 'Genererar PDF...' : 'Ladda ner PDF'}
-          </button>
+          <div className="flex items-center gap-3">
+            <a
+              href="mailto:christofer@wheelplace.com?subject=Wheelplace%20Investeringsdeck"
+              className="flex items-center gap-2 px-5 py-2 border border-brand-gray/40 text-brand-dark hover:bg-brand-gray-light rounded-xl text-[13px] font-semibold transition-colors"
+            >
+              Kontakta Christofer
+            </a>
+            <button
+              onClick={downloadPDF}
+              disabled={downloading}
+              className="flex items-center gap-2 px-5 py-2 bg-brand-blue hover:bg-brand-blue-dark text-white rounded-xl text-[13px] font-semibold transition-colors cursor-pointer disabled:opacity-50"
+            >
+              {downloading ? 'Genererar PDF...' : 'Ladda ner PDF'}
+            </button>
+          </div>
         </div>
       </div>
 
@@ -719,5 +775,6 @@ export default function Deck() {
         ))}
       </div>
     </div>
+    </PasswordGate>
   );
 }
