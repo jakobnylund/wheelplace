@@ -174,11 +174,41 @@ function SlideSolution() {
           </div>
           <SlideNum n={3} />
         </div>
-        {/* Right: image */}
-        <div className="w-[480px] shrink-0 relative">
-          <img src="/hero-kopa.jpg" alt="" className="absolute inset-0 w-full h-full object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-r from-white via-white/40 to-transparent" />
+        {/* Right: product screenshot */}
+        <div className="w-[520px] shrink-0 relative bg-brand-gray-light">
+          <img src="/deck/ui-hero.png" alt="Wheelplace" className="absolute inset-0 w-full h-full object-cover object-top" />
+          <div className="absolute inset-0 bg-gradient-to-r from-white via-white/20 to-transparent w-[80px]" />
         </div>
+      </div>
+    </Slide>
+  );
+}
+
+/* ── 4: Product showcase (dark, full-bleed screenshots) ── */
+function SlideProduct() {
+  return (
+    <Slide className="bg-brand-dark">
+      <div className="h-full flex flex-col px-14 pt-12">
+        <Tag dark>Produkten</Tag>
+        <H1 dark className="mt-3 max-w-[500px]">Byggd för att lösa passform — inte bara lista annonser</H1>
+
+        {/* Three screenshots in perspective-like grid */}
+        <div className="mt-8 flex-1 flex gap-5 items-stretch pb-8">
+          {/* Main: annonser page */}
+          <div className="flex-[2] rounded-xl overflow-hidden border border-white/10 shadow-2xl relative">
+            <img src="/deck/ui-annonser.png" alt="Annonser" className="w-full h-full object-cover object-top" />
+          </div>
+          {/* Right column: detail + categories */}
+          <div className="flex-1 flex flex-col gap-5">
+            <div className="flex-1 rounded-xl overflow-hidden border border-white/10 shadow-2xl relative">
+              <img src="/deck/ui-annons-detail.png" alt="Annonsdetalj" className="w-full h-full object-cover object-top" />
+            </div>
+            <div className="flex-1 rounded-xl overflow-hidden border border-white/10 shadow-2xl relative">
+              <img src="/deck/ui-categories.png" alt="Kategorier" className="w-full h-full object-cover object-top" />
+            </div>
+          </div>
+        </div>
+        <SlideNum n={4} dark />
       </div>
     </Slide>
   );
@@ -188,7 +218,7 @@ function SlideSolution() {
    ACT 2 — THE ARGUMENT
    ══════════════════════════════════════════════════════════ */
 
-/* ── 4: Traction — hero stats only (light) ───────────── */
+/* ── 5: Traction (light) ─────────────────────────────── */
 function SlideTraction() {
   return (
     <Slide>
@@ -212,13 +242,13 @@ function SlideTraction() {
             I förhandling: Börjessons Bil, Bilia, Ehrlings Bil, Cetira
           </p>
         </div>
-        <SlideNum n={4} />
+        <SlideNum n={5} />
       </div>
     </Slide>
   );
 }
 
-/* ── 5: Business Model (light) ───────────────────────── */
+/* ── 6: Business Model (light) ───────────────────────── */
 function SlideBusinessModel() {
   return (
     <Slide>
@@ -252,13 +282,13 @@ function SlideBusinessModel() {
             </div>
           </div>
         </div>
-        <SlideNum n={5} />
+        <SlideNum n={6} />
       </div>
     </Slide>
   );
 }
 
-/* ── 6: Market (light, split) ────────────────────────── */
+/* ── 7: Market (light, split) ────────────────────────── */
 function SlideMarket() {
   const bars = [
     { label: 'Global däckmarknad', value: '$150–300B', w: '100%' },
@@ -316,13 +346,13 @@ function SlideMarket() {
             </BlueCard>
           </div>
         </div>
-        <SlideNum n={6} />
+        <SlideNum n={7} />
       </div>
     </Slide>
   );
 }
 
-/* ── 7: Competition (light, positioning map) ─────────── */
+/* ── 8: Competition (light, positioning map) ─────────── */
 function SlideCompetition() {
   return (
     <Slide>
@@ -393,13 +423,13 @@ function SlideCompetition() {
         <Body className="mb-8 max-w-[640px] text-[15px]">
           För en köpare som behöver 225/45 R17 till en 2019 V60 är räckvidd meningslöst utan passform.
         </Body>
-        <SlideNum n={7} />
+        <SlideNum n={8} />
       </div>
     </Slide>
   );
 }
 
-/* ── 8: Team (light, split) ──────────────────────────── */
+/* ── 9: Team (light, split) ──────────────────────────── */
 function SlideTeam() {
   return (
     <Slide>
@@ -449,14 +479,14 @@ function SlideTeam() {
           <p className="text-[15px] font-semibold text-brand-blue italic mb-10">
             Samma expertis som byggde ett bolag Storskogen förvärvade — nu applicerad på en hel marknad.
           </p>
-          <SlideNum n={8} />
+          <SlideNum n={9} />
         </div>
       </div>
     </Slide>
   );
 }
 
-/* ── 9: Financials (light) ───────────────────────────── */
+/* ── 10: Financials (light) ───────────────────────────── */
 function SlideFinancials() {
   const sc = [
     { name: 'Bas', share: '5 %', total: '6,6', val: '40–70', txn: '10k → 3M', sub: '100 → 3,6M' },
@@ -499,7 +529,7 @@ function SlideFinancials() {
             <span className="text-[14px] text-brand-gray-medium ml-3">Mellanscenario: ~160–200 MSEK · Värdering: 1,5–3+ miljarder SEK</span>
           </div>
         </div>
-        <SlideNum n={9} />
+        <SlideNum n={10} />
       </div>
     </Slide>
   );
@@ -533,13 +563,13 @@ function SlideAsk() {
         <Body className="mt-8 max-w-[640px] text-[15px]">
           Marknaden rör sig online med 14 % CAGR. Fönstret att äga kategorin är öppet — men det stängs.
         </Body>
-        <SlideNum n={10} />
+        <SlideNum n={11} />
       </div>
     </Slide>
   );
 }
 
-/* ── 11: Sustainability (light, image bg) ────────────── */
+/* ── 12: Sustainability (light, image bg) ────────────── */
 function SlideSustainability() {
   return (
     <Slide>
@@ -563,13 +593,13 @@ function SlideSustainability() {
             </BlueCard>
           ))}
         </div>
-        <SlideNum n={11} />
+        <SlideNum n={12} />
       </div>
     </Slide>
   );
 }
 
-/* ── 12: Closing (dark, callback to cover) ───────────── */
+/* ── 13: Closing (dark, callback to cover) ───────────── */
 function SlideClosing() {
   return (
     <Slide dark>
@@ -601,7 +631,7 @@ export default function Deck() {
   const [downloading, setDownloading] = useState(false);
 
   const slides = [
-    SlideCover, SlideProblem, SlideSolution, SlideTraction,
+    SlideCover, SlideProblem, SlideSolution, SlideProduct, SlideTraction,
     SlideBusinessModel, SlideMarket, SlideCompetition, SlideTeam,
     SlideFinancials, SlideAsk, SlideSustainability, SlideClosing,
   ];
@@ -640,7 +670,7 @@ export default function Deck() {
         <div className="max-w-[1320px] mx-auto px-6 flex items-center justify-between h-14">
           <div className="flex items-center gap-3">
             <img src="/wheelplace-symbol.svg" alt="Wheelplace" className="h-7" />
-            <span className="text-[13px] text-brand-gray-medium">Investeringsdeck · 12 slides</span>
+            <span className="text-[13px] text-brand-gray-medium">Investeringsdeck · 13 slides</span>
           </div>
           <button
             onClick={downloadPDF}
