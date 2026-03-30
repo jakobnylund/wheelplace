@@ -100,8 +100,7 @@ function Slide({ children, dark = false, className = '' }) {
         className="h-full"
         style={{
           opacity: visible ? 1 : 0,
-          transform: visible ? 'translateY(0)' : 'translateY(32px)',
-          transition: 'opacity 0.7s cubic-bezier(0.16,1,0.3,1), transform 0.7s cubic-bezier(0.16,1,0.3,1)',
+          transition: 'opacity 0.7s cubic-bezier(0.16,1,0.3,1)',
         }}
       >
         {children}
