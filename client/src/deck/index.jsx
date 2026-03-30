@@ -93,7 +93,7 @@ function SlideCover() {
       {/* Background image */}
       <div className="absolute inset-0">
         <img src="/hero-bg.jpg" alt="" className="w-full h-full object-cover" />
-        <div className="absolute inset-0 bg-brand-dark/75" />
+        <div className="absolute inset-0 bg-brand-dark/50" />
       </div>
       <div className="relative h-full flex flex-col justify-end px-14 pb-16">
         <Tag dark>Investeringsmöjlighet · Mars 2026</Tag>
@@ -112,7 +112,28 @@ function SlideCover() {
   );
 }
 
-/* ── 2: Problem (light) ──────────────────────────────── */
+/* ── 2: Video (dark) ─────────────────────────────────── */
+function SlideVideo() {
+  return (
+    <Slide className="bg-brand-dark">
+      <div className="h-full flex items-center justify-center p-10">
+        <div className="w-full h-full rounded-xl overflow-hidden shadow-2xl border border-white/10">
+          <iframe
+            src="https://www.youtube.com/embed/X6x1yPQ7n6A?rel=0&modestbranding=1"
+            title="Wheelplace"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+            className="w-full h-full"
+            style={{ border: 'none' }}
+          />
+        </div>
+      </div>
+      <SlideNum n={2} dark />
+    </Slide>
+  );
+}
+
+/* ── 3: Problem (light) ──────────────────────────────── */
 function SlideProblem() {
   return (
     <Slide>
@@ -138,7 +159,7 @@ function SlideProblem() {
         <p className="text-[14px] text-brand-gray-medium italic mb-10 max-w-[700px]">
           Att köpa begagnade hjul idag är lika opålitligt som att köpa en begagnad bil var för 15 år sedan.
         </p>
-        <SlideNum n={2} />
+        <SlideNum n={3} />
       </div>
     </Slide>
   );
@@ -172,7 +193,7 @@ function SlideSolution() {
               </div>
             ))}
           </div>
-          <SlideNum n={3} />
+          <SlideNum n={4} />
         </div>
         {/* Right: image */}
         <div className="w-[480px] shrink-0 relative">
@@ -207,7 +228,7 @@ function SlideProduct() {
           </div>
         </div>
       </div>
-      <SlideNum n={4} dark />
+      <SlideNum n={5} dark />
     </Slide>
   );
 }
@@ -240,7 +261,7 @@ function SlideTraction() {
             I förhandling: Börjessons Bil, Bilia, Ehrlings Bil, Cetira
           </p>
         </div>
-        <SlideNum n={5} />
+        <SlideNum n={6} />
       </div>
     </Slide>
   );
@@ -280,7 +301,7 @@ function SlideBusinessModel() {
             </div>
           </div>
         </div>
-        <SlideNum n={6} />
+        <SlideNum n={7} />
       </div>
     </Slide>
   );
@@ -344,7 +365,7 @@ function SlideMarket() {
             </BlueCard>
           </div>
         </div>
-        <SlideNum n={7} />
+        <SlideNum n={8} />
       </div>
     </Slide>
   );
@@ -421,7 +442,7 @@ function SlideCompetition() {
         <Body className="mb-8 max-w-[640px] text-[15px]">
           För en köpare som behöver 225/45 R17 till en 2019 V60 är räckvidd meningslöst utan passform.
         </Body>
-        <SlideNum n={8} />
+        <SlideNum n={9} />
       </div>
     </Slide>
   );
@@ -477,7 +498,7 @@ function SlideTeam() {
           <p className="text-[15px] font-semibold text-brand-blue italic mb-10">
             Samma expertis som byggde ett bolag Storskogen förvärvade — nu applicerad på en hel marknad.
           </p>
-          <SlideNum n={9} />
+          <SlideNum n={10} />
         </div>
       </div>
     </Slide>
@@ -527,7 +548,7 @@ function SlideFinancials() {
             <span className="text-[14px] text-brand-gray-medium ml-3">Mellanscenario: ~160–200 MSEK · Värdering: 1,5–3+ miljarder SEK</span>
           </div>
         </div>
-        <SlideNum n={10} />
+        <SlideNum n={11} />
       </div>
     </Slide>
   );
@@ -561,7 +582,7 @@ function SlideAsk() {
         <Body className="mt-8 max-w-[640px] text-[15px]">
           Marknaden rör sig online med 14 % CAGR. Fönstret att äga kategorin är öppet — men det stängs.
         </Body>
-        <SlideNum n={11} />
+        <SlideNum n={12} />
       </div>
     </Slide>
   );
@@ -591,7 +612,7 @@ function SlideSustainability() {
             </BlueCard>
           ))}
         </div>
-        <SlideNum n={12} />
+        <SlideNum n={13} />
       </div>
     </Slide>
   );
@@ -629,7 +650,7 @@ export default function Deck() {
   const [downloading, setDownloading] = useState(false);
 
   const slides = [
-    SlideCover, SlideProblem, SlideSolution, SlideProduct, SlideTraction,
+    SlideCover, SlideVideo, SlideProblem, SlideSolution, SlideProduct, SlideTraction,
     SlideBusinessModel, SlideMarket, SlideCompetition, SlideTeam,
     SlideFinancials, SlideAsk, SlideSustainability, SlideClosing,
   ];
@@ -668,7 +689,7 @@ export default function Deck() {
         <div className="max-w-[1320px] mx-auto px-6 flex items-center justify-between h-14">
           <div className="flex items-center gap-3">
             <img src="/wheelplace-symbol.svg" alt="Wheelplace" className="h-7" />
-            <span className="text-[13px] text-brand-gray-medium">Investeringsdeck · 13 slides</span>
+            <span className="text-[13px] text-brand-gray-medium">Investeringsdeck · 14 slides</span>
           </div>
           <button
             onClick={downloadPDF}
