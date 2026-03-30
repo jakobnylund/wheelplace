@@ -73,7 +73,7 @@ function SlideNum({ n, dark }) {
   return (
     <>
       <span className={`absolute bottom-5 left-14 text-[11px] ${dark ? 'text-white/25' : 'text-brand-gray/80'}`}>{n}</span>
-      <img src="/wheelplace-symbol.svg" alt="" className="absolute bottom-4 right-14 h-7 opacity-20" />
+      <img src="/wheelplace-symbol.svg" alt="" className="absolute bottom-5 right-14 h-10 opacity-20" />
     </>
   );
 }
@@ -107,7 +107,7 @@ function SlideCover() {
           Wheelplace skapar värde genom cirkulär mobilitet — för konsumenter och företag
         </p>
         <div className="absolute bottom-5 right-14">
-          <img src="/wheelplace-lockup.svg" alt="Wheelplace" className="h-6 opacity-50" />
+          <img src="/wheelplace-lockup.svg" alt="Wheelplace" className="h-10 opacity-50" />
         </div>
         <p className="absolute bottom-5 left-14 text-[11px] text-white/25">Konfidentiellt · wheelplace.com</p>
       </div>
@@ -566,7 +566,7 @@ function SlideClosing() {
           <p>Christofer Hertel · christofer@wheelplace.com</p>
           <p className="mt-1">wheelplace.com</p>
         </div>
-        <img src="/wheelplace-lockup.svg" alt="Wheelplace" className="absolute bottom-8 right-14 h-6 opacity-40" />
+        <img src="/wheelplace-lockup.svg" alt="Wheelplace" className="absolute bottom-8 right-14 h-10 opacity-50" />
       </div>
     </Slide>
   );
