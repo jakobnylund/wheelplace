@@ -432,10 +432,13 @@ function SlideCompetition() {
             </div>
             <div className="bg-brand-blue-50 rounded-xl p-5">
               <h3 className="text-[14px] font-bold text-brand-blue uppercase tracking-wider mb-3">Vi har</h3>
-              <div className="space-y-1.5 text-[14px] text-brand-dark font-medium">
-                <p>Regnummersökning — skriv reg.nr, se vad som passar</p>
-                <p>Passformskontroll — bara det som faktiskt passar</p>
-                <p>B2B-prenumeration — verkstäder och bilhandlare</p>
+              <div className="space-y-2 text-[14px] text-brand-dark font-medium">
+                {['Regnummersökning — skriv reg.nr, se vad som passar', 'Passformskontroll — bara det som faktiskt passar', 'B2B-prenumeration — verkstäder och bilhandlare'].map((t) => (
+                  <div key={t} className="flex items-start gap-2">
+                    <img src="/icons/check-circle.svg" alt="" className="w-4 h-4 mt-0.5 shrink-0 opacity-50" />
+                    <span>{t}</span>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
