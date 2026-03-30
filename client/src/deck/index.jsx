@@ -1,16 +1,71 @@
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect, useCallback } from 'react';
 import { toJpeg } from 'html-to-image';
 import { jsPDF } from 'jspdf';
+
+/* ── Scroll-triggered animation hook ───────────────────── */
+
+function useReveal() {
+  const ref = useRef(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) { setVisible(true); observer.disconnect(); } },
+      { threshold: 0.15 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  return { ref, visible };
+}
 
 /* ── Shared primitives ─────────────────────────────────── */
 
 function Slide({ children, dark = false, className = '' }) {
+  const { ref, visible } = useReveal();
+
   return (
     <div
+      ref={ref}
       className={`slide relative overflow-hidden ${dark ? 'bg-brand-dark text-white' : 'bg-white text-brand-dark'} ${className}`}
       style={{ width: '1280px', height: '720px', flexShrink: 0 }}
     >
-      {children}
+      <div
+        className="h-full"
+        style={{
+          opacity: visible ? 1 : 0,
+          transform: visible ? 'translateY(0)' : 'translateY(32px)',
+          transition: 'opacity 0.7s cubic-bezier(0.16,1,0.3,1), transform 0.7s cubic-bezier(0.16,1,0.3,1)',
+        }}
+      >
+        {children}
+      </div>
+    </div>
+  );
+}
+
+/* Stagger wrapper — each direct child gets a sequential delay */
+function Stagger({ children, delay = 0.12, className = '' }) {
+  const { ref, visible } = useReveal();
+  const items = Array.isArray(children) ? children : [children];
+
+  return (
+    <div ref={ref} className={className}>
+      {items.map((child, i) => (
+        <div
+          key={i}
+          style={{
+            opacity: visible ? 1 : 0,
+            transform: visible ? 'translateY(0)' : 'translateY(20px)',
+            transition: `opacity 0.5s cubic-bezier(0.16,1,0.3,1) ${i * delay}s, transform 0.5s cubic-bezier(0.16,1,0.3,1) ${i * delay}s`,
+          }}
+        >
+          {child}
+        </div>
+      ))}
     </div>
   );
 }
@@ -141,7 +196,7 @@ function SlideProblem() {
         <Tag>Problemet</Tag>
         <H1 className="mt-3 max-w-[700px]">6 miljoner däck säljs i Sverige varje år — utan struktur</H1>
 
-        <div className="mt-10 grid grid-cols-3 gap-6">
+        <Stagger delay={0.15} className="mt-10 grid grid-cols-3 gap-6">
           {[
             ['01', 'Fragmenterad', 'Privatpersoner, verkstäder, bilhandlare och exportörer. Ingen gemensam plattform.'],
             ['02', 'Ingen transparens', 'Köpare kan inte verifiera passform eller pris. Bultmönster och kompatibilitet är en gissningslek.'],
@@ -153,7 +208,7 @@ function SlideProblem() {
               <Body>{desc}</Body>
             </div>
           ))}
-        </div>
+        </Stagger>
 
         <p className="text-[14px] text-brand-gray-medium italic mt-10 max-w-[700px]">
           Att köpa begagnade hjul idag är lika opålitligt som att köpa en begagnad bil var för 15 år sedan.
@@ -236,7 +291,7 @@ function SlideTraction() {
         <Tag>Traktion</Tag>
         <H1 className="mt-3">4 650 annonser och 5M besökare på 22 månader</H1>
 
-        <div className="mt-10 grid grid-cols-4 gap-5">
+        <Stagger delay={0.12} className="mt-10 grid grid-cols-4 gap-5">
           {[
             ['4 650', 'Aktiva annonser'],
             ['5M+', 'Besökare sedan start'],
@@ -248,7 +303,7 @@ function SlideTraction() {
               <div className="text-[13px] font-medium uppercase tracking-wider mt-2 text-brand-gray-medium">{label}</div>
             </div>
           ))}
-        </div>
+        </Stagger>
 
         <div className="mt-8 flex gap-5">
           {/* Hedin — hero customer */}
@@ -527,7 +582,7 @@ function SlideFinancials() {
         <H1 className="mt-3">6,6 MSEK i basfallet — 10× vid Europa</H1>
         <p className="text-[12px] text-brand-gray-medium mt-2">5 % take rate · ~200 000 transaktioner/år · 3 000 SEK/mån prenumeration</p>
 
-        <div className="mt-8 grid grid-cols-3 gap-6">
+        <Stagger delay={0.15} className="mt-8 grid grid-cols-3 gap-6">
           {sc.map((s, i) => (
             <div key={s.name} className={`rounded-xl p-5 ${i === 1 ? 'bg-brand-blue-50 border-2 border-brand-blue' : 'bg-brand-gray-light'}`}>
               <div className="text-[14px] font-semibold text-brand-blue uppercase tracking-wider">{s.name}</div>
@@ -544,7 +599,7 @@ function SlideFinancials() {
               </div>
             </div>
           ))}
-        </div>
+        </Stagger>
 
         <div className="mt-6 flex items-center gap-6 bg-brand-gray-light rounded-xl px-6 py-4">
           <div className="flex items-end gap-2 h-10 shrink-0">
@@ -574,7 +629,7 @@ function SlideAsk() {
         <Tag>Möjligheten</Tag>
         <H1 className="mt-3 max-w-[700px]">Vi söker kapital och en partner för nordisk expansion</H1>
 
-        <div className="mt-10 grid grid-cols-3 gap-6">
+        <Stagger delay={0.15} className="mt-10 grid grid-cols-3 gap-6">
           {[
             ['01', 'Kapital', 'Tillväxtkapital för plattformsutveckling, B2B-expansion och nordisk/europeisk utrullning.'],
             ['02', 'Strategisk partner', 'Fordonsbranschens räckvidd, internationell marknadsplatserfarenhet eller europeiska distributionsnätverk.'],
@@ -586,7 +641,7 @@ function SlideAsk() {
               <Body className="text-[14px]">{desc}</Body>
             </div>
           ))}
-        </div>
+        </Stagger>
 
         <Body className="mt-8 max-w-[640px] text-[15px]">
           Marknaden rör sig online med 14 % CAGR. Fönstret att äga kategorin är öppet — men det stängs.
@@ -609,7 +664,7 @@ function SlideSustainability() {
         <Tag dark>Hållbarhet</Tag>
         <h2 className="text-[38px] font-bold leading-[1.12] font-heading text-white mt-3">Varje återanvänt däckset sparar 50–80 kg CO₂</h2>
 
-        <div className="mt-10 grid grid-cols-3 gap-6">
+        <Stagger delay={0.15} className="mt-10 grid grid-cols-3 gap-6">
           {[
             ['Förlänger livslängden', 'Minskar behovet av ny produktion. Varje set som återanvänds är ett set som inte tillverkas.'],
             ['Minskar avfall', 'Sverige skickar ~100 000 ton däck till materialåtervinning årligen. Återanvändning slår återvinning.'],
@@ -620,7 +675,7 @@ function SlideSustainability() {
               <p className="text-[14px] leading-[1.6] text-white/70">{desc}</p>
             </div>
           ))}
-        </div>
+        </Stagger>
         <SlideNum n={15} dark />
       </div>
     </Slide>
