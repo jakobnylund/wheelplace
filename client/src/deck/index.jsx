@@ -205,33 +205,24 @@ function SlideSolution() {
   );
 }
 
-/* ── 4: Product showcase (dark, full-bleed screenshots) ── */
-function SlideProduct() {
+/* ── Screenshots: one per slide, full-bleed ──────────── */
+function ScreenshotSlide({ src, label, n }) {
   return (
     <Slide className="bg-brand-dark">
-      <div className="h-full flex gap-5 p-10">
-        {/* Main: annonser page — large */}
-        <div className="flex-[3] rounded-xl overflow-hidden border border-white/10 shadow-2xl relative">
-          <img src="/deck/ui-annonser.png" alt="Annonser" className="w-full h-full object-cover object-top" />
-          {/* Tag overlay */}
-          <div className="absolute top-5 left-5">
-            <Tag dark>Produkten</Tag>
-          </div>
-        </div>
-        {/* Right column: detail + categories — stacked */}
-        <div className="flex-[1.3] flex flex-col gap-4">
-          <div className="flex-[1.2] rounded-xl overflow-hidden border border-white/10 shadow-2xl relative">
-            <img src="/deck/ui-annons-detail.png" alt="Annonsdetalj" className="w-full h-full object-cover object-top" />
-          </div>
-          <div className="flex-1 rounded-xl overflow-hidden border border-white/10 shadow-2xl relative">
-            <img src="/deck/ui-categories.png" alt="Kategorier" className="w-full h-full object-cover object-top" />
-          </div>
+      <div className="h-full flex items-center justify-center p-10">
+        <div className="w-full h-full rounded-xl overflow-hidden border border-white/10 shadow-2xl relative">
+          <img src={src} alt={label} className="w-full h-full object-cover object-top" />
         </div>
       </div>
-      <SlideNum n={5} dark />
+      <div className="absolute top-5 left-14"><Tag dark>{label}</Tag></div>
+      <SlideNum n={n} dark />
     </Slide>
   );
 }
+
+function SlideProduct1() { return <ScreenshotSlide src="/deck/ui-annonser.png" label="Sök & filtrera" n={5} />; }
+function SlideProduct2() { return <ScreenshotSlide src="/deck/ui-annons-detail.png" label="Annonsvy" n={6} />; }
+function SlideProduct3() { return <ScreenshotSlide src="/deck/ui-categories.png" label="Kategorier & regnummersökning" n={7} />; }
 
 /* ══════════════════════════════════════════════════════════
    ACT 2 — THE ARGUMENT
@@ -261,7 +252,7 @@ function SlideTraction() {
             I förhandling: Börjessons Bil, Bilia, Ehrlings Bil, Cetira
           </p>
         </div>
-        <SlideNum n={6} />
+        <SlideNum n={8} />
       </div>
     </Slide>
   );
@@ -301,7 +292,7 @@ function SlideBusinessModel() {
             </div>
           </div>
         </div>
-        <SlideNum n={7} />
+        <SlideNum n={9} />
       </div>
     </Slide>
   );
@@ -365,7 +356,7 @@ function SlideMarket() {
             </BlueCard>
           </div>
         </div>
-        <SlideNum n={8} />
+        <SlideNum n={10} />
       </div>
     </Slide>
   );
@@ -442,7 +433,7 @@ function SlideCompetition() {
         <Body className="mb-8 max-w-[640px] text-[15px]">
           För en köpare som behöver 225/45 R17 till en 2019 V60 är räckvidd meningslöst utan passform.
         </Body>
-        <SlideNum n={9} />
+        <SlideNum n={11} />
       </div>
     </Slide>
   );
@@ -498,7 +489,7 @@ function SlideTeam() {
           <p className="text-[15px] font-semibold text-brand-blue italic mb-10">
             Samma expertis som byggde ett bolag Storskogen förvärvade — nu applicerad på en hel marknad.
           </p>
-          <SlideNum n={10} />
+          <SlideNum n={12} />
         </div>
       </div>
     </Slide>
@@ -548,7 +539,7 @@ function SlideFinancials() {
             <span className="text-[14px] text-brand-gray-medium ml-3">Mellanscenario: ~160–200 MSEK · Värdering: 1,5–3+ miljarder SEK</span>
           </div>
         </div>
-        <SlideNum n={11} />
+        <SlideNum n={13} />
       </div>
     </Slide>
   );
@@ -582,7 +573,7 @@ function SlideAsk() {
         <Body className="mt-8 max-w-[640px] text-[15px]">
           Marknaden rör sig online med 14 % CAGR. Fönstret att äga kategorin är öppet — men det stängs.
         </Body>
-        <SlideNum n={12} />
+        <SlideNum n={14} />
       </div>
     </Slide>
   );
@@ -612,7 +603,7 @@ function SlideSustainability() {
             </BlueCard>
           ))}
         </div>
-        <SlideNum n={13} />
+        <SlideNum n={15} />
       </div>
     </Slide>
   );
@@ -650,7 +641,7 @@ export default function Deck() {
   const [downloading, setDownloading] = useState(false);
 
   const slides = [
-    SlideCover, SlideVideo, SlideProblem, SlideSolution, SlideProduct, SlideTraction,
+    SlideCover, SlideVideo, SlideProblem, SlideSolution, SlideProduct1, SlideProduct2, SlideProduct3, SlideTraction,
     SlideBusinessModel, SlideMarket, SlideCompetition, SlideTeam,
     SlideFinancials, SlideAsk, SlideSustainability, SlideClosing,
   ];
@@ -689,7 +680,7 @@ export default function Deck() {
         <div className="max-w-[1320px] mx-auto px-6 flex items-center justify-between h-14">
           <div className="flex items-center gap-3">
             <img src="/wheelplace-symbol.svg" alt="Wheelplace" className="h-7" />
-            <span className="text-[13px] text-brand-gray-medium">Investeringsdeck · 14 slides</span>
+            <span className="text-[13px] text-brand-gray-medium">Investeringsdeck · 16 slides</span>
           </div>
           <button
             onClick={downloadPDF}
