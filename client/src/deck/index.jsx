@@ -444,50 +444,53 @@ function SlideTeam() {
   return (
     <Slide>
       <div className="h-full flex">
-        {/* Left: founder */}
-        <div className="w-[440px] shrink-0 bg-brand-gray-light flex flex-col items-center justify-center px-10">
-          <div className="w-28 h-28 rounded-full overflow-hidden mb-5 border-[3px] border-brand-blue/20">
-            <img src="/founder.avif" alt="Christofer Hertel" className="w-full h-full object-cover" />
-          </div>
-          <h3 className="text-[20px] font-bold text-brand-dark font-heading">Christofer Hertel</h3>
-          <p className="text-[14px] text-brand-blue mt-1 mb-6">Grundare & VD</p>
-          <div className="text-left space-y-3 w-full">
-            {[
-              'Uppvuxen i branschen — produkt, inköp, försäljning',
-              'Drev Special Fälgar (premium aftermarket, Norden)',
-              'Familjebolaget förvärvat av Storskogen',
-              '2 år på däckverkstad före Wheelplace',
-            ].map((p, i) => (
-              <div key={i} className="flex items-start gap-3">
-                <div className="w-[3px] h-4 bg-brand-blue rounded-full mt-0.5 shrink-0" />
-                <span className="text-[14px] text-brand-gray-medium">{p}</span>
-              </div>
-            ))}
+        {/* Left: Christofer full-bleed photo */}
+        <div className="w-[440px] shrink-0 relative">
+          <img src="/founder.avif" alt="Christofer Hertel" className="absolute inset-0 w-full h-full object-cover" />
+          <div className="absolute inset-0 bg-gradient-to-t from-brand-dark/80 via-brand-dark/20 to-transparent" />
+          <div className="absolute bottom-8 left-8 right-8">
+            <h3 className="text-[22px] font-bold text-white font-heading">Christofer Hertel</h3>
+            <p className="text-[14px] text-white/70 mt-1">Grundare & VD</p>
+            <p className="text-[13px] text-white/50 mt-3 leading-relaxed">
+              Andra generationen i branschen. Drev Special Fälgar — förvärvat av Storskogen. 2 år på däckverkstad före Wheelplace.
+            </p>
           </div>
         </div>
 
-        {/* Right: heritage */}
-        <div className="flex-1 flex flex-col px-14 pt-14">
+        {/* Right: team + heritage */}
+        <div className="flex-1 px-12 pt-14">
           <Tag>Team</Tag>
           <H1 className="mt-3">Familjebolaget såldes till Storskogen — nu bygger vi kategorin</H1>
 
-          <div className="mt-8 space-y-5 flex-1">
+          <div className="mt-8 space-y-4">
             <BlueCard>
-              <h3 className="text-[15px] font-bold text-brand-dark mb-2">Arvet</h3>
+              <h3 className="text-[15px] font-bold text-brand-dark mb-1">Arvet</h3>
               <Body className="text-[14px]">
-                Svante Hertel byggde ett marknadsledande nordiskt bolag inom premium-fälgar. Djup produktkunskap och starka branschrelationer.
+                Svante Hertel byggde ett marknadsledande bolag inom premium-fälgar i Norden. Christofer tog över, växte med stark lönsamhet — Storskogen förvärvade.
               </Body>
             </BlueCard>
-            <BlueCard>
-              <h3 className="text-[15px] font-bold text-brand-dark mb-2">Utvecklingen</h3>
-              <Body className="text-[14px]">
-                Christofer tog över, växte med stark lönsamhet. Storskogen förvärvade. Nu digitaliserar han hela marknadskategorin.
-              </Body>
-            </BlueCard>
+
+            {/* Additional team */}
+            <div className="grid grid-cols-2 gap-4 mt-2">
+              <BlueCard>
+                <h3 className="text-[15px] font-bold text-brand-dark">Calle Kock</h3>
+                <p className="text-[14px] text-brand-blue mb-2">Rådgivare & nätverk</p>
+                <Body className="text-[13px]">
+                  Serieentreprenör inom hospitality och events. Grundare av Calle Kock Catering. Stort kontaktnät inom svenskt näringsliv — öppnar dörrar till bilkoncerner och företagskunder.
+                </Body>
+              </BlueCard>
+              <BlueCard>
+                <h3 className="text-[15px] font-bold text-brand-dark">Jakob Nylund</h3>
+                <p className="text-[14px] text-brand-blue mb-2">Varumärke & design</p>
+                <Body className="text-[13px]">
+                  Executive Creative Director på North Kingdom. Arbetat med LEGO, Google, Adidas och Netflix. Bygger Wheelplace-varumärket och den digitala upplevelsen.
+                </Body>
+              </BlueCard>
+            </div>
           </div>
 
-          <p className="text-[15px] font-semibold text-brand-blue italic mb-10">
-            Samma expertis som byggde ett bolag Storskogen förvärvade — nu applicerad på en hel marknad.
+          <p className="text-[14px] font-semibold text-brand-blue italic mt-6">
+            Branschexpertis, nätverk och varumärkeskraft — på samma lag.
           </p>
           <SlideNum n={12} />
         </div>
