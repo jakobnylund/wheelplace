@@ -827,6 +827,121 @@ function PasswordGate({ children }) {
   );
 }
 
+/* ── Floating slide navigator ──────────────────────────── */
+
+function SlideNav({ total, deckRef }) {
+  const [current, setCurrent] = useState(1);
+  const [isFullscreen, setIsFullscreen] = useState(false);
+
+  // Track which slide is in view
+  useEffect(() => {
+    const slides = deckRef.current?.querySelectorAll('.slide');
+    if (!slides) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const idx = Array.from(slides).indexOf(entry.target);
+            if (idx >= 0) setCurrent(idx + 1);
+          }
+        });
+      },
+      { threshold: 0.5 }
+    );
+    slides.forEach((s) => observer.observe(s));
+    return () => observer.disconnect();
+  }, [deckRef]);
+
+  // Keyboard navigation
+  useEffect(() => {
+    const handleKey = (e) => {
+      if (e.key === 'ArrowDown' || e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); goTo(current + 1); }
+      if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') { e.preventDefault(); goTo(current - 1); }
+      if (e.key === 'Escape' && isFullscreen) exitFullscreen();
+    };
+    window.addEventListener('keydown', handleKey);
+    return () => window.removeEventListener('keydown', handleKey);
+  }, [current, isFullscreen]);
+
+  // Listen for fullscreen changes
+  useEffect(() => {
+    const onChange = () => setIsFullscreen(!!document.fullscreenElement);
+    document.addEventListener('fullscreenchange', onChange);
+    return () => document.removeEventListener('fullscreenchange', onChange);
+  }, []);
+
+  const goTo = (n) => {
+    const clamped = Math.max(1, Math.min(total, n));
+    const slides = deckRef.current?.querySelectorAll('.slide');
+    if (slides?.[clamped - 1]) {
+      slides[clamped - 1].scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  };
+
+  const toggleFullscreen = () => {
+    if (document.fullscreenElement) {
+      document.exitFullscreen();
+    } else {
+      document.documentElement.requestFullscreen();
+    }
+  };
+
+  const exitFullscreen = () => {
+    if (document.fullscreenElement) document.exitFullscreen();
+  };
+
+  return (
+    <div className="fixed bottom-6 right-6 z-[60] flex items-center gap-1 bg-white/95 backdrop-blur-sm rounded-xl shadow-lg border border-brand-gray/30 px-1.5 py-1.5">
+      {/* Up */}
+      <button
+        onClick={() => goTo(current - 1)}
+        disabled={current <= 1}
+        className="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-brand-gray-light transition-colors cursor-pointer disabled:opacity-20"
+      >
+        <svg className="w-4 h-4 text-brand-dark" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M5 15l7-7 7 7" />
+        </svg>
+      </button>
+
+      {/* Page indicator */}
+      <span className="text-[13px] font-semibold text-brand-dark tabular-nums min-w-[52px] text-center">
+        {current} / {total}
+      </span>
+
+      {/* Down */}
+      <button
+        onClick={() => goTo(current + 1)}
+        disabled={current >= total}
+        className="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-brand-gray-light transition-colors cursor-pointer disabled:opacity-20"
+      >
+        <svg className="w-4 h-4 text-brand-dark" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+        </svg>
+      </button>
+
+      {/* Divider */}
+      <div className="w-px h-5 bg-brand-gray/30 mx-1" />
+
+      {/* Fullscreen */}
+      <button
+        onClick={toggleFullscreen}
+        className="w-8 h-8 flex items-center justify-center rounded-lg hover:bg-brand-gray-light transition-colors cursor-pointer"
+        title={isFullscreen ? 'Avsluta helskärm (Esc)' : 'Helskärm'}
+      >
+        {isFullscreen ? (
+          <svg className="w-4 h-4 text-brand-dark" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M9 9V4.5M9 9H4.5M9 9L3.75 3.75M9 15v4.5M9 15H4.5M9 15l-5.25 5.25M15 9h4.5M15 9V4.5M15 9l5.25-5.25M15 15h4.5M15 15v4.5m0-4.5l5.25 5.25" />
+          </svg>
+        ) : (
+          <svg className="w-4 h-4 text-brand-dark" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 3.75v4.5m0-4.5h4.5m-4.5 0L9 9M3.75 20.25v-4.5m0 4.5h4.5m-4.5 0L9 15M20.25 3.75h-4.5m4.5 0v4.5m0-4.5L15 9m5.25 11.25h-4.5m4.5 0v-4.5m0 4.5L15 15" />
+          </svg>
+        )}
+      </button>
+    </div>
+  );
+}
+
 export default function Deck() {
   const deckRef = useRef(null);
   const [downloading, setDownloading] = useState(false);
@@ -891,6 +1006,9 @@ export default function Deck() {
           </div>
         </div>
       </div>
+
+      {/* Floating navigator */}
+      <SlideNav total={slides.length} deckRef={deckRef} />
 
       {/* Slides */}
       <div ref={deckRef} className="max-w-[1320px] mx-auto px-5 py-8 space-y-6">
