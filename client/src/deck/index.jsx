@@ -374,10 +374,15 @@ function SlideTraction() {
 
         <div className="mt-8 flex gap-5">
           {/* Hedin — hero customer */}
-          <div className="bg-brand-blue-50 rounded-xl p-5 flex-1">
-            <p className="text-[13px] font-semibold text-brand-blue uppercase tracking-wider mb-2">Signerad ankarkund</p>
-            <p className="text-[24px] font-bold text-brand-dark font-heading">Hedin Automotive</p>
-            <p className="text-[14px] text-brand-gray-medium mt-1">Sveriges största bilkoncern — centralt avtal</p>
+          <div className="bg-brand-blue-50 rounded-xl overflow-hidden flex-1 flex">
+            <div className="p-5 flex-1">
+              <p className="text-[13px] font-semibold text-brand-blue uppercase tracking-wider mb-2">Signerad ankarkund</p>
+              <p className="text-[24px] font-bold text-brand-dark font-heading">Hedin Automotive</p>
+              <p className="text-[14px] text-brand-gray-medium mt-1">Sveriges största bilkoncern — centralt avtal</p>
+            </div>
+            <div className="w-[220px] shrink-0">
+              <img src="/hedin-automotive.jpg" alt="Hedin Automotive" className="w-full h-full object-cover" />
+            </div>
           </div>
           {/* Other customers */}
           <div className="border border-brand-gray/30 rounded-xl p-5 flex-1">
