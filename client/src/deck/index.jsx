@@ -834,12 +834,10 @@ function PasswordGate({ children }) {
 
 /* ── Floating slide navigator ──────────────────────────── */
 
-function SlideNav({ total, deckRef }) {
-  const [current, setCurrent] = useState(1);
-  const [isFullscreen, setIsFullscreen] = useState(false);
-
-  // Track which slide is in view
+function SlideNav({ total, deckRef, current, setCurrent, isFullscreen, setIsFullscreen }) {
+  // Track which slide is in view (scroll mode only)
   useEffect(() => {
+    if (isFullscreen) return;
     const slides = deckRef.current?.querySelectorAll('.slide');
     if (!slides) return;
     const observer = new IntersectionObserver(
@@ -855,31 +853,52 @@ function SlideNav({ total, deckRef }) {
     );
     slides.forEach((s) => observer.observe(s));
     return () => observer.disconnect();
-  }, [deckRef]);
+  }, [deckRef, isFullscreen]);
 
   // Keyboard navigation
   useEffect(() => {
     const handleKey = (e) => {
-      if (e.key === 'ArrowDown' || e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); goTo(current + 1); }
-      if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') { e.preventDefault(); goTo(current - 1); }
+      if (e.key === 'ArrowDown' || e.key === 'ArrowRight' || e.key === ' ') {
+        e.preventDefault();
+        if (isFullscreen) {
+          setCurrent((c) => Math.min(c + 1, total));
+        } else {
+          goTo(current + 1);
+        }
+      }
+      if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
+        e.preventDefault();
+        if (isFullscreen) {
+          setCurrent((c) => Math.max(c - 1, 1));
+        } else {
+          goTo(current - 1);
+        }
+      }
       if (e.key === 'Escape' && isFullscreen) exitFullscreen();
     };
     window.addEventListener('keydown', handleKey);
     return () => window.removeEventListener('keydown', handleKey);
-  }, [current, isFullscreen]);
+  }, [current, isFullscreen, total]);
 
   // Listen for fullscreen changes
   useEffect(() => {
-    const onChange = () => setIsFullscreen(!!document.fullscreenElement);
+    const onChange = () => {
+      const fs = !!document.fullscreenElement;
+      setIsFullscreen(fs);
+    };
     document.addEventListener('fullscreenchange', onChange);
     return () => document.removeEventListener('fullscreenchange', onChange);
   }, []);
 
   const goTo = (n) => {
     const clamped = Math.max(1, Math.min(total, n));
-    const slides = deckRef.current?.querySelectorAll('.slide');
-    if (slides?.[clamped - 1]) {
-      slides[clamped - 1].scrollIntoView({ behavior: 'smooth', block: 'center' });
+    if (isFullscreen) {
+      setCurrent(clamped);
+    } else {
+      const slides = deckRef.current?.querySelectorAll('.slide');
+      if (slides?.[clamped - 1]) {
+        slides[clamped - 1].scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
     }
   };
 
@@ -947,9 +966,33 @@ function SlideNav({ total, deckRef }) {
   );
 }
 
+function FullscreenPresenter({ slides, current }) {
+  const [scale, setScale] = useState(1);
+
+  useEffect(() => {
+    const calc = () => setScale(Math.min(window.innerWidth / 1280, window.innerHeight / 720));
+    calc();
+    window.addEventListener('resize', calc);
+    return () => window.removeEventListener('resize', calc);
+  }, []);
+
+  const S = slides[current - 1];
+  if (!S) return null;
+
+  return (
+    <div className="fixed inset-0 z-[55] bg-black flex items-center justify-center cursor-none">
+      <div style={{ transform: `scale(${scale})`, transformOrigin: 'center center' }}>
+        <S />
+      </div>
+    </div>
+  );
+}
+
 export default function Deck() {
   const deckRef = useRef(null);
   const [downloading, setDownloading] = useState(false);
+  const [current, setCurrent] = useState(1);
+  const [isFullscreen, setIsFullscreen] = useState(false);
 
   const slides = [
     SlideCover, SlideVideo, SlideProblem, SlideSolution, SlideProduct1, SlideProduct2, SlideProduct3, SlideTraction,
@@ -1013,10 +1056,13 @@ export default function Deck() {
       </div>
 
       {/* Floating navigator */}
-      <SlideNav total={slides.length} deckRef={deckRef} />
+      <SlideNav total={slides.length} deckRef={deckRef} current={current} setCurrent={setCurrent} isFullscreen={isFullscreen} setIsFullscreen={setIsFullscreen} />
 
-      {/* Slides */}
-      <div ref={deckRef} className="max-w-[1320px] mx-auto px-5 py-8 space-y-6">
+      {/* Fullscreen presentation mode */}
+      {isFullscreen && <FullscreenPresenter slides={slides} current={current} />}
+
+      {/* Slides (scroll mode) */}
+      <div ref={deckRef} className={`max-w-[1320px] mx-auto px-5 py-8 space-y-6 ${isFullscreen ? 'invisible' : ''}`}>
         {slides.map((S, i) => (
           <div key={i} className="rounded-xl overflow-hidden shadow-lg">
             <S />
