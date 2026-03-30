@@ -112,30 +112,21 @@ function SlideCover() {
   );
 }
 
-/* ── 2: Video (dark) — thumbnail for PDF, iframe for web ── */
+/* ── 2: Video (dark) ─────────────────────────────────── */
 function SlideVideo() {
   return (
     <Slide dark>
-      <div className="absolute inset-0 flex items-center justify-center p-10">
-        {/* Thumbnail for PDF capture */}
-        <div className="w-full h-full rounded-xl overflow-hidden border border-white/10 shadow-2xl relative bg-brand-dark">
-          <img src="https://img.youtube.com/vi/X6x1yPQ7n6A/maxresdefault.jpg" alt="Video" className="w-full h-full object-cover opacity-80" />
-          {/* Play button overlay */}
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="w-20 h-20 rounded-full bg-white/90 flex items-center justify-center">
-              <div className="w-0 h-0 border-t-[14px] border-t-transparent border-b-[14px] border-b-transparent border-l-[22px] border-l-brand-dark ml-1.5" />
-            </div>
-          </div>
+      <div className="h-full p-10">
+        <div className="w-full h-full rounded-xl overflow-hidden border border-white/10">
+          <iframe
+            src="https://www.youtube.com/embed/X6x1yPQ7n6A?rel=0&modestbranding=1"
+            title="Wheelplace"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+            className="w-full h-full"
+            style={{ border: 'none' }}
+          />
         </div>
-        {/* Iframe sits on top for interactive use */}
-        <iframe
-          src="https://www.youtube.com/embed/X6x1yPQ7n6A?rel=0&modestbranding=1"
-          title="Wheelplace"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowFullScreen
-          className="absolute inset-10 rounded-xl"
-          style={{ border: 'none', zIndex: 10 }}
-        />
       </div>
       <SlideNum n={2} dark />
     </Slide>
