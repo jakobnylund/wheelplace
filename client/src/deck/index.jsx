@@ -194,10 +194,11 @@ function SlideSolution() {
           </div>
           <SlideNum n={4} />
         </div>
-        {/* Right: image */}
-        <div className="w-[480px] shrink-0 relative">
-          <img src="/hero-kopa.jpg" alt="" className="absolute inset-0 w-full h-full object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-r from-white via-white/40 to-transparent" />
+        {/* Right: product UI showing regnummer search */}
+        <div className="w-[520px] shrink-0 relative bg-brand-gray-light flex items-center justify-center p-8">
+          <div className="rounded-xl overflow-hidden border border-brand-gray/30 shadow-lg">
+            <img src="/deck/ui-categories.png" alt="Regnummersökning" className="w-full h-auto" />
+          </div>
         </div>
       </div>
     </Slide>
