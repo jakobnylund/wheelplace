@@ -244,11 +244,11 @@ function SlideTraction() {
         </div>
 
         <div className="mt-16">
-          <p className="text-[15px] text-brand-dark">
-            <span className="font-semibold">Signerade kunder:</span>
-            <span className="text-brand-gray-medium"> Hedin Automotive (Sveriges största bilkoncern) · Frontbilar · Toveks</span>
-          </p>
-          <p className="text-[14px] text-brand-gray-medium mt-2">
+          <p className="text-[14px] font-semibold text-brand-gray-medium uppercase tracking-wider mb-3">Signerade kunder</p>
+          <p className="text-[22px] font-bold text-brand-dark font-heading">Hedin Automotive</p>
+          <p className="text-[14px] text-brand-gray-medium mt-1">Sveriges största bilkoncern — centralt avtal</p>
+          <p className="text-[15px] text-brand-dark font-medium mt-4">Frontbilar · Toveks</p>
+          <p className="text-[14px] text-brand-gray-medium mt-3">
             I förhandling: Börjessons Bil, Bilia, Ehrlings Bil, Cetira
           </p>
         </div>
