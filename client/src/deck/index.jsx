@@ -188,28 +188,26 @@ function SlideSolution() {
 function SlideProduct() {
   return (
     <Slide className="bg-brand-dark">
-      <div className="h-full flex flex-col px-14 pt-12">
-        <Tag dark>Produkten</Tag>
-        <H1 dark className="mt-3 max-w-[500px]">Byggd för att lösa passform — inte bara lista annonser</H1>
-
-        {/* Three screenshots in perspective-like grid */}
-        <div className="mt-8 flex-1 flex gap-5 items-stretch pb-8">
-          {/* Main: annonser page */}
-          <div className="flex-[2] rounded-xl overflow-hidden border border-white/10 shadow-2xl relative">
-            <img src="/deck/ui-annonser.png" alt="Annonser" className="w-full h-full object-cover object-top" />
-          </div>
-          {/* Right column: detail + categories */}
-          <div className="flex-1 flex flex-col gap-5">
-            <div className="flex-1 rounded-xl overflow-hidden border border-white/10 shadow-2xl relative">
-              <img src="/deck/ui-annons-detail.png" alt="Annonsdetalj" className="w-full h-full object-cover object-top" />
-            </div>
-            <div className="flex-1 rounded-xl overflow-hidden border border-white/10 shadow-2xl relative">
-              <img src="/deck/ui-categories.png" alt="Kategorier" className="w-full h-full object-cover object-top" />
-            </div>
+      <div className="h-full flex gap-5 p-10">
+        {/* Main: annonser page — large */}
+        <div className="flex-[3] rounded-xl overflow-hidden border border-white/10 shadow-2xl relative">
+          <img src="/deck/ui-annonser.png" alt="Annonser" className="w-full h-full object-cover object-top" />
+          {/* Tag overlay */}
+          <div className="absolute top-5 left-5">
+            <Tag dark>Produkten</Tag>
           </div>
         </div>
-        <SlideNum n={4} dark />
+        {/* Right column: detail + categories — stacked */}
+        <div className="flex-[1.3] flex flex-col gap-4">
+          <div className="flex-[1.2] rounded-xl overflow-hidden border border-white/10 shadow-2xl relative">
+            <img src="/deck/ui-annons-detail.png" alt="Annonsdetalj" className="w-full h-full object-cover object-top" />
+          </div>
+          <div className="flex-1 rounded-xl overflow-hidden border border-white/10 shadow-2xl relative">
+            <img src="/deck/ui-categories.png" alt="Kategorier" className="w-full h-full object-cover object-top" />
+          </div>
+        </div>
       </div>
+      <SlideNum n={4} dark />
     </Slide>
   );
 }
