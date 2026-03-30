@@ -112,21 +112,30 @@ function SlideCover() {
   );
 }
 
-/* ── 2: Video (dark) ─────────────────────────────────── */
+/* ── 2: Video (dark) — thumbnail for PDF, iframe for web ── */
 function SlideVideo() {
   return (
-    <Slide className="bg-brand-dark">
-      <div className="h-full flex items-center justify-center p-10">
-        <div className="w-full h-full rounded-xl overflow-hidden shadow-2xl border border-white/10">
-          <iframe
-            src="https://www.youtube.com/embed/X6x1yPQ7n6A?rel=0&modestbranding=1"
-            title="Wheelplace"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-            className="w-full h-full"
-            style={{ border: 'none' }}
-          />
+    <Slide dark>
+      <div className="absolute inset-0 flex items-center justify-center p-10">
+        {/* Thumbnail for PDF capture */}
+        <div className="w-full h-full rounded-xl overflow-hidden border border-white/10 shadow-2xl relative bg-brand-dark">
+          <img src="https://img.youtube.com/vi/X6x1yPQ7n6A/maxresdefault.jpg" alt="Video" className="w-full h-full object-cover opacity-80" />
+          {/* Play button overlay */}
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="w-20 h-20 rounded-full bg-white/90 flex items-center justify-center">
+              <div className="w-0 h-0 border-t-[14px] border-t-transparent border-b-[14px] border-b-transparent border-l-[22px] border-l-brand-dark ml-1.5" />
+            </div>
+          </div>
         </div>
+        {/* Iframe sits on top for interactive use */}
+        <iframe
+          src="https://www.youtube.com/embed/X6x1yPQ7n6A?rel=0&modestbranding=1"
+          title="Wheelplace"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+          className="absolute inset-10 rounded-xl"
+          style={{ border: 'none', zIndex: 10 }}
+        />
       </div>
       <SlideNum n={2} dark />
     </Slide>
@@ -137,11 +146,11 @@ function SlideVideo() {
 function SlideProblem() {
   return (
     <Slide>
-      <div className="h-full flex flex-col px-14 pt-14">
+      <div className="px-14 pt-14">
         <Tag>Problemet</Tag>
         <H1 className="mt-3 max-w-[700px]">6 miljoner däck säljs i Sverige varje år — utan struktur</H1>
 
-        <div className="mt-10 grid grid-cols-3 gap-6 flex-1">
+        <div className="mt-10 grid grid-cols-3 gap-6">
           <BlueCard>
             <h3 className="text-[16px] font-bold text-brand-dark mb-2">Fragmenterad</h3>
             <Body>Privatpersoner, verkstäder, bilhandlare och exportörer. Ingen gemensam plattform.</Body>
@@ -156,7 +165,7 @@ function SlideProblem() {
           </BlueCard>
         </div>
 
-        <p className="text-[14px] text-brand-gray-medium italic mb-10 max-w-[700px]">
+        <p className="text-[14px] text-brand-gray-medium italic mt-10 max-w-[700px]">
           Att köpa begagnade hjul idag är lika opålitligt som att köpa en begagnad bil var för 15 år sedan.
         </p>
         <SlideNum n={3} />
@@ -177,7 +186,7 @@ function SlideSolution() {
           <Body className="mt-5 max-w-[440px]">
             Vertikal marknadsplats för däck, fälgar och hjulsatser. Strukturerad data gör det köparen aldrig haft: trygghet.
           </Body>
-          <div className="mt-8 space-y-4 flex-1">
+          <div className="mt-8 space-y-4">
             {[
               ['Regnummersökning', 'Ange din skylt, se direkt vad som passar.'],
               ['Smart filtrering', 'Bultcirkel, ET, navhål, dimension — allt sökbart.'],
@@ -232,7 +241,7 @@ function SlideProduct3() { return <ScreenshotSlide src="/deck/ui-categories.png"
 function SlideTraction() {
   return (
     <Slide>
-      <div className="h-full flex flex-col px-14 pt-14">
+      <div className="px-14 pt-14">
         <Tag>Traktion</Tag>
         <H1 className="mt-3">4 650 annonser och 5M besökare på 22 månader</H1>
 
@@ -243,7 +252,7 @@ function SlideTraction() {
           <Stat number="19" label="B2B-prenumeranter" />
         </div>
 
-        <div className="mt-auto mb-14">
+        <div className="mt-16">
           <p className="text-[15px] text-brand-dark">
             <span className="font-semibold">Signerade kunder:</span>
             <span className="text-brand-gray-medium"> Hedin Automotive (Sveriges största bilkoncern) · Frontbilar · Toveks</span>
@@ -262,11 +271,11 @@ function SlideTraction() {
 function SlideBusinessModel() {
   return (
     <Slide>
-      <div className="h-full flex flex-col px-14 pt-14">
+      <div className="px-14 pt-14">
         <Tag>Affärsmodell</Tag>
         <H1 className="mt-3">3 000 SEK/mån + 5 % per transaktion</H1>
 
-        <div className="mt-10 flex gap-0 flex-1">
+        <div className="mt-10 flex gap-0">
           <div className="flex-1 pr-10">
             <div className="text-[14px] font-semibold text-brand-blue uppercase tracking-wider mb-3">Prenumerationer (SaaS)</div>
             <div className="text-[44px] font-bold text-brand-dark font-heading leading-none">3 000</div>
@@ -279,7 +288,7 @@ function SlideBusinessModel() {
           </div>
 
           {/* Visual divider — motif line */}
-          <div className="w-[3px] bg-brand-blue rounded-full shrink-0 my-2" />
+          <div className="w-[3px] h-[200px] bg-brand-blue rounded-full shrink-0 my-2" />
 
           <div className="flex-1 pl-10">
             <div className="text-[14px] font-semibold text-brand-blue uppercase tracking-wider mb-3">Marknadsplats</div>
@@ -308,7 +317,7 @@ function SlideMarket() {
   ];
   return (
     <Slide>
-      <div className="h-full flex flex-col px-14 pt-14">
+      <div className="px-14 pt-14">
         <Tag>Marknad</Tag>
         <H1 className="mt-3">$30–45B marknad — ingen ägare</H1>
 
@@ -366,11 +375,11 @@ function SlideMarket() {
 function SlideCompetition() {
   return (
     <Slide>
-      <div className="h-full flex flex-col px-14 pt-14">
+      <div className="px-14 pt-14">
         <Tag>Konkurrens</Tag>
         <H1 className="mt-3 max-w-[800px]">Blocket säljer allt till alla — vi löser passform för hjulköpare</H1>
 
-        <div className="mt-6 flex-1 flex gap-10">
+        <div className="mt-6 flex gap-10 h-[380px]">
           {/* 2x2 positioning map */}
           <div className="flex-1 relative">
             {/* Axes */}
@@ -505,7 +514,7 @@ function SlideFinancials() {
   ];
   return (
     <Slide>
-      <div className="h-full flex flex-col px-14 pt-14">
+      <div className="px-14 pt-14">
         <Tag>Finansiellt</Tag>
         <H1 className="mt-3">6,6 MSEK i basfallet — 10× vid Europa</H1>
         <p className="text-[12px] text-brand-gray-medium mt-2">5 % take rate · ~200 000 transaktioner/år · 3 000 SEK/mån prenumeration</p>
@@ -553,7 +562,7 @@ function SlideFinancials() {
 function SlideAsk() {
   return (
     <Slide>
-      <div className="h-full flex flex-col px-14 pt-14">
+      <div className="px-14 pt-14">
         <Tag>Möjligheten</Tag>
         <H1 className="mt-3 max-w-[700px]">Vi söker kapital och en partner för nordisk expansion</H1>
 
@@ -587,7 +596,7 @@ function SlideSustainability() {
         <img src="/sustainability-bg.jpg" alt="" className="w-full h-full object-cover" />
         <div className="absolute inset-0 bg-brand-dark/20" />
       </div>
-      <div className="relative h-full flex flex-col px-14 pt-14">
+      <div className="relative px-14 pt-14">
         <Tag dark>Hållbarhet</Tag>
         <h2 className="text-[38px] font-bold leading-[1.12] font-heading text-white mt-3">Varje återanvänt däckset sparar 50–80 kg CO₂</h2>
 
