@@ -462,36 +462,34 @@ function SlideTeam() {
           <Tag>Team</Tag>
           <H1 className="mt-3">Familjebolaget såldes till Storskogen — nu bygger vi kategorin</H1>
 
-          <div className="mt-8 space-y-4">
+          <div className="mt-7 space-y-4">
             <BlueCard>
               <h3 className="text-[15px] font-bold text-brand-dark mb-1">Arvet</h3>
               <Body className="text-[14px]">
-                Svante Hertel byggde ett marknadsledande bolag inom premium-fälgar i Norden. Christofer tog över, växte med stark lönsamhet — Storskogen förvärvade.
+                Svante Hertel byggde ett marknadsledande nordiskt bolag inom premium-fälgar. Djup produktkunskap och starka branschrelationer.
               </Body>
             </BlueCard>
-
-            {/* Additional team */}
-            <div className="grid grid-cols-2 gap-4 mt-2">
-              <BlueCard>
-                <h3 className="text-[15px] font-bold text-brand-dark">Calle Kock</h3>
-                <p className="text-[14px] text-brand-blue mb-2">Rådgivare & nätverk</p>
-                <Body className="text-[13px]">
-                  Serieentreprenör inom hospitality och events. Grundare av Calle Kock Catering. Stort kontaktnät inom svenskt näringsliv — öppnar dörrar till bilkoncerner och företagskunder.
-                </Body>
-              </BlueCard>
-              <BlueCard>
-                <h3 className="text-[15px] font-bold text-brand-dark">Jakob Nylund</h3>
-                <p className="text-[14px] text-brand-blue mb-2">Varumärke & design</p>
-                <Body className="text-[13px]">
-                  Internationell erfarenhet av varumärkesbyggande och digital produktdesign. Ansvarar för Wheelplace varumärke, upplevelse och kreativ riktning.
-                </Body>
-              </BlueCard>
-            </div>
+            <BlueCard>
+              <h3 className="text-[15px] font-bold text-brand-dark mb-1">Utvecklingen</h3>
+              <Body className="text-[14px]">
+                Christofer tog över, växte med stark lönsamhet. Storskogen förvärvade. Nu digitaliserar han hela marknadskategorin.
+              </Body>
+            </BlueCard>
           </div>
 
-          <p className="text-[14px] font-semibold text-brand-blue italic mt-6">
-            Branschexpertis, nätverk och varumärkeskraft — på samma lag.
-          </p>
+          {/* Additional team — compact */}
+          <div className="mt-6 grid grid-cols-2 gap-6">
+            <div>
+              <p className="text-[15px] font-bold text-brand-dark">Calle Kock</p>
+              <p className="text-[13px] text-brand-blue">Rådgivare & nätverk</p>
+              <p className="text-[13px] text-brand-gray-medium mt-1">Stort kontaktnät inom svenskt näringsliv. Öppnar dörrar till bilkoncerner och företagskunder.</p>
+            </div>
+            <div>
+              <p className="text-[15px] font-bold text-brand-dark">Jakob Nylund</p>
+              <p className="text-[13px] text-brand-blue">Varumärke & design</p>
+              <p className="text-[13px] text-brand-gray-medium mt-1">Internationell erfarenhet av varumärkesbyggande och digital produktdesign. Kreativ riktning.</p>
+            </div>
+          </div>
           <SlideNum n={12} />
         </div>
       </div>
