@@ -210,7 +210,7 @@ function SlideCover() {
     <Slide dark>
       {/* Background video */}
       <div className="absolute inset-0 overflow-hidden">
-        <video src="/deck/cover-bg.mp4" autoPlay loop muted playsInline className="absolute object-cover" style={{ top: '-5%', left: '-5%', width: '110%', height: '110%' }} />
+        <video src="/deck/cover-bg.mp4" autoPlay loop muted playsInline className="w-full h-full object-cover" style={{ transform: 'scale(1.15)' }} />
         <div className="absolute inset-0 bg-brand-dark/20" />
       </div>
       <div className="relative h-full flex flex-col justify-end px-14 pb-16">
