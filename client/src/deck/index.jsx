@@ -174,10 +174,10 @@ function SlideSolution() {
           </div>
           <SlideNum n={3} />
         </div>
-        {/* Right: product screenshot */}
-        <div className="w-[520px] shrink-0 relative bg-brand-gray-light">
-          <img src="/deck/ui-hero.png" alt="Wheelplace" className="absolute inset-0 w-full h-full object-cover object-top" />
-          <div className="absolute inset-0 bg-gradient-to-r from-white via-white/20 to-transparent w-[80px]" />
+        {/* Right: image */}
+        <div className="w-[480px] shrink-0 relative">
+          <img src="/hero-kopa.jpg" alt="" className="absolute inset-0 w-full h-full object-cover" />
+          <div className="absolute inset-0 bg-gradient-to-r from-white via-white/40 to-transparent" />
         </div>
       </div>
     </Slide>
