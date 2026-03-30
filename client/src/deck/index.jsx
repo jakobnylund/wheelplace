@@ -313,9 +313,9 @@ function SlideBusinessModel() {
 function SlideMarket() {
   const bars = [
     { label: 'Global däckmarknad', value: '$150–300B', w: '100%' },
-    { label: 'Eftermarknad', value: '$150B+', w: '80%' },
+    { label: 'Eftermarknad (ersättning)', value: '$150B+', w: '80%' },
     { label: 'Begagnade däck & fälgar', value: '$30–45B', w: '50%' },
-    { label: 'Varav online', value: 'Kraftigt underdigitaliserad', w: '22%' },
+    { label: 'Varav online', value: 'Underdigitaliserad', w: '22%' },
   ];
   return (
     <Slide>
@@ -325,13 +325,13 @@ function SlideMarket() {
 
         <div className="mt-8" style={{ display: 'flex', gap: '40px' }}>
           {/* Left: bars */}
-          <div style={{ width: '720px' }}>
-            <div className="space-y-3">
+          <div style={{ width: '740px' }}>
+            <div className="space-y-4">
               {bars.map((b, i) => (
                 <div key={i}>
-                  <div className="flex justify-between text-[14px] mb-1">
-                    <span className="text-brand-gray-medium">{b.label}</span>
-                    <span className="text-brand-dark font-semibold text-right">{b.value}</span>
+                  <div className="flex items-baseline gap-3 mb-1.5">
+                    <span className="text-[14px] text-brand-gray-medium">{b.label}</span>
+                    <span className="text-[14px] text-brand-dark font-semibold whitespace-nowrap ml-auto">{b.value}</span>
                   </div>
                   <div className="h-3 rounded bg-brand-gray-light overflow-hidden">
                     <div className="h-full rounded bg-brand-blue" style={{ width: b.w, opacity: 1 - i * 0.15 }} />
@@ -350,7 +350,7 @@ function SlideMarket() {
           </div>
 
           {/* Right: Sweden */}
-          <div style={{ width: '360px', flexShrink: 0 }}>
+          <div style={{ width: '340px', flexShrink: 0 }}>
             <BlueCard>
               <h3 className="text-[14px] font-bold text-brand-dark uppercase tracking-wider mb-4">Sverige</h3>
               {[
