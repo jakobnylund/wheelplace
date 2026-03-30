@@ -101,10 +101,10 @@ function SlideCover() {
       <div className="relative h-full flex flex-col justify-end px-14 pb-16">
         <Tag dark>Investeringsmöjlighet · Mars 2026</Tag>
         <h1 className="text-[56px] font-bold text-white leading-[1.05] font-heading mt-4 max-w-[700px]">
-          Den vertikala marknadsplatsen för begagnade hjul
+          Wheelplace
         </h1>
         <p className="text-[20px] text-white/60 mt-4 max-w-[520px]">
-          Wheelplace skapar värde genom cirkulär mobilitet — för konsumenter och företag
+          Marknadsplatsen för begagnade hjul, däck och fälgar
         </p>
         <div className="absolute bottom-5 right-14">
           <img src="/wheelplace-lockup.svg" alt="Wheelplace" className="h-10 opacity-50" />
@@ -121,20 +121,20 @@ function SlideProblem() {
     <Slide>
       <div className="h-full flex flex-col px-14 pt-14">
         <Tag>Problemet</Tag>
-        <H1 className="mt-3 max-w-[700px]">En enorm marknad — trasig by design</H1>
+        <H1 className="mt-3 max-w-[700px]">6 miljoner däck säljs i Sverige varje år — utan struktur</H1>
 
         <div className="mt-10 grid grid-cols-3 gap-6 flex-1">
           <BlueCard>
-            <h3 className="text-[16px] font-bold text-brand-dark mb-2">Extremt fragmenterad</h3>
-            <Body>Miljontals begagnade däck och fälgar byter ägare varje år via privatpersoner, verkstäder och exportkanaler. Ingen struktur, inga standarder.</Body>
+            <h3 className="text-[16px] font-bold text-brand-dark mb-2">Fragmenterad</h3>
+            <Body>Privatpersoner, verkstäder, bilhandlare och exportörer. Ingen gemensam plattform.</Body>
           </BlueCard>
           <BlueCard>
-            <h3 className="text-[16px] font-bold text-brand-dark mb-2">Noll transparens</h3>
-            <Body>Köpare kan inte verifiera passform, skick eller pris. Dimensioner, bultmönster och kompatibilitet är en gissningslek.</Body>
+            <h3 className="text-[16px] font-bold text-brand-dark mb-2">Ingen transparens</h3>
+            <Body>Köpare kan inte verifiera passform eller pris. Bultmönster och kompatibilitet är en gissningslek.</Body>
           </BlueCard>
           <BlueCard>
-            <h3 className="text-[16px] font-bold text-brand-dark mb-2">I stort sett offline</h3>
-            <Body>Majoriteten av transaktioner sker utanför plattformar — i verkstäder, via mun till mun, eller genom osynliga exportkanaler.</Body>
+            <h3 className="text-[16px] font-bold text-brand-dark mb-2">Offline</h3>
+            <Body>Majoriteten av affärerna sker i verkstäder, via mun till mun eller genom osynliga exportkanaler.</Body>
           </BlueCard>
         </div>
 
@@ -157,7 +157,7 @@ function SlideSolution() {
           <Tag>Lösningen</Tag>
           <H1 className="mt-3 max-w-[480px]">Regnummer in — rätt hjul ut</H1>
           <Body className="mt-5 max-w-[440px]">
-            En dedikerad vertikal marknadsplats för begagnade och nya däck, fälgar och hjulsatser. Säkert, enkelt och effektivt — B2C och B2B.
+            Vertikal marknadsplats för däck, fälgar och hjulsatser. Strukturerad data gör det köparen aldrig haft: trygghet.
           </Body>
           <div className="mt-8 space-y-4 flex-1">
             {[
@@ -197,7 +197,7 @@ function SlideTraction() {
     <Slide>
       <div className="h-full flex flex-col px-14 pt-14">
         <Tag>Traktion</Tag>
-        <H1 className="mt-3">Stark tillväxt sedan april 2024</H1>
+        <H1 className="mt-3">4 650 annonser och 5M besökare på 22 månader</H1>
 
         <div className="mt-10 grid grid-cols-4 gap-8">
           <Stat number="4 650" label="Aktiva annonser" />
@@ -233,7 +233,7 @@ function SlideBusinessModel() {
     <Slide>
       <div className="h-full flex flex-col px-14 pt-14">
         <Tag>Affärsmodell</Tag>
-        <H1 className="mt-3">Återkommande + transaktionella intäkter</H1>
+        <H1 className="mt-3">3 000 SEK/mån + 5 % per transaktion</H1>
 
         <div className="mt-10 grid grid-cols-2 gap-8 flex-1">
           <div>
@@ -276,7 +276,7 @@ function SlideMarket() {
     <Slide>
       <div className="h-full flex flex-col px-14 pt-14">
         <Tag>Marknad</Tag>
-        <H1 className="mt-3">$30–45B globalt — ingen kategorledare</H1>
+        <H1 className="mt-3">$30–45B marknad — ingen ägare</H1>
 
         <div className="mt-8 flex gap-10 flex-1">
           {/* Left: bars */}
@@ -343,7 +343,7 @@ function SlideCompetition() {
     <Slide>
       <div className="h-full flex flex-col px-14 pt-14">
         <Tag>Konkurrens</Tag>
-        <H1 className="mt-3">Vertikal specialisering vinner</H1>
+        <H1 className="mt-3">Blocket kan inte lösa passformsproblemet</H1>
 
         <div className="mt-8 flex-1">
           <table className="w-full text-[13px]">
@@ -371,7 +371,7 @@ function SlideCompetition() {
         </div>
 
         <Body className="mb-10 max-w-[640px] text-[13px]">
-          Horisontella marknadsplatser löser inte passformsproblemet. Wheelplace kombinerar domänexpertis, strukturerad data och mänsklig support.
+          Vertikalt djup slår horisontell bredd. Domänexpertis, strukturerad data och mänsklig support bygger en vallgrav.
         </Body>
         <SlideNum n={7} />
       </div>
@@ -409,7 +409,7 @@ function SlideTeam() {
         {/* Right: heritage */}
         <div className="flex-1 flex flex-col px-14 pt-14">
           <Tag>Team</Tag>
-          <H1 className="mt-3">Andra generationens branschexpertis</H1>
+          <H1 className="mt-3">Familjebolaget såldes till Storskogen — nu bygger vi kategorin</H1>
 
           <div className="mt-8 space-y-5 flex-1">
             <BlueCard>
@@ -427,7 +427,7 @@ function SlideTeam() {
           </div>
 
           <p className="text-[15px] font-semibold text-brand-blue italic mb-10">
-            "Andra generationens branschexpertis — bygger nu kategorledaren inom cirkulär hjulhandel."
+            Samma expertis som byggde ett bolag Storskogen förvärvade — nu applicerad på en hel marknad.
           </p>
           <SlideNum n={8} />
         </div>
@@ -447,7 +447,7 @@ function SlideFinancials() {
     <Slide>
       <div className="h-full flex flex-col px-14 pt-14">
         <Tag>Finansiellt</Tag>
-        <H1 className="mt-3">Konservativ bas — massiv uppsida</H1>
+        <H1 className="mt-3">6,6 MSEK i basfallet — 10× vid Europa</H1>
         <p className="text-[12px] text-brand-gray-medium mt-2">5 % take rate · ~200 000 transaktioner/år · 3 000 SEK/mån prenumeration</p>
 
         <div className="mt-8 grid grid-cols-3 gap-6">
@@ -495,7 +495,7 @@ function SlideAsk() {
     <Slide>
       <div className="h-full flex flex-col px-14 pt-14">
         <Tag>Möjligheten</Tag>
-        <H1 className="mt-3 max-w-[600px]">Bli med och bygg kategorledaren</H1>
+        <H1 className="mt-3 max-w-[700px]">Vi söker kapital och en partner för nordisk expansion</H1>
 
         <div className="mt-10 grid grid-cols-3 gap-6">
           {[
@@ -510,8 +510,8 @@ function SlideAsk() {
           ))}
         </div>
 
-        <Body className="mt-8 max-w-[700px] text-[14px]">
-          Marknaden rör sig online med ~14 % CAGR. Vi har bevisat produkt-marknadsanpassning med verkliga intäkter, stora bilkoncerner som kunder och 5M+ besökare på under två år. Fönstret att äga kategorin är öppet.
+        <Body className="mt-8 max-w-[640px] text-[14px]">
+          Verkliga intäkter. Hedin Automotive som kund. 5M besökare på 22 månader. Marknaden rör sig online med 14 % CAGR. Fönstret är öppet — men det stängs.
         </Body>
         <SlideNum n={10} />
       </div>
@@ -529,7 +529,7 @@ function SlideSustainability() {
       </div>
       <div className="relative h-full flex flex-col px-14 pt-14">
         <Tag>Hållbarhet</Tag>
-        <H1 className="mt-3">Cirkulär ekonomi i praktiken</H1>
+        <H1 className="mt-3">Varje återanvänt däckset sparar 50–80 kg CO₂</H1>
 
         <div className="mt-10 grid grid-cols-3 gap-6">
           {[
@@ -558,10 +558,10 @@ function SlideClosing() {
         <div className="absolute inset-0 bg-brand-dark/80" />
       </div>
       <div className="relative h-full flex flex-col items-center justify-center text-center px-14">
-        <h2 className="text-[44px] font-bold text-white leading-[1.1] font-heading max-w-[600px]">
-          Skapar värde ur avfall.
+        <h2 className="text-[44px] font-bold text-white leading-[1.1] font-heading max-w-[700px]">
+          Fönstret att äga kategorin är öppet.
         </h2>
-        <p className="text-[18px] text-white/50 mt-6">Wheelplace — cirkulär mobilitet för alla</p>
+        <p className="text-[18px] text-white/50 mt-6">Låt oss bygga den globala ledaren — tillsammans.</p>
         <div className="mt-12 text-[14px] text-white/40">
           <p>Christofer Hertel · christofer@wheelplace.com</p>
           <p className="mt-1">wheelplace.com</p>
