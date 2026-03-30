@@ -70,7 +70,12 @@ function Stat({ number, label, dark }) {
 }
 
 function SlideNum({ n, dark }) {
-  return <span className={`absolute bottom-5 left-14 text-[11px] ${dark ? 'text-white/25' : 'text-brand-gray/80'}`}>{n}</span>;
+  return (
+    <>
+      <span className={`absolute bottom-5 left-14 text-[11px] ${dark ? 'text-white/25' : 'text-brand-gray/80'}`}>{n}</span>
+      <img src="/wheelplace-symbol.svg" alt="" className="absolute bottom-4 right-14 h-7 opacity-20" />
+    </>
+  );
 }
 
 function Icon({ name, className = '' }) {
@@ -102,7 +107,7 @@ function SlideCover() {
           Wheelplace skapar värde genom cirkulär mobilitet — för konsumenter och företag
         </p>
         <div className="absolute bottom-5 right-14">
-          <img src="/logo.svg" alt="Wheelplace" className="h-6 invert opacity-40" />
+          <img src="/wheelplace-lockup.svg" alt="Wheelplace" className="h-6 opacity-50" />
         </div>
         <p className="absolute bottom-5 left-14 text-[11px] text-white/25">Konfidentiellt · wheelplace.com</p>
       </div>
@@ -561,7 +566,7 @@ function SlideClosing() {
           <p>Christofer Hertel · christofer@wheelplace.com</p>
           <p className="mt-1">wheelplace.com</p>
         </div>
-        <img src="/logo.svg" alt="Wheelplace" className="absolute bottom-8 right-14 h-6 invert opacity-30" />
+        <img src="/wheelplace-lockup.svg" alt="Wheelplace" className="absolute bottom-8 right-14 h-6 opacity-40" />
       </div>
     </Slide>
   );
@@ -613,7 +618,7 @@ export default function Deck() {
       <div className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-brand-gray/40">
         <div className="max-w-[1320px] mx-auto px-6 flex items-center justify-between h-14">
           <div className="flex items-center gap-3">
-            <img src="/logo.svg" alt="Wheelplace" className="h-5 opacity-50" />
+            <img src="/wheelplace-symbol.svg" alt="Wheelplace" className="h-7" />
             <span className="text-[13px] text-brand-gray-medium">Investeringsdeck · 12 slides</span>
           </div>
           <button
