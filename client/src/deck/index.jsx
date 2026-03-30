@@ -516,8 +516,8 @@ function SlideCompetition() {
           {/* 2x2 positioning map */}
           <div className="flex-1 relative">
             {/* Axes */}
-            <div className="absolute left-1/2 top-6 bottom-6 w-px bg-brand-gray/30" />
-            <div className="absolute top-1/2 left-6 right-6 h-px bg-brand-gray/30" />
+            <div className="absolute left-1/2 top-6 bottom-6 w-[2px] bg-brand-gray/60" />
+            <div className="absolute top-1/2 left-6 right-6 h-[2px] bg-brand-gray/60" />
 
             {/* Axis labels */}
             <div className="absolute top-0 left-1/2 -translate-x-1/2 text-[11px] font-semibold text-brand-dark uppercase tracking-wider">Specialist</div>
@@ -533,19 +533,19 @@ function SlideCompetition() {
 
             {/* Competitors — positioned as gray dots */}
             <div className="absolute bottom-[22%] left-[15%] text-center">
-              <div className="w-3 h-3 rounded-full bg-brand-gray mx-auto mb-1" />
+              <div className="w-4 h-4 rounded-full bg-brand-gray mx-auto mb-1" />
               <div className="text-[12px] text-brand-gray-medium font-medium">Facebook</div>
             </div>
             <div className="absolute bottom-[18%] right-[25%] text-center">
-              <div className="w-3 h-3 rounded-full bg-brand-gray mx-auto mb-1" />
+              <div className="w-4 h-4 rounded-full bg-brand-gray mx-auto mb-1" />
               <div className="text-[12px] text-brand-gray-medium font-medium">Blocket</div>
             </div>
             <div className="absolute bottom-[30%] right-[15%] text-center">
-              <div className="w-3 h-3 rounded-full bg-brand-gray mx-auto mb-1" />
+              <div className="w-4 h-4 rounded-full bg-brand-gray mx-auto mb-1" />
               <div className="text-[12px] text-brand-gray-medium font-medium">Tradera</div>
             </div>
             <div className="absolute top-[35%] left-[22%] text-center">
-              <div className="w-3 h-3 rounded-full bg-brand-gray mx-auto mb-1" />
+              <div className="w-4 h-4 rounded-full bg-brand-gray mx-auto mb-1" />
               <div className="text-[12px] text-brand-gray-medium font-medium">WheelPrice</div>
               <div className="text-[10px] text-brand-gray-medium">(US, entusiaster)</div>
             </div>
@@ -659,7 +659,7 @@ function SlideFinancials() {
 
         <Stagger delay={0.15} className="mt-8 grid grid-cols-3 gap-6">
           {sc.map((s, i) => (
-            <div key={s.name} className={`rounded-xl p-5 ${i === 1 ? 'bg-brand-blue-50 border-2 border-brand-blue' : 'bg-brand-gray-light'}`}>
+            <div key={s.name} className={`rounded-xl p-5 ${i === 1 ? 'bg-brand-blue-50 border-2 border-brand-blue' : 'bg-brand-gray-light border border-brand-gray/50'}`}>
               <div className="text-[14px] font-semibold text-brand-blue uppercase tracking-wider">{s.name}</div>
               <div className="text-[34px] font-bold text-brand-dark font-heading leading-none mt-2">{s.total}</div>
               <div className="text-[14px] text-brand-gray-medium">MSEK</div>
@@ -668,7 +668,7 @@ function SlideFinancials() {
                 <div className="flex justify-between"><span className="text-brand-gray-medium">Transaktioner</span><span className="text-brand-dark font-semibold">{s.txn}</span></div>
                 <div className="flex justify-between"><span className="text-brand-gray-medium">Prenumeranter</span><span className="text-brand-dark font-semibold">{s.sub}</span></div>
               </div>
-              <div className="mt-4 pt-3 border-t border-brand-gray/20">
+              <div className="mt-4 pt-3 border-t border-brand-gray/50">
                 <div className="text-[14px] text-brand-gray-medium">Värdering</div>
                 <div className="text-[16px] font-bold text-brand-blue">{s.val} MSEK</div>
               </div>
