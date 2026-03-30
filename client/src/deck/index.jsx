@@ -1050,15 +1050,8 @@ export default function Deck() {
         <img src="/wheelplace-symbol.svg" alt="Wheelplace" className="h-10 mx-auto mb-5" />
         <h2 className="text-[20px] font-bold text-brand-dark font-heading mb-2">Investeringsdeck</h2>
         <p className="text-[14px] text-brand-gray-medium mb-6">
-          Presentationen är optimerad för desktop. Öppna på en dator för den interaktiva versionen, eller ladda ner som PDF.
+          Presentationen är optimerad för desktop. Öppna på en dator för den interaktiva versionen med PDF-export.
         </p>
-        <button
-          onClick={downloadPDF}
-          disabled={downloading}
-          className="w-full px-5 py-3 bg-brand-blue hover:bg-brand-blue-dark text-white rounded-xl text-[14px] font-semibold transition-colors cursor-pointer disabled:opacity-50"
-        >
-          {downloading ? 'Genererar PDF...' : 'Ladda ner PDF'}
-        </button>
         <a
           href="mailto:christofer@wheelplace.com?subject=Wheelplace%20Investeringsdeck"
           className="block mt-3 text-[14px] text-brand-blue font-medium"
