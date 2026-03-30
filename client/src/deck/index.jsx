@@ -328,50 +328,76 @@ function SlideMarket() {
   );
 }
 
-/* ── 7: Competition (light) ──────────────────────────── */
+/* ── 7: Competition (light, positioning map) ─────────── */
 function SlideCompetition() {
-  const cols = ['Blocket', 'Facebook', 'Tradera', 'WheelPrice', 'Wheelplace'];
-  const rows = [
-    ['Regnummersökning', false, false, false, false, true],
-    ['Passformsfilter', false, false, false, '~', true],
-    ['Expert kundsupport', false, false, false, '~', true],
-    ['B2B-prenumeration', false, false, false, false, true],
-    ['Dedikerad till hjul', false, false, false, true, true],
-    ['Cirkulär ekonomi', false, false, false, '~', true],
-  ];
   return (
     <Slide>
       <div className="h-full flex flex-col px-14 pt-14">
         <Tag>Konkurrens</Tag>
-        <H1 className="mt-3">Blocket kan inte lösa passformsproblemet</H1>
+        <H1 className="mt-3 max-w-[800px]">Blocket säljer allt till alla — vi löser passform för hjulköpare</H1>
 
-        <div className="mt-8 flex-1">
-          <table className="w-full text-[13px]">
-            <thead>
-              <tr>
-                <th className="text-left py-3 pr-4 text-brand-gray-medium font-medium w-[200px]" />
-                {cols.map((c, i) => (
-                  <th key={c} className={`text-center py-3 px-3 font-semibold ${i === cols.length - 1 ? 'text-brand-blue bg-brand-blue-50 rounded-t-lg' : 'text-brand-dark'}`}>{c}</th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {rows.map((row, ri) => (
-                <tr key={ri} className="border-t border-brand-gray/20">
-                  <td className="py-3 pr-4 text-[14px] font-medium text-brand-dark">{row[0]}</td>
-                  {row.slice(1).map((cell, ci) => (
-                    <td key={ci} className={`text-center py-3 px-3 ${ci === cols.length - 1 ? 'bg-brand-blue-50/50' : ''}`}>
-                      {cell === true ? <Chk /> : cell === false ? <Crs /> : <span className="text-brand-gray-medium text-[12px]">{cell}</span>}
-                    </td>
-                  ))}
-                </tr>
-              ))}
-            </tbody>
-          </table>
+        <div className="mt-6 flex-1 flex gap-10">
+          {/* 2x2 positioning map */}
+          <div className="flex-1 relative">
+            {/* Axes */}
+            <div className="absolute left-1/2 top-6 bottom-6 w-px bg-brand-gray/30" />
+            <div className="absolute top-1/2 left-6 right-6 h-px bg-brand-gray/30" />
+
+            {/* Axis labels */}
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 text-[11px] font-semibold text-brand-dark uppercase tracking-wider">Specialist</div>
+            <div className="absolute bottom-0 left-1/2 -translate-x-1/2 text-[11px] font-semibold text-brand-gray-medium uppercase tracking-wider">Generalist</div>
+            <div className="absolute left-0 top-1/2 -translate-y-1/2 text-[11px] font-semibold text-brand-gray-medium uppercase tracking-wider origin-center -rotate-90">Köpare</div>
+            <div className="absolute right-0 top-1/2 -translate-y-1/2 text-[11px] font-semibold text-brand-gray-medium uppercase tracking-wider origin-center rotate-90">Säljare</div>
+
+            {/* Wheelplace — top right quadrant, prominent */}
+            <div className="absolute top-[15%] right-[18%] bg-brand-blue rounded-xl px-4 py-3 text-center shadow-md">
+              <div className="text-[15px] font-bold text-white">Wheelplace</div>
+              <div className="text-[11px] text-white/70 mt-0.5">Passform + B2B</div>
+            </div>
+
+            {/* Competitors — positioned as gray dots */}
+            <div className="absolute bottom-[22%] left-[15%] text-center">
+              <div className="w-3 h-3 rounded-full bg-brand-gray mx-auto mb-1" />
+              <div className="text-[12px] text-brand-gray-medium font-medium">Facebook</div>
+            </div>
+            <div className="absolute bottom-[18%] right-[25%] text-center">
+              <div className="w-3 h-3 rounded-full bg-brand-gray mx-auto mb-1" />
+              <div className="text-[12px] text-brand-gray-medium font-medium">Blocket</div>
+            </div>
+            <div className="absolute bottom-[30%] right-[15%] text-center">
+              <div className="w-3 h-3 rounded-full bg-brand-gray mx-auto mb-1" />
+              <div className="text-[12px] text-brand-gray-medium font-medium">Tradera</div>
+            </div>
+            <div className="absolute top-[35%] left-[22%] text-center">
+              <div className="w-3 h-3 rounded-full bg-brand-gray mx-auto mb-1" />
+              <div className="text-[12px] text-brand-gray-medium font-medium">WheelPrice</div>
+              <div className="text-[10px] text-brand-gray-medium">(US, entusiaster)</div>
+            </div>
+          </div>
+
+          {/* Right: honest comparison */}
+          <div className="w-[380px] shrink-0 flex flex-col gap-4">
+            <BlueCard>
+              <h3 className="text-[13px] font-bold text-brand-dark uppercase tracking-wider mb-3">Generalisterna har</h3>
+              <div className="space-y-1.5 text-[14px] text-brand-gray-medium">
+                <p>Miljonpublik</p>
+                <p>Starkt varumärke</p>
+                <p>Bred kategoritäckning</p>
+              </div>
+            </BlueCard>
+            <BlueCard>
+              <h3 className="text-[13px] font-bold text-brand-blue uppercase tracking-wider mb-3">Vi har</h3>
+              <div className="space-y-1.5 text-[14px] text-brand-dark font-medium">
+                <p>Regnummersökning — skriv reg.nr, se vad som passar</p>
+                <p>Passformskontroll — vi visar bara det som faktiskt passar</p>
+                <p>B2B-prenumeration — verkstäder och bilhandlare</p>
+              </div>
+            </BlueCard>
+          </div>
         </div>
 
-        <Body className="mb-10 max-w-[640px] text-[13px]">
-          Vertikalt djup slår horisontell bredd. Domänexpertis, strukturerad data och mänsklig support bygger en vallgrav.
+        <Body className="mb-8 max-w-[640px] text-[13px]">
+          För en köpare som behöver 225/45 R17 till en 2019 V60 är räckvidd meningslöst utan passform.
         </Body>
         <SlideNum n={7} />
       </div>
