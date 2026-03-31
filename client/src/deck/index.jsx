@@ -669,7 +669,7 @@ function SlideTeam() {
 
           <div className="mt-6 bg-brand-gray-light rounded-xl p-5">
             <Body className="text-[15px]">
-              Svante Hertel byggde Special Fälgar till ett marknadsledande nordiskt bolag inom premium-fälgar med ~30 MSEK i omsättning. Christofer tog över, växte med stark lönsamhet — Storskogen förvärvade bolaget. Nu digitaliserar han hela marknadskategorin.
+              Svante Hertel byggde Special Fälgar till ett marknadsledande nordiskt bolag inom premium-fälgar med ~300 MSEK i omsättning. Christofer tog över, växte med stark lönsamhet — Storskogen förvärvade bolaget. Nu digitaliserar han hela marknadskategorin.
             </Body>
           </div>
 
