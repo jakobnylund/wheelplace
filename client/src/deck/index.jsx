@@ -839,7 +839,7 @@ function SlideAsk() {
     <Slide>
       <div className="px-14 pt-14">
         <Tag>Rundan</Tag>
-        <H1 className="mt-3 max-w-[700px]">Vi reser 4 MSEK — och söker en strategisk partner</H1>
+        <H1 className="mt-3 max-w-[700px]">7–8 MSEK totalt — strategisk partner för ~10 %</H1>
 
         <div className="mt-8 flex gap-8">
           {/* Left: round structure */}
@@ -847,25 +847,25 @@ function SlideAsk() {
             <div className="grid grid-cols-2 gap-4">
               <div className="bg-brand-blue-50 rounded-xl p-5 border border-brand-blue/20">
                 <div className="text-[12px] font-semibold text-brand-blue uppercase tracking-wider mb-2">Nyemission</div>
-                <div className="text-[36px] font-bold text-brand-dark font-heading leading-none">4 MSEK</div>
+                <div className="text-[36px] font-bold text-brand-dark font-heading leading-none">3–4 MSEK</div>
                 <Body className="text-[13px] mt-2">Tillväxtkapital in i bolaget. Går till marknadsföring, produkt och nordisk expansion.</Body>
               </div>
               <div className="bg-brand-gray-light rounded-xl p-5">
-                <div className="text-[12px] font-semibold text-brand-gray-medium uppercase tracking-wider mb-2">Sekundär</div>
-                <div className="text-[36px] font-bold text-brand-dark font-heading leading-none">1–2 MSEK</div>
-                <Body className="text-[13px] mt-2">Grundare säljer en mindre andel — visar commitment och tar in rätt partner vid bordet.</Body>
+                <div className="text-[12px] font-semibold text-brand-gray-medium uppercase tracking-wider mb-2">Sekundär (~10 %)</div>
+                <div className="text-[36px] font-bold text-brand-dark font-heading leading-none">4–5 MSEK</div>
+                <Body className="text-[13px] mt-2">Befintlig ägare säljer ~10 % till strategisk partner — rätt person vid bordet, inte bara kapital.</Body>
               </div>
             </div>
 
             {/* Use of funds */}
             <div className="mt-5 bg-brand-gray-light rounded-xl p-5">
-              <div className="text-[12px] font-semibold text-brand-gray-medium uppercase tracking-wider mb-3">Användning av kapital (4 MSEK)</div>
+              <div className="text-[12px] font-semibold text-brand-gray-medium uppercase tracking-wider mb-3">Användning av kapital (3–4 MSEK nyemission)</div>
               <div className="space-y-2">
                 {[
-                  ['Marknadsföring & kundförvärv', '50 %', '2,0M', 'w-1/2'],
-                  ['Produktutveckling', '25 %', '1,0M', 'w-1/4'],
-                  ['Team & organisation', '15 %', '0,6M', 'w-[15%]'],
-                  ['Rörelsekapital', '10 %', '0,4M', 'w-[10%]'],
+                  ['Marknadsföring & kundförvärv', '50 %', '1,5–2M', 'w-1/2'],
+                  ['Produktutveckling', '25 %', '0,75–1M', 'w-1/4'],
+                  ['Team & organisation', '15 %', '0,45–0,6M', 'w-[15%]'],
+                  ['Rörelsekapital', '10 %', '0,3–0,4M', 'w-[10%]'],
                 ].map(([label, pct, sek, barW]) => (
                   <div key={label}>
                     <div className="flex items-center justify-between text-[13px] mb-1">
