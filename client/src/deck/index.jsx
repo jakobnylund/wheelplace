@@ -926,11 +926,11 @@ function SlideExit() {
             <div className="text-[12px] font-semibold text-brand-gray-medium uppercase tracking-wider mb-3">Jämförbara affärer & värderingar</div>
             <div className="space-y-2">
               {[
-                ['Hemnet (IPO 2021)', 'Vertikal marknadsplats, Sverige', '~15 mdr SEK'],
-                ['KVD (IPO 2021)', 'Vertikal bilauktion, Sverige', '~1,5 mdr SEK'],
-                ['Special Fälgar → Storskogen', 'Premium-fälgar, Norden', '~300 MSEK oms.'],
-                ['Mascus → Ritchie Bros', 'Vertikal fordon/maskin-MP', '$587M förvärv'],
-                ['Mobile.de → eBay', 'Vertikal fordonsmarknadsplats', '€1,1 mdr'],
+                ['Hemnet (IPO 2021)', 'Vertikal marknadsplats, Sverige', '~12 mdr SEK'],
+                ['Adevinta ← eBay Classifieds', 'Blocket, Mobile.de m.fl.', '$9,2 mdr'],
+                ['Special Fälgar → Storskogen', 'Premium-fälgar, Norden', '317 MSEK oms.'],
+                ['IronPlanet → Ritchie Bros', 'Vertikal maskin-marknadsplats', '$758M förvärv'],
+                ['Mobile.de → eBay (2004)', 'Vertikal fordonsmarknadsplats, DE', '€121M'],
               ].map(([name, desc, val]) => (
                 <div key={name} className="flex items-center justify-between bg-brand-gray-light rounded-lg px-4 py-2.5">
                   <div>
