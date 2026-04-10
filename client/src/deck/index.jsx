@@ -703,6 +703,68 @@ function SlideTeam() {
   );
 }
 
+/* ── Operating Costs (light) ─────────────────────────── */
+function SlideOperatingCosts() {
+  return (
+    <Slide>
+      <div className="px-14 pt-14">
+        <Tag>Driftkostnad</Tag>
+        <H1 className="mt-3">25 000 SEK/mån i fast kostnad — plattformen är redan byggd</H1>
+
+        <div className="mt-10 flex gap-8">
+          {/* Left: big number + context */}
+          <div className="flex-1">
+            <div className="bg-brand-gray-light rounded-xl p-6">
+              <div className="text-[14px] font-semibold text-brand-blue uppercase tracking-wider mb-3">Fast driftkostnad</div>
+              <div className="flex items-baseline gap-2">
+                <span className="text-[56px] font-bold text-brand-dark font-heading leading-none">25 000</span>
+                <span className="text-[18px] font-semibold text-brand-gray-medium">SEK/mån</span>
+              </div>
+              <Body className="mt-4 max-w-[420px]">
+                Hosting, infrastruktur och verktyg. Exklusive marknadsföring och utveckling — som är rörliga och skalas med verksamheten.
+              </Body>
+            </div>
+
+            <div className="mt-5 grid grid-cols-2 gap-5">
+              <BlueCard>
+                <h3 className="text-[14px] font-bold text-brand-dark mb-1">Marknadsföring</h3>
+                <Body className="text-[13px]">Rörlig kostnad som skalas med intäkter. Organisk trafik och SEO driver redan merparten av besökarna.</Body>
+              </BlueCard>
+              <BlueCard>
+                <h3 className="text-[14px] font-bold text-brand-dark mb-1">Utveckling</h3>
+                <Body className="text-[13px]">Rörlig beroende på sprints. Kärnplattformen är byggd — framtida insatser fokuserar på tillväxtfunktioner.</Body>
+              </BlueCard>
+            </div>
+          </div>
+
+          {/* Right: key takeaway */}
+          <div className="w-[360px] shrink-0 flex flex-col gap-5">
+            <div className="bg-brand-blue-50 rounded-xl p-5 flex-1">
+              <h3 className="text-[14px] font-bold text-brand-blue uppercase tracking-wider mb-4">Kapitaleffektivt</h3>
+              <div className="space-y-4">
+                {[
+                  ['Plattformen är byggd', 'Merparten av utvecklingen redan genomförd och betald. Ingen stor tech-skuld.'],
+                  ['Låg burn rate', 'Driften kräver minimalt kapital. Varje investerad krona går till tillväxt, inte underhåll.'],
+                  ['Skalbar kostnadsbas', 'Fasta kostnader förändras marginellt vid 10× fler användare.'],
+                ].map(([title, desc]) => (
+                  <div key={title} className="flex items-start gap-3">
+                    <img src="/icons/check-circle.svg" alt="" className="w-4 h-4 mt-0.5 shrink-0 opacity-50" />
+                    <div>
+                      <span className="text-[14px] font-semibold text-brand-dark">{title}</span>
+                      <p className="text-[13px] text-brand-gray-medium mt-0.5">{desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+        <SlideNum n={15} />
+      </div>
+    </Slide>
+  );
+}
+
 /* ── 10: Financials (light) ───────────────────────────── */
 function SlideFinancials() {
   const sc = [
@@ -746,7 +808,7 @@ function SlideFinancials() {
             <span className="text-[14px] text-brand-gray-medium ml-3">Mellanscenario: ~160–200 MSEK · Värdering: 1,5–3+ miljarder SEK</span>
           </div>
         </div>
-        <SlideNum n={15} />
+        <SlideNum n={16} />
       </div>
     </Slide>
   );
@@ -784,7 +846,7 @@ function SlideAsk() {
         <p className="mt-6 text-[14px] font-semibold text-brand-blue italic">
           Vi äger kategorin i Sverige. Rätt partner gör oss till kategoriledaren i Norden.
         </p>
-        <SlideNum n={16} />
+        <SlideNum n={17} />
       </div>
     </Slide>
   );
@@ -1060,7 +1122,7 @@ export default function Deck() {
   const slides = [
     SlideCover, SlideVideo, SlideProblem, SlideSolution, SlideProduct1, SlideProduct2, SlideProduct3, SlideTraction,
     SlideKPIs, SlideBusinessModel, SlideMarket, SlideCompetition, SlideTeam,
-    SlideSustainability, SlideFinancials, SlideAsk, SlideClosing,
+    SlideSustainability, SlideOperatingCosts, SlideFinancials, SlideAsk, SlideClosing,
   ];
 
   const downloadPDF = async () => {
@@ -1115,7 +1177,7 @@ export default function Deck() {
         <div className="max-w-[1320px] mx-auto px-6 flex items-center justify-between h-14">
           <div className="flex items-center gap-3">
             <img src="/wheelplace-symbol.svg" alt="Wheelplace" className="h-7" />
-            <span className="text-[13px] text-brand-gray-medium">Investeringsdeck · 17 slides</span>
+            <span className="text-[13px] text-brand-gray-medium">Investeringsdeck · 18 slides</span>
           </div>
           <div className="flex items-center gap-3">
             <a
