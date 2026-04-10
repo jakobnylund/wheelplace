@@ -709,49 +709,64 @@ function SlideOperatingCosts() {
     <Slide>
       <div className="px-14 pt-14">
         <Tag>Driftkostnad</Tag>
-        <H1 className="mt-3">25 000 SEK/mån i fast kostnad — plattformen är redan byggd</H1>
+        <H1 className="mt-3">25 000 SEK/mån i fast drift — resten skalas med intäkter</H1>
 
-        <div className="mt-10 flex gap-8">
-          {/* Left: big number + context */}
+        <div className="mt-8 flex gap-8">
+          {/* Left: current + at scale */}
           <div className="flex-1">
-            <div className="bg-brand-gray-light rounded-xl p-6">
-              <div className="text-[14px] font-semibold text-brand-blue uppercase tracking-wider mb-3">Fast driftkostnad</div>
+            <div className="bg-brand-gray-light rounded-xl p-5">
+              <div className="text-[14px] font-semibold text-brand-blue uppercase tracking-wider mb-3">Idag</div>
               <div className="flex items-baseline gap-2">
-                <span className="text-[56px] font-bold text-brand-dark font-heading leading-none">25 000</span>
-                <span className="text-[18px] font-semibold text-brand-gray-medium">SEK/mån</span>
+                <span className="text-[48px] font-bold text-brand-dark font-heading leading-none">25 000</span>
+                <span className="text-[16px] font-semibold text-brand-gray-medium">SEK/mån</span>
               </div>
-              <Body className="mt-4 max-w-[420px]">
-                Hosting, infrastruktur och verktyg. Exklusive marknadsföring och utveckling — som är rörliga och skalas med verksamheten.
-              </Body>
+              <Body className="mt-3">Hosting, infrastruktur och verktyg. Plattformen är byggd och betald — ingen tech-skuld.</Body>
             </div>
 
-            <div className="mt-5 grid grid-cols-2 gap-5">
-              <BlueCard>
-                <h3 className="text-[14px] font-bold text-brand-dark mb-1">Marknadsföring</h3>
-                <Body className="text-[13px]">Rörlig kostnad som skalas med intäkter. Organisk trafik och SEO driver redan merparten av besökarna.</Body>
-              </BlueCard>
-              <BlueCard>
-                <h3 className="text-[14px] font-bold text-brand-dark mb-1">Utveckling</h3>
-                <Body className="text-[13px]">Rörlig beroende på sprints. Kärnplattformen är byggd — framtida insatser fokuserar på tillväxtfunktioner.</Body>
-              </BlueCard>
-            </div>
+            <Stagger delay={0.12} className="mt-4 grid grid-cols-2 gap-4">
+              <div className="border border-brand-gray/50 rounded-xl p-4">
+                <div className="text-[12px] font-semibold text-brand-gray-medium uppercase tracking-wider mb-2">Basscenario</div>
+                <div className="text-[28px] font-bold text-brand-dark font-heading leading-none">~120k</div>
+                <div className="text-[13px] text-brand-gray-medium mt-1">SEK/mån</div>
+                <div className="mt-3 space-y-1 text-[12px] text-brand-gray-medium">
+                  <div className="flex justify-between"><span>Drift</span><span className="text-brand-dark font-medium">25k</span></div>
+                  <div className="flex justify-between"><span>Marknadsföring</span><span className="text-brand-dark font-medium">50k</span></div>
+                  <div className="flex justify-between"><span>Utveckling</span><span className="text-brand-dark font-medium">30k</span></div>
+                  <div className="flex justify-between"><span>Övrigt</span><span className="text-brand-dark font-medium">15k</span></div>
+                  <div className="flex justify-between border-t border-brand-gray/30 pt-1 mt-1"><span className="font-semibold text-brand-dark">Intäkter</span><span className="font-bold text-brand-blue">550k/mån</span></div>
+                </div>
+              </div>
+              <div className="border-2 border-brand-blue rounded-xl p-4">
+                <div className="text-[12px] font-semibold text-brand-blue uppercase tracking-wider mb-2">Bullscenario</div>
+                <div className="text-[28px] font-bold text-brand-dark font-heading leading-none">~350k</div>
+                <div className="text-[13px] text-brand-gray-medium mt-1">SEK/mån</div>
+                <div className="mt-3 space-y-1 text-[12px] text-brand-gray-medium">
+                  <div className="flex justify-between"><span>Drift</span><span className="text-brand-dark font-medium">30k</span></div>
+                  <div className="flex justify-between"><span>Marknadsföring</span><span className="text-brand-dark font-medium">150k</span></div>
+                  <div className="flex justify-between"><span>Team & utveckling</span><span className="text-brand-dark font-medium">120k</span></div>
+                  <div className="flex justify-between"><span>Övrigt</span><span className="text-brand-dark font-medium">50k</span></div>
+                  <div className="flex justify-between border-t border-brand-gray/30 pt-1 mt-1"><span className="font-semibold text-brand-dark">Intäkter</span><span className="font-bold text-brand-blue">2,4M/mån</span></div>
+                </div>
+              </div>
+            </Stagger>
           </div>
 
-          {/* Right: key takeaway */}
-          <div className="w-[360px] shrink-0 flex flex-col gap-5">
+          {/* Right: key points */}
+          <div className="w-[340px] shrink-0 flex flex-col gap-4">
             <div className="bg-brand-blue-50 rounded-xl p-5 flex-1">
               <h3 className="text-[14px] font-bold text-brand-blue uppercase tracking-wider mb-4">Kapitaleffektivt</h3>
-              <div className="space-y-4">
+              <div className="space-y-3">
                 {[
-                  ['Plattformen är byggd', 'Merparten av utvecklingen redan genomförd och betald. Ingen stor tech-skuld.'],
-                  ['Låg burn rate', 'Driften kräver minimalt kapital. Varje investerad krona går till tillväxt, inte underhåll.'],
-                  ['Skalbar kostnadsbas', 'Fasta kostnader förändras marginellt vid 10× fler användare.'],
+                  ['Plattformen är byggd', 'Merparten av utvecklingen genomförd och betald.'],
+                  ['Låg fast burn', 'Driften kostar 25k/mån — varje krona utöver det går till tillväxt.'],
+                  ['Skalbar bas', 'Fasta kostnader ökar marginellt vid 10× fler användare.'],
+                  ['Hög marginal vid skalning', 'Kostnader växer linjärt, intäkter exponentiellt.'],
                 ].map(([title, desc]) => (
                   <div key={title} className="flex items-start gap-3">
                     <img src="/icons/check-circle.svg" alt="" className="w-4 h-4 mt-0.5 shrink-0 opacity-50" />
                     <div>
-                      <span className="text-[14px] font-semibold text-brand-dark">{title}</span>
-                      <p className="text-[13px] text-brand-gray-medium mt-0.5">{desc}</p>
+                      <span className="text-[13px] font-semibold text-brand-dark">{title}</span>
+                      <p className="text-[12px] text-brand-gray-medium mt-0.5">{desc}</p>
                     </div>
                   </div>
                 ))}
@@ -818,35 +833,156 @@ function SlideFinancials() {
    ACT 3 — THE RESOLUTION
    ══════════════════════════════════════════════════════════ */
 
-/* ── 10: The Ask (light) ─────────────────────────────── */
+/* ── The Ask (light) ─────────────────────────────────── */
 function SlideAsk() {
   return (
     <Slide>
       <div className="px-14 pt-14">
-        <Tag>Nästa steg</Tag>
-        <H1 className="mt-3 max-w-[700px]">Rätt partner, rätt timing</H1>
-        <Body className="mt-4 max-w-[640px]">
-          Wheelplace har produkt, traktion och branschkunskap. Nu behöver vi någon som vet hur man tar en marknadsplats från tidig traktion till kategoriledare.
-        </Body>
+        <Tag>Rundan</Tag>
+        <H1 className="mt-3 max-w-[700px]">Vi reser 4 MSEK — och söker en strategisk partner</H1>
 
-        <Stagger delay={0.15} className="mt-8 grid grid-cols-3 gap-6">
-          {[
-            ['01', 'Skalningskompetens', 'Erfarenhet av tvåsidiga marknadsplatser. Hjälp att optimera liquidity, konvertering och retention — inte bara växa topline.'],
-            ['02', 'Kapital för expansion', 'Tillväxtkapital för nordisk utrullning, tech-team och kundförvärv. Vi har unit economics — nu behöver vi bränsle.'],
-            ['03', 'Operativt stöd', 'Hands-on i go-to-market, pricing och organisationsbygge. Inte en passiv investerare — en partner som bygger med oss.'],
-          ].map(([num, title, desc]) => (
-            <div key={num} className="border border-brand-gray/50 rounded-xl p-5 flex-1 flex flex-col">
-              <span className="text-[28px] font-bold text-brand-blue/20 font-heading">{num}</span>
-              <h3 className="text-[16px] font-bold text-brand-dark mt-2 mb-2">{title}</h3>
-              <Body className="text-[14px]">{desc}</Body>
+        <div className="mt-8 flex gap-8">
+          {/* Left: round structure */}
+          <div className="flex-1">
+            <div className="grid grid-cols-2 gap-4">
+              <div className="bg-brand-blue-50 rounded-xl p-5 border border-brand-blue/20">
+                <div className="text-[12px] font-semibold text-brand-blue uppercase tracking-wider mb-2">Nyemission</div>
+                <div className="text-[36px] font-bold text-brand-dark font-heading leading-none">4 MSEK</div>
+                <Body className="text-[13px] mt-2">Tillväxtkapital in i bolaget. Går till marknadsföring, produkt och nordisk expansion.</Body>
+              </div>
+              <div className="bg-brand-gray-light rounded-xl p-5">
+                <div className="text-[12px] font-semibold text-brand-gray-medium uppercase tracking-wider mb-2">Sekundär</div>
+                <div className="text-[36px] font-bold text-brand-dark font-heading leading-none">1–2 MSEK</div>
+                <Body className="text-[13px] mt-2">Grundare säljer en mindre andel — visar commitment och tar in rätt partner vid bordet.</Body>
+              </div>
             </div>
-          ))}
-        </Stagger>
 
-        <p className="mt-6 text-[14px] font-semibold text-brand-blue italic">
-          Vi äger kategorin i Sverige. Rätt partner gör oss till kategoriledaren i Norden.
-        </p>
+            {/* Use of funds */}
+            <div className="mt-5 bg-brand-gray-light rounded-xl p-5">
+              <div className="text-[12px] font-semibold text-brand-gray-medium uppercase tracking-wider mb-3">Användning av kapital (4 MSEK)</div>
+              <div className="space-y-2">
+                {[
+                  ['Marknadsföring & kundförvärv', '50 %', '2,0M', 'w-1/2'],
+                  ['Produktutveckling', '25 %', '1,0M', 'w-1/4'],
+                  ['Team & organisation', '15 %', '0,6M', 'w-[15%]'],
+                  ['Rörelsekapital', '10 %', '0,4M', 'w-[10%]'],
+                ].map(([label, pct, sek, barW]) => (
+                  <div key={label}>
+                    <div className="flex items-center justify-between text-[13px] mb-1">
+                      <span className="text-brand-dark font-medium">{label}</span>
+                      <span className="text-brand-gray-medium">{pct} · {sek}</span>
+                    </div>
+                    <div className="h-2 rounded bg-brand-gray/20 overflow-hidden">
+                      <div className={`h-full rounded bg-brand-blue ${barW}`} />
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Right: what we look for */}
+          <div className="w-[360px] shrink-0">
+            <div className="border border-brand-gray/50 rounded-xl p-5 h-full flex flex-col">
+              <h3 className="text-[14px] font-bold text-brand-dark uppercase tracking-wider mb-4">Vi söker en partner som har</h3>
+              <div className="space-y-4 flex-1">
+                {[
+                  ['Skalningskompetens', 'Erfarenhet av tvåsidiga marknadsplatser — liquidity, konvertering, retention.'],
+                  ['Operativt engagemang', 'Hands-on i go-to-market och pricing. Inte passivt kapital.'],
+                  ['Nätverk i Norden', 'Dörrar in till bilkoncerner, kedjor och strategiska samarbeten.'],
+                ].map(([title, desc]) => (
+                  <div key={title} className="flex items-start gap-3">
+                    <div className="w-[3px] h-5 bg-brand-blue rounded-full mt-0.5 shrink-0" />
+                    <div>
+                      <span className="text-[14px] font-semibold text-brand-dark">{title}</span>
+                      <p className="text-[13px] text-brand-gray-medium mt-0.5">{desc}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <p className="mt-4 pt-4 border-t border-brand-gray/30 text-[13px] font-semibold text-brand-blue italic">
+                Majoriteten av kapitalet går till tillväxt — inte drift. Bolaget är redan operativt.
+              </p>
+            </div>
+          </div>
+        </div>
         <SlideNum n={17} />
+      </div>
+    </Slide>
+  );
+}
+
+/* ── Exit & Vision (light) ──────────────────────────────── */
+function SlideExit() {
+  return (
+    <Slide>
+      <div className="px-14 pt-14">
+        <Tag>Exit & vision</Tag>
+        <H1 className="mt-3 max-w-[800px]">Klockren uppköpskandidat — med bevisad exit i familjen</H1>
+
+        <div className="mt-8 flex gap-8">
+          {/* Left: comps + thesis */}
+          <div className="flex-1">
+            <div className="text-[12px] font-semibold text-brand-gray-medium uppercase tracking-wider mb-3">Jämförbara affärer & värderingar</div>
+            <div className="space-y-2">
+              {[
+                ['Hemnet (IPO 2021)', 'Vertikal marknadsplats, Sverige', '~15 mdr SEK'],
+                ['KVD (IPO 2021)', 'Vertikal bilauktion, Sverige', '~1,5 mdr SEK'],
+                ['Special Fälgar → Storskogen', 'Premium-fälgar, Norden', '~300 MSEK oms.'],
+                ['Mascus → Ritchie Bros', 'Vertikal fordon/maskin-MP', '$587M förvärv'],
+                ['Mobile.de → eBay', 'Vertikal fordonsmarknadsplats', '€1,1 mdr'],
+              ].map(([name, desc, val]) => (
+                <div key={name} className="flex items-center justify-between bg-brand-gray-light rounded-lg px-4 py-2.5">
+                  <div>
+                    <span className="text-[14px] font-semibold text-brand-dark">{name}</span>
+                    <span className="text-[12px] text-brand-gray-medium ml-2">{desc}</span>
+                  </div>
+                  <span className="text-[14px] font-bold text-brand-blue whitespace-nowrap ml-4">{val}</span>
+                </div>
+              ))}
+            </div>
+
+            <Body className="mt-5 text-[13px] max-w-[620px]">
+              Vertikala marknadsplatser med stark position i en nisch värderas högt vid förvärv. Wheelplace kombinerar samma modell med en branschexpert som redan genomfört en exit.
+            </Body>
+          </div>
+
+          {/* Right: vision & timeline */}
+          <div className="w-[340px] shrink-0 flex flex-col gap-4">
+            <div className="bg-brand-blue-50 rounded-xl p-5">
+              <h3 className="text-[14px] font-bold text-brand-blue uppercase tracking-wider mb-3">Vision 3–5 år</h3>
+              <div className="space-y-3">
+                {[
+                  ['År 1–2', 'Kategoriledare i Sverige. 100+ B2B-kunder, stark organisk tillväxt.'],
+                  ['År 2–3', 'Nordisk expansion: Norge, Finland, Danmark. Samma playbook.'],
+                  ['År 3–5', 'Europeisk skalning eller strategisk exit till bilkoncern, Schibsted-typ eller PE.'],
+                ].map(([year, desc]) => (
+                  <div key={year} className="flex items-start gap-3">
+                    <span className="text-[13px] font-bold text-brand-blue whitespace-nowrap mt-0.5">{year}</span>
+                    <p className="text-[13px] text-brand-dark">{desc}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="border border-brand-gray/50 rounded-xl p-5">
+              <h3 className="text-[14px] font-bold text-brand-dark uppercase tracking-wider mb-3">Potentiella köpare</h3>
+              <div className="space-y-1.5 text-[13px]">
+                {[
+                  'Schibsted / Blocket (horisontell)',
+                  'Hedin / Storskogen (vertikal)',
+                  'Continental / Michelin (strategisk)',
+                  'PE-fond med marknadsplats-thesis',
+                ].map((b) => (
+                  <div key={b} className="flex items-center gap-2">
+                    <div className="w-1.5 h-1.5 rounded-full bg-brand-blue shrink-0" />
+                    <span className="text-brand-gray-medium">{b}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+        <SlideNum n={18} />
       </div>
     </Slide>
   );
@@ -1122,7 +1258,7 @@ export default function Deck() {
   const slides = [
     SlideCover, SlideVideo, SlideProblem, SlideSolution, SlideProduct1, SlideProduct2, SlideProduct3, SlideTraction,
     SlideKPIs, SlideBusinessModel, SlideMarket, SlideCompetition, SlideTeam,
-    SlideSustainability, SlideOperatingCosts, SlideFinancials, SlideAsk, SlideClosing,
+    SlideSustainability, SlideOperatingCosts, SlideFinancials, SlideAsk, SlideExit, SlideClosing,
   ];
 
   const downloadPDF = async () => {
@@ -1177,7 +1313,7 @@ export default function Deck() {
         <div className="max-w-[1320px] mx-auto px-6 flex items-center justify-between h-14">
           <div className="flex items-center gap-3">
             <img src="/wheelplace-symbol.svg" alt="Wheelplace" className="h-7" />
-            <span className="text-[13px] text-brand-gray-medium">Investeringsdeck · 18 slides</span>
+            <span className="text-[13px] text-brand-gray-medium">Investeringsdeck · 19 slides</span>
           </div>
           <div className="flex items-center gap-3">
             <a
