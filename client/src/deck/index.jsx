@@ -362,14 +362,14 @@ function SlideTraction() {
     <Slide>
       <div className="px-14 pt-14">
         <Tag>Traktion</Tag>
-        <H1 className="mt-3">4 650 annonser och 5M besökare på 22 månader</H1>
+        <H1 className="mt-3">5 448 användare, 4 375 genomförda affärer, 35M SEK GMV</H1>
 
         <div ref={statsRef} className="mt-10 grid grid-cols-4 gap-5">
           {[
-            ['4 650', 'Aktiva annonser'],
-            ['5M+', 'Besökare sedan start'],
-            ['35M', 'SEK transaktionsvärde sedan start'],
-            ['19', 'B2B-prenumeranter'],
+            ['5 448', 'Registrerade användare'],
+            ['7 839', 'Skapade annonser'],
+            ['4 375', 'Genomförda affärer'],
+            ['35M', 'SEK transaktionsvärde'],
           ].map(([num, label], i) => (
             <div key={label} className="bg-brand-gray-light rounded-xl p-5" style={{
               opacity: statsVisible ? 1 : 0,
@@ -401,6 +401,83 @@ function SlideTraction() {
           </div>
         </div>
         <SlideNum n={8} />
+      </div>
+    </Slide>
+  );
+}
+
+/* ── 9: Verified platform data (light) ─────────────── */
+function SlidePlatformData() {
+  return (
+    <Slide>
+      <div className="px-14 pt-12">
+        <Tag>Verifierad plattformsdata</Tag>
+        <H1 className="mt-3">Inga estimat — direktexport från plattformen</H1>
+        <div className="mt-6 rounded-xl overflow-hidden border border-brand-gray/30 bg-white">
+          <img src="/deck/kpi-headline.png" alt="Wheelplace headline KPIs" className="w-full block" />
+        </div>
+        <p className="mt-4 text-[13px] text-brand-gray-medium">
+          Sedan launch i april 2024 · uppdaterat 12 maj 2026
+        </p>
+        <SlideNum n={9} />
+      </div>
+    </Slide>
+  );
+}
+
+/* ── 10: Growth curves (light) ─────────────────────── */
+function SlideGrowthCurves() {
+  return (
+    <Slide>
+      <div className="px-14 pt-12">
+        <Tag>Tillväxtkurvor</Tag>
+        <H1 className="mt-3">Fyra nyckeltal — konsekvent uppåtgående sedan dag ett</H1>
+        <div className="mt-6 grid grid-cols-2 gap-3">
+          {[
+            ['/deck/kpi-users-cumulative.png', 'Registrerade användare'],
+            ['/deck/kpi-listings-cumulative.png', 'Skapade annonser'],
+            ['/deck/kpi-closed-cumulative.png', 'Genomförda affärer'],
+            ['/deck/kpi-gmv-cumulative.png', 'Transaktionsvärde (GMV)'],
+          ].map(([src, label]) => (
+            <div key={src} className="rounded-lg overflow-hidden border border-brand-gray/30 bg-white">
+              <img src={src} alt={label} className="w-full block" />
+            </div>
+          ))}
+        </div>
+        <SlideNum n={10} />
+      </div>
+    </Slide>
+  );
+}
+
+/* ── 11: Seasonality (light) ───────────────────────── */
+function SlideSeasonality() {
+  return (
+    <Slide>
+      <div className="px-14 pt-12">
+        <Tag>Säsongsmönster</Tag>
+        <H1 className="mt-3">Tillväxten följer däckskifte — och accelererar varje år</H1>
+        <div className="mt-5 grid grid-cols-[1fr_280px] gap-6">
+          <div className="rounded-xl overflow-hidden border border-brand-gray/30 bg-white">
+            <img src="/deck/kpi-users-monthly.png" alt="Monthly new user sign-ups" className="w-full block" />
+          </div>
+          <div className="space-y-4">
+            <div className="bg-brand-blue-50 rounded-xl p-4">
+              <p className="text-[12px] font-semibold text-brand-blue uppercase tracking-wider">Oktober 2025</p>
+              <p className="text-[28px] font-bold text-brand-dark font-heading leading-tight mt-1">~450</p>
+              <p className="text-[13px] text-brand-gray-medium">nya användare på en månad — all-time-high</p>
+            </div>
+            <div className="bg-brand-gray-light rounded-xl p-4">
+              <p className="text-[12px] font-semibold text-brand-gray-medium uppercase tracking-wider">YoY-jämförelse</p>
+              <p className="text-[28px] font-bold text-brand-dark font-heading leading-tight mt-1">+38,6%</p>
+              <p className="text-[13px] text-brand-gray-medium">fler nya användare jämfört med samma period förra året</p>
+            </div>
+            <Body className="text-[13px]">
+              Toppar Aug–Nov följer hjulskifteskalendern. Varje cykel är högre än föregående — produkt-marknadsfit.
+            </Body>
+          </div>
+        </div>
+        <SlideNum n={11} />
       </div>
     </Slide>
   );
@@ -440,7 +517,7 @@ function SlideKPIs() {
         <Body className="mt-8 max-w-[640px]">
           Dessa siffror visar att marknadsplatsen har reell aktivitet — annonser säljs, användare kommer tillbaka, och kundförvärvskostnaden är låg tack vare organisk trafik och SEO.
         </Body>
-        <SlideNum n={9} />
+        <SlideNum n={12} />
       </div>
     </Slide>
   );
@@ -480,7 +557,7 @@ function SlideBusinessModel() {
             </div>
           </div>
         </div>
-        <SlideNum n={10} />
+        <SlideNum n={13} />
       </div>
     </Slide>
   );
@@ -547,7 +624,7 @@ function SlideMarket() {
             </BlueCard>
           </div>
         </div>
-        <SlideNum n={11} />
+        <SlideNum n={14} />
       </div>
     </Slide>
   );
@@ -638,7 +715,7 @@ function SlideCompetition() {
         <Body className="mb-8 max-w-[700px] text-[15px]">
           Bythjul, Vianor och Skruvat erbjuder regnummersök — men bara för nytt. För begagnat finns ingen passformskontroll. Det är gapet vi fyller.
         </Body>
-        <SlideNum n={12} />
+        <SlideNum n={15} />
       </div>
     </Slide>
   );
@@ -696,7 +773,7 @@ function SlideTeam() {
               </div>
             </div>
           </div>
-          <SlideNum n={13} />
+          <SlideNum n={16} />
         </div>
       </div>
     </Slide>
@@ -774,7 +851,7 @@ function SlideOperatingCosts() {
             </div>
           </div>
         </div>
-        <SlideNum n={15} />
+        <SlideNum n={18} />
       </div>
     </Slide>
   );
@@ -823,7 +900,7 @@ function SlideFinancials() {
             <span className="text-[14px] text-brand-gray-medium ml-3">Mellanscenario: ~160–200 MSEK · Värdering: 1,5–3+ miljarder SEK</span>
           </div>
         </div>
-        <SlideNum n={16} />
+        <SlideNum n={19} />
       </div>
     </Slide>
   );
@@ -906,7 +983,7 @@ function SlideAsk() {
             </div>
           </div>
         </div>
-        <SlideNum n={17} />
+        <SlideNum n={20} />
       </div>
     </Slide>
   );
@@ -982,7 +1059,7 @@ function SlideExit() {
             </div>
           </div>
         </div>
-        <SlideNum n={18} />
+        <SlideNum n={21} />
       </div>
     </Slide>
   );
@@ -1012,7 +1089,7 @@ function SlideSustainability() {
             </div>
           ))}
         </Stagger>
-        <SlideNum n={14} dark />
+        <SlideNum n={17} dark />
       </div>
     </Slide>
   );
@@ -1257,6 +1334,7 @@ export default function Deck() {
 
   const slides = [
     SlideCover, SlideVideo, SlideProblem, SlideSolution, SlideProduct1, SlideProduct2, SlideProduct3, SlideTraction,
+    SlidePlatformData, SlideGrowthCurves, SlideSeasonality,
     SlideKPIs, SlideBusinessModel, SlideMarket, SlideCompetition, SlideTeam,
     SlideSustainability, SlideOperatingCosts, SlideFinancials, SlideAsk, SlideExit, SlideClosing,
   ];
@@ -1313,7 +1391,7 @@ export default function Deck() {
         <div className="max-w-[1320px] mx-auto px-6 flex items-center justify-between h-14">
           <div className="flex items-center gap-3">
             <img src="/wheelplace-symbol.svg" alt="Wheelplace" className="h-7" />
-            <span className="text-[13px] text-brand-gray-medium">Investeringsdeck · 19 slides</span>
+            <span className="text-[13px] text-brand-gray-medium">Investeringsdeck · 22 slides</span>
           </div>
           <div className="flex items-center gap-3">
             <a
