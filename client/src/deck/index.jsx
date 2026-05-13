@@ -85,6 +85,106 @@ function AnimatedBar({ width, opacity, visible, delay = 0 }) {
   );
 }
 
+/* ── SVG chart primitives for data slides ──────────── */
+
+function MiniArea({ data, color = '#1e6dff', valueLabel, visible = true }) {
+  const W = 600, H = 220;
+  const padL = 6, padR = 6, padT = 28, padB = 6;
+  const iw = W - padL - padR, ih = H - padT - padB;
+  const max = Math.max(...data) * 1.08;
+  const pts = data.map((y, i) => [
+    padL + (i / (data.length - 1)) * iw,
+    padT + ih - (y / max) * ih,
+  ]);
+  const line = 'M ' + pts.map(([x, y]) => `${x.toFixed(1)},${y.toFixed(1)}`).join(' L ');
+  const area = line + ` L ${(padL + iw).toFixed(1)},${(padT + ih).toFixed(1)} L ${padL.toFixed(1)},${(padT + ih).toFixed(1)} Z`;
+  const last = pts[pts.length - 1];
+  return (
+    <svg viewBox={`0 0 ${W} ${H}`} className="w-full block" style={{ overflow: 'visible' }}>
+      <path d={area} fill={color} fillOpacity="0.10" style={{ opacity: visible ? 1 : 0, transition: 'opacity 0.8s ease-out 0.2s' }} />
+      <path
+        d={line}
+        fill="none"
+        stroke={color}
+        strokeWidth="3"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        vectorEffect="non-scaling-stroke"
+        style={{
+          strokeDasharray: 2000,
+          strokeDashoffset: visible ? 0 : 2000,
+          transition: 'stroke-dashoffset 1.4s cubic-bezier(0.16,1,0.3,1)',
+        }}
+      />
+      <circle cx={last[0]} cy={last[1]} r="4.5" fill={color} style={{ opacity: visible ? 1 : 0, transition: 'opacity 0.3s 1.2s' }} />
+      <text
+        x={last[0] - 8}
+        y={last[1] - 10}
+        fill={color}
+        fontSize="18"
+        fontWeight="700"
+        textAnchor="end"
+        style={{ fontFamily: 'Inter, sans-serif', opacity: visible ? 1 : 0, transition: 'opacity 0.4s 1.3s' }}
+      >
+        {valueLabel}
+      </text>
+    </svg>
+  );
+}
+
+function MiniBars({ data, color = '#1e6dff', highlightIdx = -1, visible = true }) {
+  const W = 800, H = 320;
+  const padL = 40, padR = 20, padT = 24, padB = 36;
+  const iw = W - padL - padR, ih = H - padT - padB;
+  const max = Math.max(...data.map(d => d.v)) * 1.08;
+  const bw = iw / data.length;
+  const yTicks = [0, max / 2, max];
+  return (
+    <svg viewBox={`0 0 ${W} ${H}`} className="w-full block">
+      {yTicks.map((v, i) => (
+        <g key={i}>
+          <line x1={padL} y1={padT + ih * (1 - i / 2)} x2={padL + iw} y2={padT + ih * (1 - i / 2)} stroke="#eaeaea" strokeWidth="1" />
+          <text x={padL - 8} y={padT + ih * (1 - i / 2) + 4} fill="#999" fontSize="13" textAnchor="end" style={{ fontFamily: 'Inter, sans-serif' }}>
+            {Math.round(v)}
+          </text>
+        </g>
+      ))}
+      {data.map((d, i) => {
+        const h = (d.v / max) * ih;
+        const x = padL + i * bw + bw * 0.12;
+        const y = padT + ih - h;
+        const isHi = i === highlightIdx;
+        return (
+          <rect
+            key={i}
+            x={x}
+            y={visible ? y : padT + ih}
+            width={bw * 0.76}
+            height={visible ? h : 0}
+            fill={isHi ? '#0f4dcc' : color}
+            opacity={isHi ? 1 : 0.85}
+            rx="1"
+            style={{ transition: `y 0.7s cubic-bezier(0.16,1,0.3,1) ${i * 0.025}s, height 0.7s cubic-bezier(0.16,1,0.3,1) ${i * 0.025}s` }}
+          />
+        );
+      })}
+      {data.map((d, i) => (i % 3 === 0 || i === data.length - 1) && (
+        <text
+          key={'l' + i}
+          x={padL + i * bw + bw / 2}
+          y={padT + ih + 22}
+          fill="#888"
+          fontSize="13"
+          textAnchor="middle"
+          style={{ fontFamily: 'Inter, sans-serif' }}
+        >
+          {d.label}
+        </text>
+      ))}
+    </svg>
+  );
+}
+
 /* ── Shared primitives ─────────────────────────────────── */
 
 function Slide({ children, dark = false, className = '' }) {
@@ -408,17 +508,42 @@ function SlideTraction() {
 
 /* ── 9: Verified platform data (light) ─────────────── */
 function SlidePlatformData() {
+  const { ref, visible } = useReveal();
+  const kpis = [
+    { label: 'Registrerade användare', value: '5 448', sub: '↑ 38,6% YoY nya sign-ups' },
+    { label: 'Skapade annonser', value: '7 839', sub: '2 895 aktiva · 4 375 stängda' },
+    { label: 'Genomförda affärer', value: '4 375', sub: '56% lifetime close rate' },
+    { label: 'Transaktionsvärde (GMV)', value: '35,0M', unit: 'SEK', sub: '≈ $3,3M USD sedan launch' },
+    { label: 'Snittvärde per affär', value: '8 000', unit: 'SEK', sub: 'Median 7 500 · premium-segment' },
+    { label: 'Verifierade återförsäljare', value: '250', sub: 'Hedin · Frontbilar · Toveks + 3 nya' },
+  ];
   return (
     <Slide>
       <div className="px-14 pt-12">
         <Tag>Verifierad plattformsdata</Tag>
         <H1 className="mt-3">Inga estimat — direktexport från plattformen</H1>
-        <div className="mt-6 rounded-xl overflow-hidden border border-brand-gray/30 bg-white">
-          <img src="/deck/kpi-headline.png" alt="Wheelplace headline KPIs" className="w-full block" />
+        <p className="mt-2 text-[14px] text-brand-gray-medium">Sedan launch april 2024 · uppdaterat 12 maj 2026</p>
+
+        <div ref={ref} className="mt-7 grid grid-cols-3 gap-4">
+          {kpis.map((k, i) => (
+            <div
+              key={k.label}
+              className="bg-brand-gray-light rounded-xl p-5"
+              style={{
+                opacity: visible ? 1 : 0,
+                transform: visible ? 'translateY(0)' : 'translateY(16px)',
+                transition: `opacity 0.5s cubic-bezier(0.16,1,0.3,1) ${i * 0.08}s, transform 0.5s cubic-bezier(0.16,1,0.3,1) ${i * 0.08}s`,
+              }}
+            >
+              <div className="text-[12px] font-semibold uppercase tracking-wider text-brand-gray-medium">{k.label}</div>
+              <div className="flex items-baseline gap-1.5 mt-2">
+                <span className="text-[40px] font-bold text-brand-dark font-heading leading-none">{k.value}</span>
+                {k.unit && <span className="text-[16px] font-semibold text-brand-dark">{k.unit}</span>}
+              </div>
+              <div className="text-[12px] text-brand-gray-medium mt-3">{k.sub}</div>
+            </div>
+          ))}
         </div>
-        <p className="mt-4 text-[13px] text-brand-gray-medium">
-          Sedan launch i april 2024 · uppdaterat 12 maj 2026
-        </p>
         <SlideNum n={9} />
       </div>
     </Slide>
@@ -427,20 +552,53 @@ function SlidePlatformData() {
 
 /* ── 10: Growth curves (light) ─────────────────────── */
 function SlideGrowthCurves() {
+  const { ref, visible } = useReveal();
+  const charts = [
+    {
+      label: 'Registrerade användare',
+      finalLabel: '5 448',
+      data: [155, 307, 482, 667, 814, 999, 1247, 1557, 1685, 1837, 1975, 2182, 2330, 2457, 2577, 2700, 2893, 3241, 3689, 4097, 4272, 4479, 4756, 5093, 5383, 5448],
+    },
+    {
+      label: 'Skapade annonser',
+      finalLabel: '7 839',
+      data: [50, 100, 200, 350, 500, 700, 1100, 1700, 2000, 2200, 2500, 2900, 3300, 3700, 3850, 4000, 4500, 5400, 6300, 7000, 7200, 7300, 7400, 7600, 7750, 7839],
+    },
+    {
+      label: 'Genomförda affärer',
+      finalLabel: '4 375',
+      data: [0, 20, 50, 90, 150, 250, 500, 900, 1100, 1300, 1500, 1800, 2100, 2300, 2450, 2600, 2700, 3200, 3700, 4000, 4150, 4250, 4300, 4350, 4370, 4375],
+    },
+    {
+      label: 'Transaktionsvärde (GMV)',
+      finalLabel: '35,0M SEK',
+      data: [0, 0.2, 0.5, 0.8, 1.5, 3, 5, 7.5, 9, 10.5, 12, 14, 16.5, 19, 20, 20.5, 21, 25, 28.5, 31, 33, 33.5, 34.2, 34.6, 34.9, 35],
+    },
+  ];
   return (
     <Slide>
       <div className="px-14 pt-12">
         <Tag>Tillväxtkurvor</Tag>
         <H1 className="mt-3">Fyra nyckeltal — konsekvent uppåtgående sedan dag ett</H1>
-        <div className="mt-6 grid grid-cols-2 gap-3">
-          {[
-            ['/deck/kpi-users-cumulative.png', 'Registrerade användare'],
-            ['/deck/kpi-listings-cumulative.png', 'Skapade annonser'],
-            ['/deck/kpi-closed-cumulative.png', 'Genomförda affärer'],
-            ['/deck/kpi-gmv-cumulative.png', 'Transaktionsvärde (GMV)'],
-          ].map(([src, label]) => (
-            <div key={src} className="rounded-lg overflow-hidden border border-brand-gray/30 bg-white">
-              <img src={src} alt={label} className="w-full block" />
+
+        <div ref={ref} className="mt-6 grid grid-cols-2 gap-4">
+          {charts.map((c, i) => (
+            <div
+              key={c.label}
+              className="bg-white rounded-xl border border-brand-gray/30 p-4"
+              style={{
+                opacity: visible ? 1 : 0,
+                transition: `opacity 0.5s ease-out ${i * 0.1}s`,
+              }}
+            >
+              <div className="text-[12px] font-semibold uppercase tracking-wider text-brand-gray-medium">{c.label}</div>
+              <div className="mt-1">
+                <MiniArea data={c.data} valueLabel={c.finalLabel} visible={visible} />
+              </div>
+              <div className="flex justify-between text-[11px] text-brand-gray-medium mt-1">
+                <span>Apr 2024</span>
+                <span>Maj 2026</span>
+              </div>
             </div>
           ))}
         </div>
@@ -452,28 +610,38 @@ function SlideGrowthCurves() {
 
 /* ── 11: Seasonality (light) ───────────────────────── */
 function SlideSeasonality() {
+  const { ref, visible } = useReveal();
+  const months = ['Apr 24','Maj 24','Jun 24','Jul 24','Aug 24','Sep 24','Okt 24','Nov 24','Dec 24','Jan 25','Feb 25','Mar 25','Apr 25','Maj 25','Jun 25','Jul 25','Aug 25','Sep 25','Okt 25','Nov 25','Dec 25','Jan 26','Feb 26','Mar 26','Apr 26','Maj 26'];
+  const values = [155,152,175,185,147,185,248,310,128,152,138,207,148,127,120,123,193,348,448,408,175,207,277,337,290,60];
+  const data = months.map((label, i) => ({ label, v: values[i] }));
+  const highlightIdx = values.indexOf(Math.max(...values));
+
   return (
     <Slide>
       <div className="px-14 pt-12">
         <Tag>Säsongsmönster</Tag>
         <H1 className="mt-3">Tillväxten följer däckskifte — och accelererar varje år</H1>
-        <div className="mt-5 grid grid-cols-[1fr_280px] gap-6">
-          <div className="rounded-xl overflow-hidden border border-brand-gray/30 bg-white">
-            <img src="/deck/kpi-users-monthly.png" alt="Monthly new user sign-ups" className="w-full block" />
+
+        <div ref={ref} className="mt-5 grid grid-cols-[1fr_280px] gap-6">
+          <div className="bg-white rounded-xl border border-brand-gray/30 p-4">
+            <div className="text-[12px] font-semibold uppercase tracking-wider text-brand-gray-medium mb-2">
+              Nya användare per månad
+            </div>
+            <MiniBars data={data} highlightIdx={highlightIdx} visible={visible} />
           </div>
-          <div className="space-y-4">
+          <div className="space-y-3">
             <div className="bg-brand-blue-50 rounded-xl p-4">
               <p className="text-[12px] font-semibold text-brand-blue uppercase tracking-wider">Oktober 2025</p>
-              <p className="text-[28px] font-bold text-brand-dark font-heading leading-tight mt-1">~450</p>
-              <p className="text-[13px] text-brand-gray-medium">nya användare på en månad — all-time-high</p>
+              <p className="text-[32px] font-bold text-brand-dark font-heading leading-none mt-1">448</p>
+              <p className="text-[13px] text-brand-gray-medium mt-1">nya användare — all-time-high</p>
             </div>
             <div className="bg-brand-gray-light rounded-xl p-4">
               <p className="text-[12px] font-semibold text-brand-gray-medium uppercase tracking-wider">YoY-jämförelse</p>
-              <p className="text-[28px] font-bold text-brand-dark font-heading leading-tight mt-1">+38,6%</p>
-              <p className="text-[13px] text-brand-gray-medium">fler nya användare jämfört med samma period förra året</p>
+              <p className="text-[32px] font-bold text-brand-dark font-heading leading-none mt-1">+38,6%</p>
+              <p className="text-[13px] text-brand-gray-medium mt-1">fler nya sign-ups vs föregående år</p>
             </div>
             <Body className="text-[13px]">
-              Toppar Aug–Nov följer hjulskifteskalendern. Varje cykel är högre än föregående — produkt-marknadsfit.
+              Toppar Aug–Nov följer hjulskifteskalendern. Varje cykel är högre än föregående — tydlig produkt-marknadsfit.
             </Body>
           </div>
         </div>
